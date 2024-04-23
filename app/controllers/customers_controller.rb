@@ -6,14 +6,25 @@ class CustomersController < ApplicationController
     def new
        @customer = Customer.new
        @customer.build_user
-
     end
   
-
     def create
-      if Customer.create!(customer_params)
+      @customer = Customer.new(customer_params)
+      if @customer.save
+        user = @customer.user
+        sign_in(user)
         redirect_to root_path, notice: "Logged in as Customer"
+      else
+        render :new, alert: "Unable to create User"
       end
+    end
+
+    def edit
+
+    end
+
+    def update
+
     end
    
     private
