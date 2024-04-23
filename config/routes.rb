@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   # Admin Dashboard
   get "admin_dashboard", to:"admins#home" 
 
-  #employee Dashboard
-  get "employee_dashboard", to:"employees#home"  
+  # employee Dashboard
+  get "employee_dashboard", to:"employees#home" 
+  
 end
