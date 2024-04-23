@@ -1,0 +1,32 @@
+<h2>Create an Employee</h2>
+
+<%= form_with(model: @employee, local: true) do |form| %>
+
+<%= form.fields_for :user do |user_form| %>
+<div>
+    <%= user_form.label :name %>
+    <%= user_form.text_field :name %>
+</div>
+<div>
+    <%= user_form.label :email %>
+    <%= user_form.text_field :email %>
+ </div>
+
+ <div>
+    <%= user_form.label :password %>
+    <%= user_form.password_field :password %>
+ </div>
+
+ <div>
+    <%= user_form.label :password_confirmation %>
+    <%= user_form.password_field :password_confirmation %>
+ </div>
+ <% end %>
+
+<div>
+    <%= form.label :skill %>
+    <%= form.text_field :skill %>
+</div>
+
+ <%= form.submit "Sign Up" %>
+<% end %>
