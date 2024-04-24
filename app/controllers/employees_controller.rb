@@ -1,6 +1,6 @@
 class EmployeesController < ApplicationController
    def home
-      @employee = current_user.employee
+      # @employee = current_user.employee
    end
    
    def new
@@ -25,7 +25,7 @@ class EmployeesController < ApplicationController
    def update
       @employee = Employee.find(params[:id])
       if @employee.update(employee_params)
-         redirect_to admin_dashboard_path, notice: "Employee was successfully updated."
+         redirect_to employee_dashboard_path, notice: "Employee was successfully updated."
       else
          render :edit
       end

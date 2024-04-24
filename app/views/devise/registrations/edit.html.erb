@@ -26,16 +26,18 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-    <%= f.fields_for :customer do |customer_form| %>
-    <div>
-      <%= customer_form.label :address %><br />
-      <%= customer_form.text_field :address %>
-    </div>
+    <% if current_user&.customer?%>
+      <%= f.fields_for :customer do |customer_form| %>
+      <div>
+        <%= customer_form.label :address %><br />
+        <%= customer_form.text_field :address %>
+      </div>
 
-    <div>
-      <%= customer_form.label :phone_number %><br />
-      <%= customer_form.text_field :phone_number %>
-    </div>
+      <div>
+        <%= customer_form.label :phone_number %><br />
+        <%= customer_form.text_field :phone_number %>
+      </div>
+      <% end %>
     <% end %>
 
   <div class="field">
@@ -46,6 +48,10 @@
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
+<% end %>
+
+<% if current_user&.employee?%>
+  <%= render 'shared/employee_fields'%>
 <% end %>
 
 <h3>Cancel my account</h3>

@@ -1,0 +1,7 @@
+<%= form_with(model: @employee, url: employee_path(@employee), local: true) do |form| %>
+<div>
+    <%= form.label :skill %>
+    <%= form.text_field :skill %>
+</div>
+<%= form.submit "Update skill For Employee" %>
+<% end %>
