@@ -1,0 +1,8 @@
+<%if current_user&.employee?%>
+    <%= render 'shared/navbar/employee_nav_bar'%>
+<% elsif current_user&.admin?%>
+    <%= render 'shared/navbar/admin_nav_bar'%>
+<% else %>
+    <%= render 'shared/navbar/customer_nav_bar'%>
+<% end %>
+

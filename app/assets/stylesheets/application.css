@@ -13,3 +13,54 @@
  *= require_tree .
  *= require_self
  */
+
+/* NAVBAR */
+.navbar{
+    background-color: white;
+    height: 80px;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 0.5rem;
+    box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+}
+.login-btn{
+    background-color: black;
+    color: white;
+    border-radius: 50px;
+    font-size: 14px;
+    padding: 8px 20px;
+    text-decoration: none;
+    transition: 0.3s;
+    margin-left: 5px;
+    margin-right: 5px;
+    border: none;
+}
+
+.login-btn:hover{
+    background-color: rgb(41, 40, 40);
+}
+
+.navbar-toggler{
+    border: none;
+}
+
+.navbar-toggler:focus, .btn-close:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.nav-link{
+    color: gray;
+    transition: 300ms;
+    font-size: 24px;
+}
+
+.nav-link:hover{
+    color: black;
+    font-weight: 500;
+}
+
+.navbar-brand{
+    font-weight: 500;
+    font-size: 24px;
+}
