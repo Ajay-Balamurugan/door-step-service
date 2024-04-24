@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   # resources :customers, only: [:new, :create, :edit, :update]
-  resources :employees, only: [:new, :create, :edit, :update, :destroy]
+  resources :employees, only: [:new, :create, :edit, :update]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -11,12 +11,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Defines the root path route ("/")
-  root "customers#home"
+  root "customers#index"
 
   # Admin Dashboard
-  get "admin_dashboard", to:"admins#home" 
+  get "admin_dashboard", to:"admins#index" 
 
   # employee Dashboard
-  get "employee_dashboard", to:"employees#home" 
+  get "employee_dashboard", to:"employees#index" 
   
 end

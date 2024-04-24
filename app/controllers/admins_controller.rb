@@ -1,5 +1,5 @@
 class AdminsController < ApplicationController
-    def home
+    def index
         
     end
 

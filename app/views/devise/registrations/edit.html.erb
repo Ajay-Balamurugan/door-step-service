@@ -27,17 +27,7 @@
   </div>
 
     <% if current_user&.customer?%>
-      <%= f.fields_for :customer do |customer_form| %>
-      <div>
-        <%= customer_form.label :address %><br />
-        <%= customer_form.text_field :address %>
-      </div>
-
-      <div>
-        <%= customer_form.label :phone_number %><br />
-        <%= customer_form.text_field :phone_number %>
-      </div>
-      <% end %>
+        <%= render partial: 'shared/customer_fields', locals: {form: f}%>
     <% end %>
 
   <div class="field">

@@ -1,6 +1,5 @@
 class EmployeesController < ApplicationController
-   def home
-      # @employee = current_user.employee
+   def index
    end
    
    def new
@@ -29,12 +28,6 @@ class EmployeesController < ApplicationController
       else
          render :edit
       end
-   end
-
-   def destroy
-      @employee = Employee.find(params[:id])
-      @employee.destroy
-      redirect_to admin_dashboard_path, notice: "Employee was successfully deleted."
    end
 
    private
