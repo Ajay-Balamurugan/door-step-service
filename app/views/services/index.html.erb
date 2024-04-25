@@ -1,17 +1,17 @@
-<%= javascript_include_tag 'services/service' %>
+<%= javascript_include_tag 'service' %>
 
 <h1>All Services</h1>
 <hr />
-<% if @services.any? %>
-    <div id="services_container">
+<div id="services_container">
+    <% if @services.any? %>
         <% @services.each do |service| %>
             <%= render 'service', service: service %>
         <% end %>
-    </div>
-<% else %>
-    <p>No Services Found.</p>
-<% end %>
+    <% else %>
+        <p>No Services Found.</p>
+    <% end %>
+</div>
 <%= link_to "Back", admin_dashboard_path, class: "btn btn-danger" %>
-
-<%= render 'create_modal' %>
-
+<div id="create">
+    <%= render 'create_modal' %>
+</div>
