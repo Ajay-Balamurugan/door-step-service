@@ -1,0 +1,10 @@
+<div class = "service">
+    <%= service.title%><br />
+    <%= service.description%><br />
+    <% service.images.each do |image|%>
+        <%= image_tag image.variant(resize_to_fill: [150, 150]).processed, style: "border-radius: 10px"%>
+    <% end %>
+    <%= link_to "Update Service", edit_service_path(service), class: "btn btn-dark" %>
+    <%= link_to "Manage Service Options", edit_service_path(service), class: "btn btn-dark" %>
+    <%= button_to "Delete Service", service_path(service), method: :delete,  class: "btn btn-dark" %>
+</div>

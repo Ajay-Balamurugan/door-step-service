@@ -1,17 +1,17 @@
+<%= javascript_include_tag 'services/service' %>
+
 <h1>All Services</h1>
+<hr />
 <% if @services.any? %>
-    <% @services.each do |service| %>
-        <%= service.title%><br />
-        <%= service.description%><br />
-        <% service.images.each do |image|%>
-            <%= image_tag image.variant(resize_to_fill: [150, 150]).processed, style: "border-radius: 10px"%>
+    <div id="services_container">
+        <% @services.each do |service| %>
+            <%= render 'service', service: service %>
         <% end %>
-        <%= link_to "Update Service", edit_service_path(service), class: "btn btn-dark" %>
-        <%= link_to "Manage Service Options", edit_service_path(service), class: "btn btn-dark" %>
-        <hr />
-    <% end %>
+    </div>
 <% else %>
     <p>No Services Found.</p>
 <% end %>
 <%= link_to "Back", admin_dashboard_path, class: "btn btn-danger" %>
+
+<%= render 'create_modal' %>
 
