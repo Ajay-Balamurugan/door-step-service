@@ -12,6 +12,7 @@ class ServicesController < ApplicationController
 
     def show
       @service = Service.find(params[:id])
+      @option = Option.new
     end
     
 

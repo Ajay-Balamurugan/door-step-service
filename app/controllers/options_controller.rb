@@ -8,15 +8,17 @@ class OptionsController < ApplicationController
         @options = Option.all
     end
     
+    
     def new
        @option = Option.new
     end
     
 
    def create
-      @option = Option.new(option_params)
+      service = Service.find(params[:service_id])
+      @option = service.options.new(option_params)
       if @option.save
-         render partial: 'option', locals: { option: @option }, status: :created
+         render partial: 'option', locals: { option: @option, service: service}, status: :created
       else
          render json: { message: 'Unable to Create Option.' }, status: :unprocessable_entity
       end
@@ -28,10 +30,11 @@ class OptionsController < ApplicationController
  
     def update
       @option = Option.find(params[:id])
+      service = @option.service
       if @option.update(option_params)
-         render json: { message: "option was successfully updated", option: @option}, status: :ok
+         render partial: 'option', locals: { option: @option, service: service}, status: :ok
       else
-         render json: @option.errors, status: :unprocessable_entity
+         render json: { message: 'Unable to Update Option.' }, status: :unprocessable_entity
       end
     end
     

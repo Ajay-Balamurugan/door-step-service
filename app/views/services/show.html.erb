@@ -1,19 +1,24 @@
-<h1>Service Details</h1>
-<h1> <%= @service.title %> </h1>
-<p> <%= @service.description %> </p>
-<%= render 'options/create_option_modal' %>
+<%= javascript_include_tag 'option' %>
+<div id="show_header">
+    <h1>Service Details</h1>
+    <%= render 'options/create_option_modal', option: @option, service: @service%>
+</div>
+<hr />
 
-<div class="service_options_container">
+<div id="selected_service">
+    <h1> <%= @service.title %> </h1>
+    <p> <%= @service.description %> </p>
+</div>
+
+<div id="service_options_container">
     <% if @service.options.any?%>
-        <h3>Options:</h3>
         <% @service.options.each do |option| %>
-            <h2><%= option.title %></h2>
-            <h3><%= option.description %></h3>
-            <h3><%= option.price%></h3>
-            <%= render 'edit_modal', service: service%>
-            <%= button_to "Delete Option", service_option_path, method: :delete,  class: "btn btn-danger" %>
+            <div class="option_container">
+                <%= render 'options/option', option: option, service: @service %>
+            </div>
         <% end %>
     <% else %>
         <h3> No Options for this Service </h3>
     <% end %>
 </div>
+

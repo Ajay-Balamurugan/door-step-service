@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: @option, id: "create_option_form", url: service_options_path(@service)) do |form| %>            
+        <%= form_with(model: option, id: "create_option_form", url: service_options_path(@service), data: { 'service-id': service.id }) do |form| %>            
             <div>
                 <%= form.label :title %>
                 <%= form.text_field :title %>

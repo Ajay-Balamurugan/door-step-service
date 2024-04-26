@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :employees, only: [:new, :create, :edit, :update]
   resources :admins, only: [:new, :create]
   resources :services do
-    resources :options, only: [:index, :create, :edit, :update, :destroy]
+    resources :options
   end
 
 

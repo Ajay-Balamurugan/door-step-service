@@ -1,40 +1,38 @@
 $(document).ready(function () {
   //AJAX for creating a service
-  //AJAX for creating a service
-  $("#create_service_form").on("submit", function (event) {
+  $("#create_option_form").on("submit", function (event) {
     event.preventDefault();
 
-    var formData = new FormData($("#create_service_form")[0]);
+    var formData = new FormData($(this)[0]);
+    var serviceId = $(this).data("service-id");
 
     $.ajax({
       type: "POST",
-      url: "/services",
+      url: "/services/" + serviceId + "/options",
       data: formData,
       processData: false,
       contentType: false,
       success: function (response) {
-        console.log(response);
-        console.log("Service created successfully");
-        $("#services_container").prepend($(response));
-        $("#create_service_form")[0].reset();
+        $("#service_options_container").append($(response));
+        $("#create_option_form")[0].reset();
 
-        // Use event delegation for the update modal submit button
-        $(document).on("submit", ".edit_service_form", function (event) {
+        // Use event delegation for the update modal submit button for options
+        $(document).on("submit", "#edit_option_form", function (event) {
           event.preventDefault();
           var formData = new FormData($(this)[0]);
-          var serviceId = $(this).data("service-id");
+          var optionId = $(this).data("option-id");
 
           $.ajax({
             method: "PUT",
-            url: "/services/" + serviceId,
+            url: "/services/" + serviceId + "/options/" + optionId,
             data: formData,
             processData: false,
             contentType: false,
             success: function (response) {
-              $("#service_" + serviceId).replaceWith($(response));
+              $("#option_" + optionId).replaceWith($(response));
             },
             error: function (error) {
-              console.error("Error updating service:", error);
+              console.error("Error updating option:", error);
             },
           });
         });
@@ -46,19 +44,20 @@ $(document).ready(function () {
   });
 
   //AJAX for updating a service
-  $(".edit_service_form").on("submit", function (event) {
+  $("#edit_option_form").on("submit", function (event) {
     event.preventDefault();
     var formData = new FormData($(this)[0]);
     var serviceId = $(this).data("service-id");
+    var optionId = $(this).data("option-id");
 
     $.ajax({
       method: "PUT",
-      url: "/services/" + serviceId,
+      url: "/services/" + serviceId + "/options/" + optionId,
       data: formData,
       processData: false,
       contentType: false,
       success: function (response) {
-        $("#service_" + serviceId).replaceWith($(response));
+        $("#option_" + optionId).replaceWith($(response));
       },
       error: function (error) {
         console.error("Error updating service:", error);
