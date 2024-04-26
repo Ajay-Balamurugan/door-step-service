@@ -1,14 +1,14 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal<%= service.id %>">
   Update service
 </button>
 
 <!-- Modal -->
-<div class="modal fade editModal" id="editServiceModal" tabindex="-1" aria-labelledby="createServiceModalLabel" aria-hidden="true">
+<div class="modal fade editModal" id="editServiceModal<%= service.id %>" tabindex="-1" aria-labelledby="createServiceModalLabel<%= service.id %>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="createServiceModalLabel">Create a Service</h1>
+        <h1 class="modal-title fs-5" id="editServiceModalLabel<%= service.id %>">Edit Service</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

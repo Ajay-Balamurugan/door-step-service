@@ -1,17 +1,18 @@
 <div id = "service_<%= service.id %>" class="service">
     <div class="service_details">
-        <h3 id="service_title_<%= service.id %>"><%= service.title%></h3><br />
+        <h3 id="service_title_<%= service.id %>">Title : <%= service.title%></h3><br />
+        <p id="desc_label">Descrpition : </p>
         <p id="service_description_<%= service.id %>"><%= service.description%></p><br />
     </div>
-    <div class="service_images">
+    <div id="service_images_container_<%= service.id%>" class="service_images">
         <% service.images.each do |image|%>
-            <%= image_tag image.variant(resize_to_fill: [150, 150]).processed, style: "border-radius: 10px", class: "service_image_#{service.id}" %>
+            <%= image_tag image.variant(resize_to_fill: [150, 150]).processed, style: "border-radius: 10px", id: "service_image_#{service.id}" %>
         <% end %>
     </div>
     <div class="service_buttons">
         <%= render 'edit_modal', service: service%>
         <%= link_to "Manage Service Options", edit_service_path(service), class: "btn btn-dark" %>
-        <%= button_to "Delete Service", service_path(service), method: :delete,  class: "btn btn-dark" %>
+        <%= button_to "Delete Service", service_path(service), method: :delete,  class: "btn btn-danger" %>
     </div>
 </div>
 

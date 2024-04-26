@@ -49,7 +49,9 @@ $(document).ready(function () {
           response.service.description
         );
 
-        var serviceImagesContainer = $(".service_images");
+        var serviceImagesContainer = $(
+          `#service_images_container_${serviceId}`
+        );
         serviceImagesContainer.empty();
 
         response.image_urls.forEach(function (imageUrl) {

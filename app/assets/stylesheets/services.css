@@ -1,17 +1,34 @@
 #services_container {
   margin-left: 5vw;
+  margin-right: 5vw;
 }
 
 .service {
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 3vh;
+  margin-bottom: 5vh;
   display: flex;
   gap: 5vw;
   align-items: center;
-  justify-content: center;
-  background-color: #f0ebe3;
+  background-color: white;
   width: fit-content;
-  padding: 20px;
+  padding: 30px;
   border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  /* width: 80vw; */
+}
+
+#desc_label {
+  font-weight: bold;
+  font-size: large;
+}
+
+.service_images {
+  display: flex;
+  flex-direction: row;
+  gap: 2vw;
+  min-width: 30vw;
 }
 
 .service_buttons {
@@ -19,11 +36,30 @@
   flex-direction: column;
 }
 
-.service_details p {
-  max-width: 10vw;
-}
-
 .service .btn {
   margin-top: 3vh;
   margin-left: 3vh;
+}
+
+#back-btn {
+  margin-left: 5vw;
+  margin-top: 3vh;
+  margin-bottom: 5vh;
+}
+
+.service_details {
+  width: 20vw;
+}
+
+.service_images img {
+  height: auto;
+  width: auto;
+}
+
+#index_header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2vh;
 }
