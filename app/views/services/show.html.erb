@@ -1,0 +1,19 @@
+<h1>Service Details</h1>
+<h1> <%= @service.title %> </h1>
+<p> <%= @service.description %> </p>
+<%= render 'options/create_option_modal' %>
+
+<div class="service_options_container">
+    <% if @service.options.any?%>
+        <h3>Options:</h3>
+        <% @service.options.each do |option| %>
+            <h2><%= option.title %></h2>
+            <h3><%= option.description %></h3>
+            <h3><%= option.price%></h3>
+            <%= render 'edit_modal', service: service%>
+            <%= button_to "Delete Option", service_option_path, method: :delete,  class: "btn btn-danger" %>
+        <% end %>
+    <% else %>
+        <h3> No Options for this Service </h3>
+    <% end %>
+</div>

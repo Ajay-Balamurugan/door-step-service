@@ -28,13 +28,7 @@ $(document).ready(function () {
   $(".edit_service_form").on("submit", function (event) {
     event.preventDefault();
     var formData = new FormData($(this)[0]);
-    var serviceId = $(this)
-      .closest('div[id^="service_"]')
-      .attr("id")
-      .split("_")[1];
-    console.log(serviceId);
-    url = "/services/" + serviceId;
-    console.log(url);
+    var serviceId = $(this).data("service-id");
 
     $.ajax({
       method: "PUT",
@@ -43,26 +37,9 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
-        console.log(response);
-        $(`#service_title_${serviceId}`).text(response.service.title);
-        $(`#service_description_${serviceId}`).text(
-          response.service.description
-        );
-
-        var serviceImagesContainer = $(
-          `#service_images_container_${serviceId}`
-        );
-        serviceImagesContainer.empty();
-
-        response.image_urls.forEach(function (imageUrl) {
-          var imgElement = $("<img>")
-            .attr("src", imageUrl)
-            .addClass("service_image_" + serviceId)
-            .attr("style", "border-radius: 10px");
-          serviceImagesContainer.append(imgElement);
-        });
+        $("#service_" + serviceId).replaceWith($(response));
       },
-      error: function (xhr, status, error) {
+      error: function (error) {
         console.error("Error updating service:", error);
       },
     });

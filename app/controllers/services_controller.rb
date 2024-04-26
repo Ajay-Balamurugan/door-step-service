@@ -9,6 +9,10 @@ class ServicesController < ApplicationController
     def new
        @service = Service.new
     end
+
+    def show
+      @service = Service.find(params[:id])
+    end
     
 
    def create
@@ -27,13 +31,9 @@ class ServicesController < ApplicationController
     def update
       @service = Service.find(params[:id])
       if @service.update(service_params)
-         image_urls = @service.images.map do |image|
-            variant = image.variant(resize_to_fill: [150, 150]).processed
-            rails_representation_url(variant)
-         end
-         render json: { message: "Service was successfully updated", service: @service, image_urls: image_urls }, status: :ok
+         render partial: 'service', locals: { service: @service }, status: :ok
       else
-         render json: @service.errors, status: :unprocessable_entity
+         render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity      
       end
     end
     

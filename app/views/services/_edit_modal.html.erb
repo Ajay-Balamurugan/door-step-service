@@ -12,22 +12,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <h2>Edit Service</h2>
-            <%= form_with(model: service, local: true,class: "edit_service_form") do |form| %>
-                <div>
-                    <%= form.label :title %>
-                    <%= form.text_field :title %>
-                </div>
-                <div>
-                    <%= form.label :description %>
-                    <%= form.text_field :description %>
-                </div>
-                <div>
-                    <%= form.label :images %>
-                    <%= form.file_field :images, multiple: true %>
-                </div>
-            <%= form.submit "Update Service", data: { 'bs-dismiss': "modal" } %>
-            <% end %>
+          <%= form_with(model: service, class: "edit_service_form", data: { 'service-id': service.id }) do |form| %>
+              <div>
+                  <%= form.label :title %>
+                  <%= form.text_field :title %>
+              </div>
+              <div>
+                  <%= form.label :description %>
+                  <%= form.text_field :description %>
+              </div>
+              <div>
+                  <%= form.label :images %>
+                  <%= form.file_field :images, multiple: true %>
+              </div>
+          <%= form.submit "Update Service", data: { 'bs-dismiss': "modal" } %>
+          <% end %>
       </div>
     </div>
   </div>

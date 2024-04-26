@@ -1,0 +1,11 @@
+<div id = "option_<%= @service.option.id %>_<%= @service.id %>" class="option">
+    <div class="option_details">
+        <h3 id="option_title_<%= @service.option.id %>_<%= service.id %>">Title : <%= @service.option.title%></h3><br />
+        <p id="desc_label">Descrpition : </p>
+        <p id="option_description_<%= @service.option.id %>_<%= @service.id %>"><%= @service.option.description%></p><br />
+    </div>
+    <div class="option_buttons">
+        <!-- <%= render 'edit_option_modal', option: @service.option%> -->
+        <%= button_to "Delete option", option_path(@service.option), method: :delete,  class: "btn btn-danger" %>
+    </div>
+</div>

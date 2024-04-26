@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   # resources :customers, only: [:new, :create, :edit, :update]
   resources :employees, only: [:new, :create, :edit, :update]
   resources :admins, only: [:new, :create]
-  resources :services
+  resources :services do
+    resources :options, only: [:index, :create, :edit, :update, :destroy]
+  end
+
 
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

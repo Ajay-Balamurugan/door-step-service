@@ -11,7 +11,14 @@
 <div id="services_container">
     <% if @services.any? %>
         <% @services.each do |service| %>
-            <%= render 'service', service: service %>
+            <div class="service_container">
+                <%= render 'service', service: service %>
+                <div class="service_btns">
+                    <%= render 'edit_modal', service: service%>
+                    <%= link_to "Manage Service Options", service_path(service), class: "btn btn-dark" %>
+                    <%= button_to "Delete Service", service_path(service), method: :delete,  class: "btn btn-danger" %>
+                </div>
+            </div>
         <% end %>
     <% else %>
         <p>No Services Found.</p>

@@ -1,0 +1,33 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editOptionModal">
+  Update Option
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="editOptionModal" tabindex="-1" aria-labelledby="editOptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editOptionModalLabel">Update Service Option</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: @option, id: "edit_option_form") do |form| %>            
+            <div>
+                <%= form.label :title %>
+                <%= form.text_field :title %>
+            </div>
+            <div>
+                <%= form.label :description %>
+                <%= form.text_area :description %>
+            </div>
+            <div>
+                <%= form.label :price %>
+                <%= form.number_field :price %>
+            </div>
+            <%= form.submit "Update Option", data: { 'bs-dismiss': "modal" } %>
+        <% end %>  
+      </div>
+    </div>
+  </div>
+</div>
