@@ -1,0 +1,29 @@
+#services_container {
+  margin-left: 5vw;
+}
+
+.service {
+  margin-top: 3vh;
+  display: flex;
+  gap: 5vw;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0ebe3;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.service_buttons {
+  display: flex;
+  flex-direction: column;
+}
+
+.service_details p {
+  max-width: 10vw;
+}
+
+.service .btn {
+  margin-top: 3vh;
+  margin-left: 3vh;
+}

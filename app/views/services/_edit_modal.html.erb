@@ -1,43 +1,6 @@
-<!-- Button trigger modal 
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<%= service.id %>">
-  Update service
-</button>
-
-<!-- Modal
-<div class="modal fade editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Service</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <h2>Update Service</h2>
-        <%= form_with(model: service, local: true, id: "edit_service_form") do |form| %>
-          <div>
-            <%= form.label :title %>
-            <%= form.text_field :title %>
-          </div>
-          <div>
-            <%= form.label :description %>
-            <%= form.text_field :description %>
-          </div>
-          <div>
-            <%= form.label :images %>
-            <%= form.file_field :images, multiple: true %>
-          </div>
-          <%= form.submit "Update", data: { 'bs-dismiss': "modal" } %>
-          <%= link_to "Back", services_path, class: "btn btn-danger" %>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal">
-  Edit a service
+  Update service
 </button>
 
 <!-- Modal -->
@@ -63,7 +26,7 @@
                     <%= form.label :images %>
                     <%= form.file_field :images, multiple: true %>
                 </div>
-            <%= form.submit "Create Service", data: { 'bs-dismiss': "modal" } %>
+            <%= form.submit "Update Service", data: { 'bs-dismiss': "modal" } %>
             <% end %>
       </div>
     </div>
