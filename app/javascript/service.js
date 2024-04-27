@@ -35,6 +35,25 @@ $(document).ready(function () {
             },
           });
         });
+
+        // Use event delegation for the delete service button
+        $(document).on("click", ".delete_service_btn", function (event) {
+          event.preventDefault();
+
+          var serviceId = $(this).data("service-id");
+          console.log(serviceId);
+          $.ajax({
+            method: "DELETE",
+            url: "/services/" + serviceId,
+            success: function (response) {
+              console.log(response);
+              $("#service_" + serviceId).remove();
+            },
+            error: function (error) {
+              console.error("Error updating service:", error);
+            },
+          });
+        });
       },
       error: function (error) {
         console.error("Error creating service:", error);
@@ -56,6 +75,25 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         $("#service_" + serviceId).replaceWith($(response));
+      },
+      error: function (error) {
+        console.error("Error updating service:", error);
+      },
+    });
+  });
+
+  //AJAX for deleting a service
+  $(".delete_service_btn").on("click", function (event) {
+    event.preventDefault();
+
+    var serviceId = $(this).data("service-id");
+    console.log(serviceId);
+    $.ajax({
+      method: "DELETE",
+      url: "/services/" + serviceId,
+      success: function (response) {
+        console.log(response);
+        $("#service_" + serviceId).remove();
       },
       error: function (error) {
         console.error("Error updating service:", error);

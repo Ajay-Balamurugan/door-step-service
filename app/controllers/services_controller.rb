@@ -41,8 +41,11 @@ class ServicesController < ApplicationController
 
     def destroy
       @service = Service.find(params[:id])
-      @service.destroy
-      redirect_to services_path, notice: "Successfully deleted services"
+      if @service.destroy
+         render json: { message: 'Succesfully deleted service' }, status: :ok  
+      else
+         render json: { message: 'Error! Unable to delete Service' }, status: :unprocessable_entity      
+      end
     end
  
     private
