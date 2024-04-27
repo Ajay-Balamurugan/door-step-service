@@ -1,18 +1,18 @@
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editOptionModal">
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editOptionModal<%= option.id %>">
   Update Option
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="editOptionModal" tabindex="-1" aria-labelledby="editOptionModalLabel" aria-hidden="true">
+<div class="modal fade editModal" id="editOptionModal<%= option.id %>" tabindex="-1" aria-labelledby="editOptionModalLabel<%= option.id %>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editOptionModalLabel">Update Service Option</h1>
+        <h1 class="modal-title fs-5" id="editOptionModalLabel<%= option.id %>">Update Service Option</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: option, id: "edit_option_form", url: service_option_path(service,option), data: { 'service-id': service.id, 'option-id': option.id }) do |form| %>            
+        <%= form_with(model: option, class: "edit_option_form", url: service_option_path(service,option), data: { 'service-id': service.id, 'option-id': option.id }) do |form| %>            
             <div>
                 <%= form.label :title %>
                 <%= form.text_field :title %>

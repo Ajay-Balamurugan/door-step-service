@@ -11,11 +11,7 @@
   display: flex;
   gap: 3vw;
   align-items: center;
-  background-color: white;
   width: fit-content;
-  padding: 30px;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
 }
 
 #desc_label {
@@ -24,11 +20,21 @@
 }
 
 .service {
+  margin-left: auto;
+  margin-right: auto;
+
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  border-radius: 20px;
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  padding: 30px;
+
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   gap: 2vw;
-  /* width: fit-content; */
+  width: fit-content;
 }
 
 .service_images {

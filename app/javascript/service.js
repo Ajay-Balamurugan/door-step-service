@@ -1,6 +1,5 @@
 $(document).ready(function () {
   //AJAX for creating a service
-  //AJAX for creating a service
   $("#create_service_form").on("submit", function (event) {
     event.preventDefault();
 
@@ -13,8 +12,6 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
-        console.log(response);
-        console.log("Service created successfully");
         $("#services_container").prepend($(response));
         $("#create_service_form")[0].reset();
 

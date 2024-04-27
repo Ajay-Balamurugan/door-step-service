@@ -17,7 +17,7 @@ $(document).ready(function () {
         $("#create_option_form")[0].reset();
 
         // Use event delegation for the update modal submit button for options
-        $(document).on("submit", "#edit_option_form", function (event) {
+        $(document).on("submit", ".edit_option_form", function (event) {
           event.preventDefault();
           var formData = new FormData($(this)[0]);
           var optionId = $(this).data("option-id");
@@ -38,13 +38,13 @@ $(document).ready(function () {
         });
       },
       error: function (error) {
-        console.error("Error creating service:", error);
+        console.error("Error creating option:", error);
       },
     });
   });
 
   //AJAX for updating a service
-  $("#edit_option_form").on("submit", function (event) {
+  $(".edit_option_form").on("submit", function (event) {
     event.preventDefault();
     var formData = new FormData($(this)[0]);
     var serviceId = $(this).data("service-id");
