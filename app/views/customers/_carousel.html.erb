@@ -1,0 +1,89 @@
+<!--====== Tiny Slider Css ======-->
+<link rel="stylesheet" href="https://cdn.ayroui.com/1.0/css/tiny-slider.css" />
+<!--====== SLIDER THREE PART START ======-->
+<section class="slider-three">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section-title text-center">
+          <h3 class="title">Friendly & Easy</h3>
+          <p class="text">
+            Seamlessly schedule and manage your doorstep services with us, ensuring your needs are met with ease and efficiency. Your satisfaction is our top priority!"
+          </p>
+        </div>
+        <!-- section title -->
+      </div>
+    </div>
+    <!-- row -->
+    <div class="slider-items-wrapper">
+      <div class="row slider-items-active">
+        <div class="col-lg-4">
+          <div class="single-items-one">
+            <%= image_tag "home/pic1"%>
+          </div>
+          <!-- single-items-one -->
+        </div>
+        <div class="col-lg-4">
+          <div class="single-items-one">
+            <%= image_tag "home/pic2"%>
+          </div>
+          <!-- single-items-one -->
+        </div>
+        <div class="col-lg-4">
+          <div class="single-items-one">
+            <%= image_tag "home/pic3"%>
+          </div>
+          <!-- single-items-one -->
+        </div>
+        <div class="col-lg-4">
+          <div class="single-items-one">
+            <%= image_tag "home/pic4"%>
+          </div>
+          <!-- single-items-one -->
+        </div>
+        <div class="col-lg-4">
+          <div class="single-items-one">
+            <%= image_tag "home/pic6"%>
+          </div>
+          <!-- single-items-one -->
+        </div>
+      </div>
+      <!-- row -->
+    </div>
+  </div>
+  <!-- container -->
+</section>
+<!--====== SLIDER THREE PART ENDS ======-->
+<!--====== Tiny Slider js ======-->
+<script src="https://cdn.ayroui.com/1.0/js/tiny-slider.js"></script>
+<script>
+  //======== tiny slider for slider-items-active
+  tns({
+     autoplay: true,
+     autoplayButtonOutput: false,
+     mouseDrag: true,
+     gutter: 0,
+     container: ".slider-items-active",
+     center: false,
+     nav: true,
+     navPosition: "bottom",
+     controls: false,
+     speed: 400,
+     controlsText: [
+        '<i class="lni lni-arrow-left-circle"></i>',
+        '<i class="lni lni-arrow-right-circle"></i>',
+     ],
+     responsive: {
+        0: {
+           items: 1,
+        },
+
+        768: {
+           items: 2,
+        },
+        992: {
+           items: 3,
+        },
+     },
+  });
+</script>

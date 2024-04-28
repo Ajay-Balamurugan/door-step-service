@@ -1,40 +1,38 @@
 class EmployeesController < ApplicationController
-   def index
-   end
-   
-   def new
-      @employee = Employee.new
-      @employee.build_user
-   end
+  def index
+  end
 
-   def create
-      @employee = Employee.new(employee_params)
-      @employee.user.role = :employee 
-      if @employee.save
-         redirect_to admin_dashboard_path, notice: "Successfully Created Employee"
-      else
-         render :new
-      end
-   end
+  def new
+    @employee = Employee.new
+    @employee.build_user
+  end
 
-   def edit
-      @employee = Employee.find(params[:id])
-   end
+  def create
+    @employee = Employee.new(employee_params)
+    @employee.user.role = :employee
+    if @employee.save
+      redirect_to admin_dashboard_path, notice: 'Successfully Created Employee'
+    else
+      render :new
+    end
+  end
 
-   def update
-      @employee = Employee.find(params[:id])
-      if @employee.update(employee_params)
-         redirect_to employee_dashboard_path, notice: "Employee was successfully updated."
-      else
-         render :edit
-      end
-   end
+  def edit
+    @employee = Employee.find(params[:id])
+  end
 
-   private
+  def update
+    @employee = Employee.find(params[:id])
+    if @employee.update(employee_params)
+      redirect_to employee_dashboard_path, notice: 'Employee was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
-   def employee_params
-      params.require(:employee).permit(:skill, user_attributes: [:id, :name, :email, :password, :password_confirmation])
-   end
+  private
 
+  def employee_params
+    params.require(:employee).permit(:skill, user_attributes: %i[id name email password password_confirmation])
+  end
 end
-   

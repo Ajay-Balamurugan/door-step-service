@@ -1,11 +1,9 @@
 <h2>Edit Service</h2>
-
 <%= form_with(model: @service, local: true) do |form| %>
-
- <div>
+  <div>
     <%= form.label :title %>
     <%= form.text_field :title %>
- </div>
+  </div>
   <div>
     <%= form.label :description %>
     <%= form.text_field :description %>
@@ -14,7 +12,6 @@
     <%= form.label :images %>
     <%= form.file_field :images, multiple: true %>
   </div>
-
- <%= form.submit "Update" %>
- <%= link_to "Back", services_path, class: "btn btn-danger" %>
+  <%= form.submit "Update" %>
+  <%= link_to "Back", services_path, class: "btn btn-danger" %>
 <% end %>

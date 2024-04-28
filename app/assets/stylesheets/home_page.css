@@ -1,0 +1,86 @@
+.service_illustration {
+  height: 100px;
+  width: 100px;
+  border-radius: 20px;
+}
+
+.navigation {
+  border: 0.5px solid #e3e3e3;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  width: 30vw;
+  height: fit-content;
+}
+
+.service_display {
+  background-color: white;
+  border-radius: 20px;
+  height: fit-content;
+  text-align: center;
+}
+
+.slogan {
+  position: relative;
+  right: 30px;
+}
+
+.main {
+  display: flex;
+  gap: 5vw;
+  height: fit-content;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  top: 5vh;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.most_booked_cards {
+  display: flex;
+  gap: 4vw;
+  margin-bottom: 5vh;
+}
+
+.card {
+  width: 20vw;
+  border-radius: 20px;
+}
+
+#most {
+  margin-bottom: 5vh;
+}
+
+.price_button {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.most_booked_images {
+  height: 150px;
+  width: 250px;
+}
+
+.most_booked_button {
+  background-color: black;
+  color: white;
+  border-radius: 50px;
+  font-size: 14px;
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: 0.3s;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: none;
+}

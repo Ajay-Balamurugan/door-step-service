@@ -1,23 +1,19 @@
 <%= javascript_include_tag 'service' %>
-
 <div id="index_header">
-    <h1>All Services</h1>
-    <div id="create">
-        <%= render 'create_modal' %>
-    </div>
+  <h1>All Services</h1>
+  <div id="create">
+    <%= render 'create_modal' %>
+  </div>
 </div>
-
 <hr />
 <div id="services_container">
-    <% if @services.any? %>
-        <% @services.each do |service| %>
-            <div class="service_container">
-                <%= render 'service', service: service %>
-            </div>
-        <% end %>
-    <% else %>
-        <h3 id="no_services">No Services Found.</h3>
+  <% if @services.any? %>
+    <% @services.each do |service| %>
+      <div class="service_container">
+        <%= render 'service', service: service %>
+      </div>
     <% end %>
+  <% else %>
+    <h3 id="no_services">No Services Found.</h3>
+  <% end %>
 </div>
-
-

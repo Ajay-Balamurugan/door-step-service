@@ -2,7 +2,6 @@
 <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createServiceModal">
   Create a service
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="createServiceModal" tabindex="-1" aria-labelledby="createServiceModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -13,21 +12,21 @@
       </div>
       <div class="modal-body">
         <h2>Create a Service</h2>
-            <%= form_with(model: @service, id: "create_service_form") do |form| %>
-                <div>
-                    <%= form.label :title %>
-                    <%= form.text_field :title %>
-                </div>
-                <div>
-                    <%= form.label :description %>
-                    <%= form.text_field :description %>
-                </div>
-                <div>
-                    <%= form.label :images %>
-                    <%= form.file_field :images, multiple: true %>
-                </div>
-            <%= form.submit "Create Service", data: { 'bs-dismiss': "modal" } %>
-            <% end %>
+        <%= form_with(model: @service, id: "create_service_form") do |form| %>
+          <div>
+            <%= form.label :title %>
+            <%= form.text_field :title %>
+          </div>
+          <div>
+            <%= form.label :description %>
+            <%= form.text_area :description %>
+          </div>
+          <div>
+            <%= form.label :images %>
+            <%= form.file_field :images, multiple: true %>
+          </div>
+          <%= form.submit "Create Service", data: { 'bs-dismiss': "modal" } %>
+        <% end %>
       </div>
     </div>
   </div>
