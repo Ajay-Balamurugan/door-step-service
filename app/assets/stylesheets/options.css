@@ -60,3 +60,8 @@
   box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
   width: 30vw;
 }
+
+#no_options {
+  margin-left: auto;
+  margin-right: auto;
+}

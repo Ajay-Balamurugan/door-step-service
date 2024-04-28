@@ -25,7 +25,7 @@
                   <%= form.label :images %>
                   <%= form.file_field :images, multiple: true %>
               </div>
-          <%= form.submit "Update Service", data: { 'bs-dismiss': "modal" } %>
+          <%= form.submit "Update Service",class: "update_service_btn", data: { 'bs-dismiss': "modal", 'service-id': service.id } %>
           <% end %>
       </div>
     </div>

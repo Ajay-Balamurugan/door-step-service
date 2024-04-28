@@ -1,4 +1,42 @@
 $(document).ready(function () {
+  //AJAX for CRUD on service
+  $("#services_container").on("click", function (event) {
+    let item = event.target;
+    let element = $(item);
+    if (element.hasClass("delete_service_btn")) {
+      serviceId = element.data("service-id");
+      $.ajax({
+        method: "DELETE",
+        url: "/services/" + serviceId,
+        success: function (response) {
+          $("#service_" + serviceId).remove();
+        },
+        error: function (error) {
+          console.error("Error updating service:", error);
+        },
+      });
+    } else if (element.hasClass("update_service_btn")) {
+      event.preventDefault();
+      serviceId = element.data("service-id");
+      form = element.parent();
+      var formData = new FormData(form[0]);
+
+      $.ajax({
+        method: "PUT",
+        url: "/services/" + serviceId,
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          $("#service_" + serviceId).replaceWith($(response));
+        },
+        error: function (error) {
+          console.error("Error updating service:", error);
+        },
+      });
+    }
+  });
+
   //AJAX for creating a service
   $("#create_service_form").on("submit", function (event) {
     event.preventDefault();
@@ -12,91 +50,12 @@ $(document).ready(function () {
       processData: false,
       contentType: false,
       success: function (response) {
+        $("#no_services").remove();
         $("#services_container").prepend($(response));
         $("#create_service_form")[0].reset();
-
-        // Use event delegation for the update modal submit button
-        $(document).on("submit", ".edit_service_form", function (event) {
-          event.preventDefault();
-          var formData = new FormData($(this)[0]);
-          var serviceId = $(this).data("service-id");
-
-          $.ajax({
-            method: "PUT",
-            url: "/services/" + serviceId,
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function (response) {
-              $("#service_" + serviceId).replaceWith($(response));
-            },
-            error: function (error) {
-              console.error("Error updating service:", error);
-            },
-          });
-        });
-
-        // Use event delegation for the delete service button
-        $(document).on("click", ".delete_service_btn", function (event) {
-          event.preventDefault();
-
-          var serviceId = $(this).data("service-id");
-          console.log(serviceId);
-          $.ajax({
-            method: "DELETE",
-            url: "/services/" + serviceId,
-            success: function (response) {
-              console.log(response);
-              $("#service_" + serviceId).remove();
-            },
-            error: function (error) {
-              console.error("Error updating service:", error);
-            },
-          });
-        });
       },
       error: function (error) {
         console.error("Error creating service:", error);
-      },
-    });
-  });
-
-  //AJAX for updating a service
-  $(".edit_service_form").on("submit", function (event) {
-    event.preventDefault();
-    var formData = new FormData($(this)[0]);
-    var serviceId = $(this).data("service-id");
-
-    $.ajax({
-      method: "PUT",
-      url: "/services/" + serviceId,
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        $("#service_" + serviceId).replaceWith($(response));
-      },
-      error: function (error) {
-        console.error("Error updating service:", error);
-      },
-    });
-  });
-
-  //AJAX for deleting a service
-  $(".delete_service_btn").on("click", function (event) {
-    event.preventDefault();
-
-    var serviceId = $(this).data("service-id");
-    console.log(serviceId);
-    $.ajax({
-      method: "DELETE",
-      url: "/services/" + serviceId,
-      success: function (response) {
-        console.log(response);
-        $("#service_" + serviceId).remove();
-      },
-      error: function (error) {
-        console.error("Error updating service:", error);
       },
     });
   });

@@ -66,3 +66,9 @@
   justify-content: center;
   gap: 2vh;
 }
+
+#no_services {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+}
