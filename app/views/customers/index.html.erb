@@ -6,33 +6,11 @@
     </div>
     <div class="navigation mt-4">
       <div class="row row-cols-3 mt-5">
-        <div class="col">
-          <%= render 'service_display', name: "Womens's Salon", img_url: "services/women_salon" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Men's Salon", img_url: "services/men_salon" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Appliance Repair", img_url: "services/appliance" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Cleaning", img_url: "services/cleaning" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Plumbing", img_url: "services/plumber" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Carpentry", img_url: "services/carpenter" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Painting", img_url: "services/painter" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Pest Control", img_url: "services/pest_control" %>
-        </div>
-        <div class="col">
-          <%= render 'service_display', name: "Car Wash", img_url: "services/cleaning" %>
-        </div>
+        <% @services.each do |service| %>
+          <div class="col">
+            <%= render 'service_display', service: service %>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

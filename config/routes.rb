@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -8,24 +7,25 @@ Rails.application.routes.draw do
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
-  get "up" => "rails/health#show", as: :rails_health_check
+  get 'up' => 'rails/health#show', as: :rails_health_check
 
-  resources :employees, only: [:new, :create, :edit, :update]
+  resources :employees, only: %i[new create edit update]
 
-  resources :admins, only: [:new, :create]
-  
+  resources :admins, only: %i[new create]
+
   resources :services do
     resources :options
   end
 
   # Defines the root path route ("/")
-  root "customers#index"
+  root 'customers#index'
 
   # Admin Dashboard
-  get "admin_dashboard", to:"admins#index" 
+  get 'admin_dashboard', to: 'admins#index'
 
   # employee Dashboard
-  get "employee_dashboard", to:"employees#index" 
-  
-  
+  get 'employee_dashboard', to: 'employees#index'
+
+  # service show page for customers
+  get 'customer_service/:id', to: 'customers#customer_show', as: 'customer_service'
 end

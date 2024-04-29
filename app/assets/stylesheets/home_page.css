@@ -52,10 +52,10 @@
   margin-bottom: 5vh;
 }
 
-.card {
+/* .card {
   width: 20vw;
   border-radius: 20px;
-}
+} */
 
 #most {
   margin-bottom: 5vh;
@@ -87,5 +87,4 @@ border-radius: 15px !important;
   text-decoration: none;
   transition: 0.3s;
   border: none;
-  
 }
