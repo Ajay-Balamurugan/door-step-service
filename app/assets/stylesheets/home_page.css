@@ -46,7 +46,7 @@
   justify-content: center;
 }
 
-.most_booked_cards {
+.most_booked_services {
   display: flex;
   gap: 4vw;
   margin-bottom: 5vh;
@@ -69,18 +69,23 @@
 
 .most_booked_images {
   height: 150px;
-  width: 250px;
+  width: 268px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+.card{
+border-radius: 15px !important;
 }
 
 .most_booked_button {
   background-color: black;
   color: white;
-  border-radius: 50px;
+  border-radius: 30px;
   font-size: 14px;
   padding: 8px 20px;
   text-decoration: none;
   transition: 0.3s;
-  margin-left: 5px;
-  margin-right: 5px;
   border: none;
+  
 }
