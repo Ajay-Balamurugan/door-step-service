@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  cart: one
+  option: one
+  time_slot: 2024-04-29 22:46:39
+
+two:
+  cart: two
+  option: two
+  time_slot: 2024-04-29 22:46:39

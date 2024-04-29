@@ -49,7 +49,8 @@
   gap: 5vh;
 }
 
-.option_book_button {
+.option_book_button,
+.add_to_cart_btn {
   background-color: black;
   color: white;
   border-radius: 30px;
@@ -58,4 +59,5 @@
   text-decoration: none;
   transition: 0.3s;
   border: none;
+  margin-left: 5px;
 }

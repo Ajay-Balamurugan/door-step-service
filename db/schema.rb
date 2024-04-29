@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_111855) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_29_205024) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,9 +46,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_111855) do
     t.index ["user_id"], name: "index_admins_on_user_id"
   end
 
+  create_table "cart_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "cart_id", null: false
+    t.bigint "option_id", null: false
+    t.datetime "time_slot"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
+    t.index ["option_id"], name: "index_cart_items_on_option_id"
+  end
+
   create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "customer_id", null: false
-    t.integer "total"
+    t.integer "total", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_carts_on_customer_id"
@@ -105,6 +115,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_111855) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "admins", "users"
+  add_foreign_key "cart_items", "carts"
+  add_foreign_key "cart_items", "options"
   add_foreign_key "carts", "customers"
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "users"

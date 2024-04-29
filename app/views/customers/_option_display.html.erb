@@ -3,6 +3,24 @@
     <h5 class="card-title"><%= option.title%></h5>
     <h6 class="card-subtitle mb-2 text-body-secondary"><%= option.price%></h6>
     <p class="card-text"><%= option.description%></p>
-    <%= link_to "Book Now", root_path, class: "option_book_button"%>
+    <button type="button" class="option_book_button" data-bs-toggle="modal" data-bs-target="#bookNowModal">Book Now</button>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="bookNowModal" tabindex="-1" aria-labelledby="bookNowModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="bookNowModalLabel">Select Date and Time of Service</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(url: cart_items_path, method: :post, id: "bookNowForm") do |form| %>
+          <%= form.hidden_field :option_id, value: option.id %>
+          <%= form.datetime_field :time_slot%>
+          <%= form.submit "Add to cart",class: "add_to_cart_btn", data: { 'bs-dismiss': "modal", 'option-id': option.id } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
