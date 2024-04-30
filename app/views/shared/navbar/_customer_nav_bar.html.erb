@@ -7,33 +7,28 @@
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <%if user_signed_in?%>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">cart</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">Booking History</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">My Cart</a>
-          </li>
-        </ul>
-      </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+            <li class="nav-item">
+              <%= link_to "Home", root_path, class: "nav-link mx-lg-2" %>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="#">Booking History</a>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Cart", cart_path(current_customer.cart), class: "nav-link mx-lg-2" %>
+            </li>
+          </ul>
+        </div>
       <% end %>
     </div>
-    
     <% if !user_signed_in?%>
-        <%= link_to "Login", new_user_session_path, class: "login-btn" %>
-        <%= link_to "Signup", new_user_registration_path, class: "login-btn" %>
+      <%= link_to "Login", new_user_session_path, class: "login-btn" %>
+      <%= link_to "Signup", new_user_registration_path, class: "login-btn" %>
     <% else %>
-        <%= link_to "Profile", edit_user_registration_path, class: "login-btn" %>
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "login-btn" %>
+      <%= link_to "Profile", edit_user_registration_path, class: "login-btn" %>
+      <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "login-btn" %>
     <% end %>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>

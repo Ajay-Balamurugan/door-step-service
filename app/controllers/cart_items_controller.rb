@@ -2,27 +2,24 @@ class CartItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_cart
 
-  def new
-    @cart_item = CartItem.new
-  end
-
   def create
     @cart_item = CartItem.new(cart_item_params)
+    @cart_item.cart = current_customer.cart
     if @cart_item.save
-      render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :created
+      # render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :created
+      current_customer.cart.total += @cart_item.option.price
+      @cart.save
+      redirect_to cart_path(current_customer.cart), notice: "Service Added to cart Successfully"
     else
       render json: { message: 'Unable to Add Item to Cart.' }, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @cart_item = CartItem.find(params[:id])
-  end
-
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
-      render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :ok
+      redirect_to cart_path(current_customer.cart), notice: "Successfully updated time slot"
+      # render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :ok
     else
       render json: { message: 'Error! Unable to Update Item' }, status: :unprocessable_entity
     end
@@ -31,7 +28,10 @@ class CartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     if @cart_item.destroy
-      render json: { message: 'Succesfully Removed Item From Cart' }, status: :ok
+      @cart.total -= @cart_item.option.price
+      @cart.save
+      # redirect_to cart_path(current_customer.cart), notice: "Removed item from cart Successfully"
+      render json: { message: 'Succesfully Removed Item From Cart', total: @cart.total }, status: :ok
     else
       render json: { message: 'Error! Unable to remove Item from Cart' }, status: :unprocessable_entity
     end
@@ -40,7 +40,7 @@ class CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:time_slot, :option_id)
+    params.require(:cart_item).permit(:option_id, :time_slot)
   end
 
   def set_cart

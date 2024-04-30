@@ -13,7 +13,10 @@ Rails.application.routes.draw do
 
   resources :admins, only: %i[new create]
 
-  resources :cart_items, only: %i[new create update destroy]
+  resources :cart_items, only: %i[create update destroy]
+
+  resources :carts, only: %i[show]
+
 
   resources :services do
     resources :options
@@ -29,8 +32,6 @@ Rails.application.routes.draw do
   get 'employee_dashboard', to: 'employees#index'
 
   # service show page for customers
-  get 'customer_service/:id', to: 'customers#customer_show', as: 'customer_service'
+  get 'customer_service/:id', to: 'customers#home', as: 'customer_service'
 
-  # View Cart details
-  get 'view_cart', to: 'carts#show'
 end

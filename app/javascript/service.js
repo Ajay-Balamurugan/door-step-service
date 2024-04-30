@@ -12,7 +12,7 @@ $(document).ready(function () {
           $("#service_" + serviceId).remove();
         },
         error: function (error) {
-          console.error("Error updating service:", error);
+          console.error("Error deleting service:", error);
         },
       });
     } else if (element.hasClass("update_service_btn")) {
