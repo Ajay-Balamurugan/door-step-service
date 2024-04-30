@@ -1,0 +1,12 @@
+<tr id="cart_item_<%=item.id%>">
+  <td><%= item.option.title %></td>
+  <td>
+    <p id="item_time_slot_<%= item.id%>"><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></p>
+  </td>
+  <td>Rs.<%= item.option.price %></td>
+  <td>
+    <button type="button" class="edit_slot_button" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= item.option.id %>">Edit Time Slot</button>
+    <%= render 'carts/edit_slot_modal', option: item.option, cart_item: item %>
+    <%= button_to 'Remove', cart_item_path(item), method: :delete,class: "remove_item_btn", data: { item_id: item.id } %>
+  </td>
+</tr>

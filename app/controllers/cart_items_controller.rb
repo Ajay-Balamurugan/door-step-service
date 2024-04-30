@@ -6,10 +6,10 @@ class CartItemsController < ApplicationController
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.cart = current_customer.cart
     if @cart_item.save
-      # render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :created
-      current_customer.cart.total += @cart_item.option.price
+      @cart.total += @cart_item.option.price
       @cart.save
-      redirect_to cart_path(current_customer.cart), notice: "Service Added to cart Successfully"
+      partial = render_to_string(partial: 'carts/cart_item', locals: { item: @cart_item }, formats: [:html])
+      render json: { item: partial, total: @cart.total }, status: :created
     else
       render json: { message: 'Unable to Add Item to Cart.' }, status: :unprocessable_entity
     end
@@ -18,8 +18,7 @@ class CartItemsController < ApplicationController
   def update
     @cart_item = CartItem.find(params[:id])
     if @cart_item.update(cart_item_params)
-      redirect_to cart_path(current_customer.cart), notice: "Successfully updated time slot"
-      # render partial: 'cart_item', locals: { cart_item: @cart_item }, status: :ok
+      render json: { date: @cart_item.time_slot }, status: :ok
     else
       render json: { message: 'Error! Unable to Update Item' }, status: :unprocessable_entity
     end
@@ -30,7 +29,6 @@ class CartItemsController < ApplicationController
     if @cart_item.destroy
       @cart.total -= @cart_item.option.price
       @cart.save
-      # redirect_to cart_path(current_customer.cart), notice: "Removed item from cart Successfully"
       render json: { message: 'Succesfully Removed Item From Cart', total: @cart.total }, status: :ok
     else
       render json: { message: 'Error! Unable to remove Item from Cart' }, status: :unprocessable_entity

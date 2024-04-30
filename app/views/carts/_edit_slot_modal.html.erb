@@ -7,10 +7,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, id: "editSlotForm") do |form| %>
+        <%= form_with(model: cart_item, url: cart_item_path(cart_item), method: :patch, id: "editSlotForm", data: { 'item_id': cart_item.id}) do |form| %>
           <%= form.hidden_field :option_id, value: option.id %>
           <%= form.datetime_field :time_slot, value: cart_item.time_slot %>
-          <%= form.submit "Edit Time Slot",class: "edit_slot_btn", data: { 'bs-dismiss': "modal"} %>
+          <%= form.submit "Edit Time Slot",class: "edit_time_slot_btn", data: { 'bs-dismiss': "modal"} %>
         <% end %>
       </div>
     </div>

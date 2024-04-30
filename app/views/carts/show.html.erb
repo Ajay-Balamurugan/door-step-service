@@ -1,28 +1,23 @@
 <%= javascript_include_tag 'cart_item' %>
 <div class="container">
-  <h1> My Cart </h1>
-  <h1 id="cart_total"><%= current_customer.cart.total %></h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Time Slot</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody id="cart_body">
-      <% @cart.cart_items.each do |item| %>
-        <tr id="cart_item_<%=item.id%>">
-          <td><%= item.option.title %></td>
-          <td>Rs.<%= item.option.price %></td>
-          <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-          <td>
-            <button type="button" class="edit_slot_button" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= item.option.id %>">Edit Time Slot</button>
-            <%= render 'edit_slot_modal', option: item.option, cart_item: item %>
-            <%= button_to 'Remove', cart_item_path(item), method: :delete,class: "remove_item_btn", data: { item_id: item.id } %>
-          </td>
+  <% if @cart.cart_items.any?%>
+    <h1 id="cart_header"> My Cart </h1>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Time Slot</th>
+          <th>Price</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody id="cart_body">
+        <% @cart.cart_items.each do |item| %>
+          <%= render 'cart_item', item: item%>
+        <% end %>
+      </tbody>
+    </table>
+    <h1 id="cart_total">Total : Rs.<%= current_customer.cart.total %></h1>
+  <% else %>
+    <h1 id="empty_cart">Your Cart is Empty</h1>
+  <% end %>
 </div>

@@ -16,4 +16,50 @@ $(document).ready(function () {
       },
     });
   });
+
+  // AJAX for adding a cart item
+  $(".add_to_cart_btn").on("click", function (event) {
+    event.preventDefault();
+
+    $.ajax({
+      method: "POST",
+      url: "/cart_items",
+      success: function (response) {
+        $("#cart_body").append(response.item);
+        $("#cart_total").text(response.total);
+      },
+      error: function (error) {
+        console.error("Error adding cart item:", error);
+      },
+    });
+  });
+
+  // AJAX for updating a cart item
+  $("#editSlotForm").on("submit", function (event) {
+    event.preventDefault();
+    itemId = $(this).data("itemId");
+    var formData = new FormData(this);
+    $.ajax({
+      method: "PATCH",
+      url: "/cart_items/" + itemId,
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        var date = new Date(response.date);
+        var formattedDate = date.toLocaleDateString("en-US", {
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        });
+        $("#item_time_slot_" + itemId).text(formattedDate);
+      },
+      error: function (error) {
+        console.error("Error updating cart item:", error);
+      },
+    });
+  });
 });
