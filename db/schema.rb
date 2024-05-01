@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_29_205024) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_01_055403) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -91,6 +91,26 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_205024) do
     t.index ["service_id"], name: "index_options_on_service_id"
   end
 
+  create_table "service_request_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "service_request_id", null: false
+    t.bigint "option_id", null: false
+    t.datetime "time_slot"
+    t.integer "status"
+    t.string "otp_secret_key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_service_request_items_on_option_id"
+    t.index ["service_request_id"], name: "index_service_request_items_on_service_request_id"
+  end
+
+  create_table "service_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "customer_id", null: false
+    t.integer "total"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_service_requests_on_customer_id"
+  end
+
   create_table "services", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -121,4 +141,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_29_205024) do
   add_foreign_key "customers", "users"
   add_foreign_key "employees", "users"
   add_foreign_key "options", "services"
+  add_foreign_key "service_request_items", "options"
+  add_foreign_key "service_request_items", "service_requests"
+  add_foreign_key "service_requests", "customers"
 end

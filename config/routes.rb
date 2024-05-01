@@ -17,6 +17,7 @@ Rails.application.routes.draw do
 
   resources :carts, only: %i[show]
 
+  resources :service_requests, only: %i[create]
 
   resources :services do
     resources :options
@@ -33,5 +34,4 @@ Rails.application.routes.draw do
 
   # service show page for customers
   get 'customer_service/:id', to: 'customers#home', as: 'customer_service'
-
 end

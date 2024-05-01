@@ -1,23 +1,27 @@
 <%= javascript_include_tag 'cart_item' %>
-<div class="container">
-  <% if @cart.cart_items.any?%>
-    <h1 id="cart_header"> My Cart </h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Service</th>
-          <th>Time Slot</th>
-          <th>Price</th>
-        </tr>
-      </thead>
-      <tbody id="cart_body">
-        <% @cart.cart_items.each do |item| %>
-          <%= render 'cart_item', item: item%>
-        <% end %>
-      </tbody>
-    </table>
-    <h1 id="cart_total">Total : Rs.<%= current_customer.cart.total %></h1>
-  <% else %>
-    <h1 id="empty_cart">Your Cart is Empty</h1>
-  <% end %>
+<%= javascript_include_tag 'service_request' %>
+<div class="container cart_container">
+  <div id="cart_items_container">
+    <% if @cart.cart_items.any?%>
+      <h1 id="cart_header"> My Cart </h1>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Service</th>
+            <th>Time Slot</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="cart_body">
+          <% @cart.cart_items.each do |item| %>
+            <%= render 'cart_item', item: item%>
+          <% end %>
+        </tbody>
+      </table>
+      <h1 id="cart_total">Total : Rs.<%= current_customer.cart.total %></h1>
+      <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn' %>
+    <% else %>
+      <h1 id="empty_cart">Your Cart is Empty</h1>
+    <% end %>
+  </div>
 </div>

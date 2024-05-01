@@ -1,0 +1,12 @@
+class ServiceRequestsController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
+  def create
+    @service_request = ServiceRequest.new(customer_id: current_customer.id, total: current_customer.cart.total)
+    if @service_request.save
+      render partial: 'booking_success', status: :created
+    else
+      redirect_to cart_path, notice: 'Unable to place Order.'
+    end
+  end
+end

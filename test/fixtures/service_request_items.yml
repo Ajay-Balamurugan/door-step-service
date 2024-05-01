@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  service_request: one
+  option: one
+  time_slot: 2024-05-01 11:24:03
+  status: 1
+  otp_secret_key: MyString
+
+two:
+  service_request: two
+  option: two
+  time_slot: 2024-05-01 11:24:03
+  status: 1
+  otp_secret_key: MyString
