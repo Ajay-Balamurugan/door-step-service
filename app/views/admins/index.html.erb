@@ -1,3 +1,14 @@
-<h1>Admin Dashboard</h1>
-
-
+<div class="container">
+  <h1>Admin Dashboard</h1>
+  <h2>Service Bookings</h2>
+  <ul>
+    <% @service_request_items.each do |item| %>
+      <div id="booked_service_<%= item.id%>">
+        <h3><%= item.option.title %></h3>
+        <p><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></p>
+        <p><%= item.service_request.customer.user.name%></p>
+        <%= link_to "Assign Employee", root_path%>
+        <%= button_to "Decline Service", root_path%>
+      </div>
+    <% end %>
+  </div>

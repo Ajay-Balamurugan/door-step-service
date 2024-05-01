@@ -1,0 +1,30 @@
+.booking_details_header {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#booking_item_header {
+  text-decoration: underline solid black;
+}
+
+.booking_item_name {
+  min-width: 10vw;
+}
+
+.booking_item_details {
+  display: flex;
+  /* gap: 10vw; */
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}

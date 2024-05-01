@@ -1,4 +1,4 @@
 <div class="service_display">
-  <%= link_to image_tag(service.images.first.variant(resize_to_fill: [150, 150]).processed, class: "service_illustration"), customer_service_path(service), class: "service_link" %><br />
+  <%= link_to image_tag(service.images.first.variant(resize_to_fill: [150, 150]).processed, class: "service_illustration"), show_service_path(service), class: "service_link" %><br />
   <p class="service_name"><%= service.title %></p>
 </div>

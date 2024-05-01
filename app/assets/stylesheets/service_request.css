@@ -1,0 +1,36 @@
+#booking_history_header {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.booking {
+  background-color: white;
+  padding: 20px;
+  border-radius: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  margin-top: 3vh;
+  margin-bottom: 3vh;
+  display: flex;
+  align-items: center;
+  gap: 3vw;
+  width: fit-content;
+}
+.booking_items {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+}
+
+.view_details_btn {
+  background-color: black;
+  color: white;
+  border-radius: 30px;
+  font-size: 14px;
+  padding: 8px 20px;
+  text-decoration: none;
+  border: none;
+}

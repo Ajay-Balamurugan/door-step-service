@@ -1,5 +1,6 @@
 class AdminsController < ApplicationController
   def index
+    @service_request_items = ServiceRequestItem.all
   end
 
   def new

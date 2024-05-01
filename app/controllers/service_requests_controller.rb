@@ -13,4 +13,8 @@ class ServiceRequestsController < ApplicationController
   def index
     @service_requests = current_customer.service_requests
   end
+
+  def show
+    @service_request_items = ServiceRequest.find(params[:id]).service_request_items
+  end
 end

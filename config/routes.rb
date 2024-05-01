@@ -17,9 +17,7 @@ Rails.application.routes.draw do
 
   resources :carts, only: %i[show]
 
-  resources :service_requests, only: %i[create index]
-
-  resources :service_request_items, only: %i[index]
+  resources :service_requests, only: %i[create index show]
 
   resources :services do
     resources :options
@@ -35,5 +33,5 @@ Rails.application.routes.draw do
   get 'employee_dashboard', to: 'employees#index'
 
   # service show page for customers
-  get 'customer_service/:id', to: 'customers#home', as: 'customer_service'
+  get 'show_service/:id', to: 'customers#home', as: 'show_service'
 end
