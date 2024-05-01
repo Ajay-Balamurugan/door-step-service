@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="heading">
+    <h1>Booking History</h1>
+  </div>
+  <hr />
+  <div class="bookings">
+    <% @service_requests.each_with_index do |request, index| %>
+      <div class="booking">
+        <h2><%= index + 1 %></h2>
+        <% request.service_request_items.each do |item|%>
+          <p><%= item.option.title %></p>
+        <% end %>
+        <p>Rs.<%= request.total %>
+          <%= link_to "View Details", service_request_items_path(request) %>
+        </div>
+      <% end %>
+    </div>
+  </div>

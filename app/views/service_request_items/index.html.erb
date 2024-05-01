@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="heading">
+    <h1>Booking Details</h1>
+  </div>
+  <hr />
+  <div class="active_bookings">
+    <h2>Active Bookings</h2>
+    <% @service_request_items.each do |item| %>
+      <% if item.status != 'completed' %>
+        <div class="booking">
+          <p><strong>Service:</strong> <%= item.option.title %></p>
+          <p><strong>Time Slot:</strong> <%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></p>
+          <p><strong>Status:</strong> <%= item.status %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="completed_bookings">
+    <h2>Completed Bookings</h2>
+    <% @service_request_items.each do |item| %>
+      <% if item.status== 'completed' %>
+        <div class="booking">
+          <p><strong>Service:</strong> <%= item.option.title %></p>
+          <p><strong>Time Slot:</strong> <%= item.time_slot %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -17,7 +17,9 @@ Rails.application.routes.draw do
 
   resources :carts, only: %i[show]
 
-  resources :service_requests, only: %i[create]
+  resources :service_requests, only: %i[create index]
+
+  resources :service_request_items, only: %i[index]
 
   resources :services do
     resources :options

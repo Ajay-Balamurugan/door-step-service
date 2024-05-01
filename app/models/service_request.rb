@@ -14,5 +14,8 @@ class ServiceRequest < ApplicationRecord
       ServiceRequestItem.create(service_request: self, option: item.option, time_slot: item.time_slot,
                                 status: 'order_placed')
     end
+    customer.cart.cart_items.each(&:destroy)
+    customer.cart.total = 0
+    customer.cart.save
   end
 end

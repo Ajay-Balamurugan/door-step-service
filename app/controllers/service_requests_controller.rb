@@ -9,4 +9,8 @@ class ServiceRequestsController < ApplicationController
       redirect_to cart_path, notice: 'Unable to place Order.'
     end
   end
+
+  def index
+    @service_requests = current_customer.service_requests
+  end
 end
