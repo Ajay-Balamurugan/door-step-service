@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  employee: one
+  service_request_item: one
+  time_slot: 2024-05-02 14:31:18
+
+two:
+  employee: two
+  service_request_item: two
+  time_slot: 2024-05-02 14:31:18

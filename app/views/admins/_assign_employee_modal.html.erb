@@ -15,7 +15,14 @@
         <h3><%= service_request_item.service_request.customer.user.name%></h3>
         <h3><%= service_request_item.service_request.customer.address%></h3>
         <p><%= service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p")%></p>
-        <h1>dropdown goes here</h1>
+        <%= form_with(model: @employee_slot, class: "employee_slot_form") do |form| %>
+          <%= form.label :Select_Employee %>
+          <%= form.collection_select :employee_id, @available_employees, :id, :name, prompt: "Select Employee", class:"employee_select_field" %>
+          <%= form.hidden_field :employee_id, id: 'employeeId' %>
+          <%= form.hidden_field :service_request_item_id, id: 'serviceRequestId' %>
+          <%= form.submit "Assign Employee", class: "btn btn-primary" %>
+          <%= form.submit "Update Service",class: "update_service_btn", data: { 'bs-dismiss': "modal", 'service-id': service.id } %>
+        <% end %>
       </div>
     </div>
   </div>
