@@ -2,8 +2,10 @@
 <h3><%= @service_request_item.service_request.customer.user.name%></h3>
 <h3><%= @service_request_item.service_request.customer.address%></h3>
 <p><%= @service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p")%></p>
-<% @employees.each do |employee|%>
-  <% if employee.service == @service_request_item.option.service%>
-    <%= employee.user.name%>
-  <% end %>
+<%= form_with(model: EmployeeSlot.new, url: employee_slots_path, method: :post) do |form| %>
+  <%= form.label :employee_id, "Select Employee" %>
+  <%= form.select :employee_id, options_for_select(@available_employees.map { |e| [e.user.name, e.id] })%>
+  <%= form.hidden_field :service_request_item_id, value: @service_request_item.id %>
+  <%= form.hidden_field :time_slot, value: @service_request_item.time_slot %>
+  <%= form.submit "Assign Employee", class: "btn btn-primary mt-3" %>
 <% end %>
