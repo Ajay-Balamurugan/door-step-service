@@ -1,8 +1,6 @@
 class AdminsController < ApplicationController
   def index
     @service_request_items = ServiceRequestItem.where(status: :order_placed)
-    @employee_slot = EmployeeSlot.new
-    @available_employees = Services::EmployeeSlotHelper::AvailableEmployeesCreator(@service_request_items).call
   end
 
   def new

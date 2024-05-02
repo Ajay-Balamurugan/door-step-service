@@ -20,7 +20,7 @@
           <td><%= item.service_request.customer.user.name %></td>
           <td><%= item.service_request.customer.address %></td>
           <td>
-            <%= render 'assign_employee_modal', service_request_item: item, class: "accept_btn"%>
+            <%= link_to 'Accept Service',service_request_item_path(item), class: "btn btn-primary"%>
             <%= button_to "Decline Service", root_path, class: "btn btn-danger reject_btn"%>
           </td>
         </tr>

@@ -1,4 +1,5 @@
 class Service < ApplicationRecord
-    has_many_attached :images
-    has_many :options, dependent: :destroy
+  has_many_attached :images
+  has_many :options, dependent: :destroy
+  has_many :employees, dependent: :destroy
 end

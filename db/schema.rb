@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_02_090118) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_02_112631) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -84,10 +84,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_090118) do
   end
 
   create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "skill"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "service_id"
+    t.index ["service_id"], name: "index_employees_on_service_id"
     t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
@@ -151,6 +152,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_02_090118) do
   add_foreign_key "customers", "users"
   add_foreign_key "employee_slots", "employees"
   add_foreign_key "employee_slots", "service_request_items"
+  add_foreign_key "employees", "services"
   add_foreign_key "employees", "users"
   add_foreign_key "options", "services"
   add_foreign_key "service_request_items", "options"

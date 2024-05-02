@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   resources :service_requests, only: %i[create index show]
 
+  resources :employee_slots, only: %i[create]
+
+  resources :service_request_items, only: %i[show]
+
   resources :services do
     resources :options
   end

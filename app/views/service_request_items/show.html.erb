@@ -1,0 +1,9 @@
+<h1><%= @service_request_item.option.title%></h1>
+<h3><%= @service_request_item.service_request.customer.user.name%></h3>
+<h3><%= @service_request_item.service_request.customer.address%></h3>
+<p><%= @service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p")%></p>
+<% @employees.each do |employee|%>
+  <% if employee.service == @service_request_item.option.service%>
+    <%= employee.user.name%>
+  <% end %>
+<% end %>

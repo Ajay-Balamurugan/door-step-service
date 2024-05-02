@@ -19,8 +19,8 @@
     </div>
   <% end %>
   <div>
-    <%= form.label :skill, "Skill" %>
-    <%= form.select :skill, options_for_select(Service.pluck(:title), prompt: "Select a Service") %>
+    <%= form.label :service_id, "Skill" %>
+    <%= form.select :service_id, options_for_select(Service.pluck(:title, :id), prompt: "Select a Skill")%>
   </div>
   <%= form.submit "Sign Up" %>
 <% end %>

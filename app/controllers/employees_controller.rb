@@ -33,6 +33,6 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:skill, user_attributes: %i[id name email password password_confirmation])
+    params.require(:employee).permit(:service_id, user_attributes: %i[id name email password password_confirmation])
   end
 end
