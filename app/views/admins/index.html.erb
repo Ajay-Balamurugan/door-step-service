@@ -1,14 +1,30 @@
+<h1 class="admin_dashboard_header">Admin Dashboard</h1>
+<hr />
 <div class="container">
-  <h1>Admin Dashboard</h1>
-  <h2>Service Bookings</h2>
-  <ul>
-    <% @service_request_items.each do |item| %>
-      <div id="booked_service_<%= item.id%>">
-        <h3><%= item.option.title %></h3>
-        <p><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></p>
-        <p><%= item.service_request.customer.user.name%></p>
-        <%= link_to "Assign Employee", root_path%>
-        <%= button_to "Decline Service", root_path%>
-      </div>
-    <% end %>
-  </div>
+  <h2 class="admin_dashboard_header">Service Bookings</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Service Title</th>
+        <th>Time Slot</th>
+        <th>Customer Name</th>
+        <th>Customer Address</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_request_items.each do |item| %>
+        <tr id="booked_service_<%= item.id %>">
+          <td><%= item.option.title %></td>
+          <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
+          <td><%= item.service_request.customer.user.name %></td>
+          <td><%= item.service_request.customer.address %></td>
+          <td>
+            <%= render 'assign_employee_modal', service_request_item: item, class: "accept_btn"%>
+            <%= button_to "Decline Service", root_path, class: "btn btn-danger reject_btn"%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

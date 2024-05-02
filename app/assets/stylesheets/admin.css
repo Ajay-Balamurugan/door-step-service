@@ -1,0 +1,16 @@
+.booked_service {
+  display: flex;
+  gap: 3vw;
+}
+
+.admin_dashboard_header {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accept_btn,
+.reject_btn {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}

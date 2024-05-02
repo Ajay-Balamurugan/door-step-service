@@ -3,4 +3,7 @@ class Employee < ApplicationRecord
 
   accepts_nested_attributes_for :user
 
+  validates :skill, presence: true
+
+
 end

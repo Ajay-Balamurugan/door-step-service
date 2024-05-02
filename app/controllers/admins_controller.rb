@@ -1,6 +1,6 @@
 class AdminsController < ApplicationController
   def index
-    @service_request_items = ServiceRequestItem.all
+    @service_request_items = ServiceRequestItem.where(status: :order_placed)
   end
 
   def new
