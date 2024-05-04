@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   def index
+    @employee_slots = current_user.employee.employee_slots
   end
 
   def new
