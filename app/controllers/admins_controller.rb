@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  before_action :authenticate_admin
+
   def index
     @service_request_items = ServiceRequestItem.where(status: :order_placed)
   end
@@ -22,5 +24,9 @@ class AdminsController < ApplicationController
 
   def admin_params
     params.require(:admin).permit(user_attributes: %i[name email password password_confirmation])
+  end
+
+  def authenticate_admin
+    redirect_to root_path, alert: 'You are not authorised to access this content' unless current_user&.admin?
   end
 end

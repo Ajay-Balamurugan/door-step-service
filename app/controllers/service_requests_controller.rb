@@ -1,5 +1,6 @@
 class ServiceRequestsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_customer
 
   def create
     @service_request = ServiceRequest.new(customer_id: current_customer.id, total: current_customer.cart.total)
@@ -16,5 +17,9 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @service_request_items = ServiceRequest.find(params[:id]).service_request_items
+  end
+
+  def authenticate_customer
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.customer?
   end
 end

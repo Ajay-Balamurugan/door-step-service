@@ -1,4 +1,6 @@
 class EmployeeSlotsController < ApplicationController
+  before_action :authenticate_admin, only: %i[create]
+
   def create
     @employee_slot = EmployeeSlot.new(employee_slot_params)
     if @employee_slot.save
@@ -14,5 +16,9 @@ class EmployeeSlotsController < ApplicationController
 
   def employee_slot_params
     params.require(:employee_slot).permit(:employee_id, :service_request_item_id, :time_slot)
+  end
+
+  def authenticate_admin
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
   end
 end

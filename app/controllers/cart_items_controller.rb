@@ -1,5 +1,6 @@
 class CartItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_customer
   before_action :set_cart
 
   def create
@@ -43,5 +44,9 @@ class CartItemsController < ApplicationController
 
   def set_cart
     @cart = current_customer.cart
+  end
+
+  def authenticate_customer
+    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless current_user&.customer?
   end
 end

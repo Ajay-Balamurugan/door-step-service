@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :authenticate_admin
 
   def new
     @option = Option.new
@@ -42,5 +43,9 @@ class OptionsController < ApplicationController
 
   def option_params
     params.require(:option).permit(:title, :description, :price, :service_id)
+  end
+
+  def authenticate_admin
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
   end
 end

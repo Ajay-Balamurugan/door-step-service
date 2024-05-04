@@ -1,4 +1,7 @@
 class EmployeesController < ApplicationController
+  before_action :authenticate_admin, only: %i[new create]
+  before_action :authenticate_employee, only: %i[index]
+
   def index
     @employee_slots = current_user.employee.employee_slots
   end
@@ -35,5 +38,13 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:employee).permit(:service_id, user_attributes: %i[id name email password password_confirmation])
+  end
+
+  def authenticate_employee
+    redirect_to root_path alert: 'You are not allowed to visit that page' unless current_user&.employee?
+  end
+
+  def authenticate_admin
+    redirect_to root_path alert: 'You are not allowed to visit that page' unless current_user&.admin?
   end
 end
