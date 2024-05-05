@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :employee_slots, only: %i[create]
 
-  resources :service_request_items, only: %i[show]
+  resources :service_request_items, only: %i[show edit update]
 
   resources :services do
     resources :options
@@ -38,4 +38,7 @@ Rails.application.routes.draw do
 
   # service show page for customers
   get 'show_service/:id', to: 'customers#home', as: 'show_service'
+
+  # verify otp from customer
+  post 'verify_otp', to: 'employees#verify_otp', as: 'verify_otp'
 end

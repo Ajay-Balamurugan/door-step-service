@@ -6,6 +6,7 @@ class EmployeeSlotsController < ApplicationController
     if @employee_slot.save
       @employee_slot.service_request_item.status = 'employee_assigned'
       @employee_slot.service_request_item.save
+      SlotMailer.with(employee_slot: @employee_slot).new_slot.deliver_later
       redirect_to admin_dashboard_path, notice: 'Employee Assigned Successfully'
     else
       render json: { message: 'Unable to Create Service.' }, status: :unprocessable_entity

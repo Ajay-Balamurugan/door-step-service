@@ -14,7 +14,8 @@
             <p><strong>Time Slot</strong></p>
             <p><%=  item.time_slot.strftime("%B %d, %Y %I:%M %p")  %></p>
           </div>
-          <%= button_to "View Status", root_path, class: "btn btn-primary"%>
+          <!-- <%= button_to "View Status", root_path, class: "btn btn-primary"%> -->
+          <%= render 'view_status_modal', item: item%>
         </div>
       <% end %>
     <% end %>

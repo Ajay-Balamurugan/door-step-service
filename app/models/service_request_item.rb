@@ -1,6 +1,10 @@
 class ServiceRequestItem < ApplicationRecord
+  has_many_attached :before_service_images
+  has_many_attached :after_service_images
+
   belongs_to :service_request
   belongs_to :option
+  has_one :employee_slot, dependent: :destroy
 
   has_one_time_password column_name: :otp_secret_key, length: 4
 

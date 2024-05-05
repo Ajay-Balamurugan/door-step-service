@@ -1,5 +1,5 @@
 class ServiceRequestItemsController < ApplicationController
-  before_action :authenticate_admin
+  before_action :authenticate_admin_or_employee
 
   # refactor the following action
   def show
@@ -12,9 +12,30 @@ class ServiceRequestItemsController < ApplicationController
     end
   end
 
+  def edit
+    @service_request_item = ServiceRequestItem.find(params[:id])
+  end
+
+  def update
+    @service_request_item = ServiceRequestItem.find(params[:id])
+    if @service_request_item.update(service_request_item_params)
+      @service_request_item.status = 'completed'
+      @service_request_item.save
+      redirect_to employee_dashboard_path, notice: 'Successfuly completed the service'
+    else
+      render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
+    end
+  end
+
   private
 
-  def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
+  def authenticate_admin_or_employee
+    return if current_user&.admin? || current_user&.employee?
+
+    redirect_to root_path, alert: 'You are not authorized to visit the page'
+  end
+
+  def service_request_item_params
+    params.require(:service_request_item).permit(before_service_images: [], after_service_images: [])
   end
 end

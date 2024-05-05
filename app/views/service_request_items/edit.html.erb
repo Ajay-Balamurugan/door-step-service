@@ -1,0 +1,29 @@
+<div class="container">
+  <%= form_with(model: @service_request_item, url: service_request_item_path(@service_request_item), method: :patch) do |form| %>
+    <%= form.label :before_service_images, "Before Service Photos" %>
+    <%= form.file_field :before_service_images, multiple: true %>
+    <%= form.label :after_service_images, "After Service Photos" %>
+    <%= form.file_field :after_service_images, multiple: true %>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
+      Complete Service
+    </button>
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="confirmModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Amount to be collected from the customer: <%= @service_request_item.option.price%></h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <%= form.submit "Complete Service", class: "btn btn-primary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

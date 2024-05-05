@@ -15,16 +15,19 @@
     </thead>
     <tbody>
       <% @employee_slots.each do |employee_slot| %>
-        <tr>
-          <td><%= employee_slot.service_request_item.option.title %></td>
-          <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-          <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
-          <td><%= employee_slot.service_request_item.service_request.customer.address %></td>
-          <td><%= employee_slot.service_request_item.status %></td>
-          <td>
-            <!-- Add any actions you want here, such as editing or viewing the service request -->
-          </td>
-        </tr>
+        <%if employee_slot.service_request_item.status != 'completed'%>
+          <tr>
+            <td><%= employee_slot.service_request_item.option.title %></td>
+            <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
+            <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
+            <td><%= employee_slot.service_request_item.service_request.customer.address %></td>
+            <td><%= employee_slot.service_request_item.status %></td>
+            <td>
+              <!-- Add any actions you want here, such as editing or viewing the service request -->
+              <%= render 'get_otp_modal', employee_slot: employee_slot%>
+            </td>
+          </tr>
+        <% end%>
       <% end %>
     </tbody>
   </table>

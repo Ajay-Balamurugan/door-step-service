@@ -34,6 +34,19 @@ class EmployeesController < ApplicationController
     end
   end
 
+  def verify_otp
+    service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
+    if service_request_item.authenticate_otp(params[:otp])
+      service_request_item.status = 'in_progress'
+      service_request_item.save
+      redirect_to edit_service_request_item_path(service_request_item)
+      # puts 'OTPPPPPPPP CORECTTTTTTTTT'
+    else
+      flash[:alert] = 'Incorrect OTP. Please try again.'
+      redirect_to employee_dashboard_path
+    end
+  end
+
   private
 
   def employee_params

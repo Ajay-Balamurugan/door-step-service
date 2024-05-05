@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>New Service Assigned to You!</h1>
+    <p>
+      Service Title: <%= @slot.service_request_item.option.title %>
+    </p>
+    <br />
+    <p>
+      Service Description: <%= @slot.service_request_item.option.description %>
+    </p>
+    <p>
+      Date and Time : <%= @slot.service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p") %>
+    </p>
+    <p>
+      Customer Name: <%= @slot.service_request_item.service_request.customer.user.name %>
+    </p>
+    <p>
+      Customer Address: <%= @slot.service_request_item.service_request.customer.address %>
+    </p>
+    <p>
+      Please start working on this service as soon as possible.
+    </p>
+    <p>Thank you for your dedication!</p>
+  </body>
+</html>
