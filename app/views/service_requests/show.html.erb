@@ -4,7 +4,7 @@
   <div class="active_bookings">
     <h2 class="booking_details_header">Active Services</h2>
     <% @service_request_items.each do |item| %>
-      <% if item.status != 'completed' %>
+      <% if item.status != 'completed' &&  item.status != 'rejected'%>
         <div class="booking_item_details">
           <div class="booking_item_name">
             <p><strong>Service</strong></p>
@@ -25,6 +25,25 @@
     <h2 class="booking_details_header">Completed Services</h2>
     <% @service_request_items.each do |item| %>
       <% if item.status== 'completed' %>
+        <div class="booking_item_details">
+          <div class="booking_item_name">
+            <p><strong>Service : </strong></p>
+            <p><%= item.option.title %></p>
+          </div>
+          <div class="booking_item_time">
+            <p><strong>Time Slot :</strong></p>
+            <p><%=  item.time_slot.strftime("%B %d, %Y %I:%M %p")  %></p>
+          </div>
+          <p><strong>Status:</strong> <%= item.status %></p>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <hr />
+  <div class="rejected_bookings">
+    <h2 class="booking_details_header">Rejected Services</h2>
+    <% @service_request_items.each do |item| %>
+      <% if item.status== 'rejected' %>
         <div class="booking_item_details">
           <div class="booking_item_name">
             <p><strong>Service : </strong></p>

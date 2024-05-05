@@ -21,7 +21,7 @@
           <td><%= item.service_request.customer.address %></td>
           <td>
             <%= link_to 'Accept Service',service_request_item_path(item), class: "btn btn-primary"%>
-            <%= button_to "Decline Service", root_path, class: "btn btn-danger reject_btn"%>
+            <%= button_to "Decline Service", service_request_item_path(item), method: :patch, params: { service_request_item: { status: 'rejected' } }, class: "btn btn-danger reject_btn" %>
           </td>
         </tr>
       <% end %>

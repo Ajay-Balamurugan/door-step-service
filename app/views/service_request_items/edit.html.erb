@@ -1,5 +1,6 @@
 <div class="container">
   <%= form_with(model: @service_request_item, url: service_request_item_path(@service_request_item), method: :patch) do |form| %>
+    <%= form.hidden_field :status, value: "completed" %>
     <%= form.label :before_service_images, "Before Service Photos" %>
     <%= form.file_field :before_service_images, multiple: true %>
     <%= form.label :after_service_images, "After Service Photos" %>

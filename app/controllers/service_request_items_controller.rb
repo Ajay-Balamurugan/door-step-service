@@ -19,9 +19,11 @@ class ServiceRequestItemsController < ApplicationController
   def update
     @service_request_item = ServiceRequestItem.find(params[:id])
     if @service_request_item.update(service_request_item_params)
-      @service_request_item.status = 'completed'
-      @service_request_item.save
-      redirect_to employee_dashboard_path, notice: 'Successfuly completed the service'
+      if current_user&.admin?
+        redirect_to admin_dashboard_path, notice: 'Service request was successfully rejected.'
+      elsif current_user&.employee?
+        redirect_to employee_dashboard_path, notice: 'Service request was successfully completed'
+      end
     else
       render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
     end
@@ -36,6 +38,6 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   def service_request_item_params
-    params.require(:service_request_item).permit(before_service_images: [], after_service_images: [])
+    params.require(:service_request_item).permit(:status, before_service_images: [], after_service_images: [])
   end
 end
