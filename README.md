@@ -1,24 +1,6 @@
-# README
+DB design : 
+![door-step-service](https://github.com/Ajay-Balamurugan/door-step-service/assets/121103098/0c99bf4a-c336-4555-9433-fd07a6968891)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Future changes : 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Add feedbacks table
