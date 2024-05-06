@@ -1,21 +1,7 @@
+<%= javascript_include_tag 'cart_item'%>
 <%= javascript_include_tag 'option' %>
-<div id="show_header">
-  <h1>Service Options</h1>
-  <%= render 'options/create_option_modal', option: @option, service: @service%>
-  <div id="selected_service">
-    <h1><%= @service.title %> </h1>
-    <p><%= @service.description %> </p>
-  </div>
-</div>
-<hr />
-<div id="service_options_container">
-  <% if @service.options.any?%>
-    <% @service.options.each do |option| %>
-      <div class="option_container">
-        <%= render 'options/option', option: option, service: @service %>
-      </div>
-    <% end %>
-  <% else %>
-    <h3 id="no_options"> No Options for this Service </h3>
-  <% end %>
-</div>
+<% if current_user&.admin%>
+  <%= render 'admin_show'%>
+<% else %>
+  <%= render 'customer_show'%>
+<% end %>

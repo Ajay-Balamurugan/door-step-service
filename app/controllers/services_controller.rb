@@ -1,6 +1,6 @@
 class ServicesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_admin
+  before_action :authenticate_admin, except: [:show]
 
   def index
     @service = Service.new

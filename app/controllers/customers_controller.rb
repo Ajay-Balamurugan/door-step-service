@@ -3,8 +3,8 @@ class CustomersController < ApplicationController
     @services = Service.all
   end
 
-  def home
+  def show
     @service = Service.find(params[:id])
-    @cart_item = CartItem.new 
+    @cart_item = CartItem.new
   end
 end

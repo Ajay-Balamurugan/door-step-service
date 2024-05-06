@@ -9,10 +9,10 @@ class CartItemsController < ApplicationController
     if @cart_item.save
       @cart.total += @cart_item.option.price
       @cart.save
-      partial = render_to_string(partial: 'carts/cart_item', locals: { item: @cart_item }, formats: [:html])
-      render json: { item: partial, total: @cart.total }, status: :created
+      render json: { message: 'Item added to cart' }, status: :created
     else
-      render json: { message: 'Unable to Add Item to Cart.' }, status: :unprocessable_entity
+      render json: { message: 'Unable to Add Item to Cart.', errors: @cart_item.errors.full_messages },
+             status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:option_id, :time_slot)
+    params.permit(:option_id, :time_slot)
   end
 
   def set_cart

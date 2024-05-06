@@ -17,23 +17,6 @@ $(document).ready(function () {
     });
   });
 
-  // AJAX for adding a cart item
-  $(".add_to_cart_btn").on("click", function (event) {
-    event.preventDefault();
-
-    $.ajax({
-      method: "POST",
-      url: "/cart_items",
-      success: function (response) {
-        $("#cart_body").append(response.item);
-        $("#cart_total").text(response.total);
-      },
-      error: function (error) {
-        console.error("Error adding cart item:", error);
-      },
-    });
-  });
-
   // AJAX for updating a cart item
   $("#editSlotForm").on("submit", function (event) {
     event.preventDefault();
@@ -59,6 +42,31 @@ $(document).ready(function () {
       },
       error: function (error) {
         console.error("Error updating cart item:", error);
+      },
+    });
+  });
+
+  // AJAX for adding a cart item
+  $(".bookNowForm").on("submit", function (event) {
+    event.preventDefault();
+    let data = new FormData($(this)[0]);
+    $.ajax({
+      method: "POST",
+      url: "/cart_items",
+      data: data,
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        console.log(response);
+      },
+      error: function (response) {
+        console.log("Error response:", response);
+        var errors = response.errors;
+        var errorList = "";
+        $.each(errors, function (index, error) {
+          errorList += "<li>" + error + "</li>";
+        });
+        $("#datetime_validation_errors").append(errorList);
       },
     });
   });

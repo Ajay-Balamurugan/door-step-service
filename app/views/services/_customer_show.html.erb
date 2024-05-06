@@ -1,0 +1,31 @@
+<div class="service_information container">
+  <div class="left_details">
+    <h1><%= @service.title %></h1>
+    <p class="service_description"><%= @service.description %></p>
+    <h2>Options</h2>
+    <div class="service_options">
+      <% @service.options.each do |option| %>
+        <%= render 'option_display', option: option %>
+      <% end %>
+    </div>
+  </div>
+  <div class="right_details">
+    <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @service.images.each_with_index do |image, index| %>
+          <div class="carousel-item <%= 'active' if index == 0 %>">
+            <%= image_tag image.variant(resize_to_fill: [1000, 1000]).processed, class: "d-block w-100", alt: "Service Image" %>
+          </div>
+        <% end %>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>

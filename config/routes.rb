@@ -36,9 +36,6 @@ Rails.application.routes.draw do
   # employee Dashboard
   get 'employee_dashboard', to: 'employees#index'
 
-  # service show page for customers
-  get 'show_service/:id', to: 'customers#home', as: 'show_service'
-
   # verify otp from customer
   post 'verify_otp', to: 'employees#verify_otp', as: 'verify_otp'
 end

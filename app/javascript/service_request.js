@@ -2,7 +2,6 @@ $(document).ready(function () {
   //AJAX for displaying order placed message
   $("#place_order_btn").on("click", function (event) {
     event.preventDefault();
-    console.log("HIIIII");
 
     $.ajax({
       method: "POST",
