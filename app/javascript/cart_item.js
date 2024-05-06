@@ -1,4 +1,38 @@
 $(document).ready(function () {
+  // AJAX for adding a cart item
+  $(".modal-body").on("click", function (event) {
+    let item = event.target;
+    let element = $(item);
+
+    if (element.hasClass("add_to_cart_btn")) {
+      event.preventDefault();
+      optionId = element.data("option_id");
+      form = element.parent();
+      var formData = new FormData(form[0]);
+      let errorDisplay = $("#datetime_validation_errors_" + optionId);
+
+      $.ajax({
+        method: "POST",
+        url: "/cart_items",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          $(element).closest("close_modal_btn").modal("hide");
+          //doing this is sending 2 requests
+        },
+        error: function (response) {
+          var errors = response.responseJSON.errors;
+          console.log(errors);
+          errorDisplay.empty();
+          $.each(errors, function (index, errorMessage) {
+            errorDisplay.append("<p>" + errorMessage + "</p>");
+          });
+        },
+      });
+    }
+  });
+
   //AJAX for removing a cart item
   $(".remove_item_btn").on("click", function (event) {
     event.preventDefault();
@@ -21,7 +55,7 @@ $(document).ready(function () {
   $("#editSlotForm").on("submit", function (event) {
     event.preventDefault();
     itemId = $(this).data("itemId");
-    var formData = new FormData(this);
+    let formData = new FormData(this);
     $.ajax({
       method: "PATCH",
       url: "/cart_items/" + itemId,
@@ -42,31 +76,6 @@ $(document).ready(function () {
       },
       error: function (error) {
         console.error("Error updating cart item:", error);
-      },
-    });
-  });
-
-  // AJAX for adding a cart item
-  $(".bookNowForm").on("submit", function (event) {
-    event.preventDefault();
-    let data = new FormData($(this)[0]);
-    $.ajax({
-      method: "POST",
-      url: "/cart_items",
-      data: data,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        console.log(response);
-      },
-      error: function (response) {
-        console.log("Error response:", response);
-        var errors = response.errors;
-        var errorList = "";
-        $.each(errors, function (index, error) {
-          errorList += "<li>" + error + "</li>";
-        });
-        $("#datetime_validation_errors").append(errorList);
       },
     });
   });

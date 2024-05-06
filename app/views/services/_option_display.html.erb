@@ -12,16 +12,16 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="bookNowModalLabel<%= option.id %>">Select Date and Time of Service</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_modal_btn_<%= option.id%>"></button>
       </div>
       <div class="modal-body">
         <%= form_with(model: @cart_item, url: cart_items_path, class: "bookNowForm") do |form| %>
-          <div id="datetime_validation_errors">
+          <div id="datetime_validation_errors_<%= option.id%>">
           </div>
           <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
           <%= form.hidden_field :option_id, value: option.id %>
           <%= form.datetime_field :time_slot %>
-          <%= form.submit "Add to cart",class: "add_to_cart_btn" %>
+          <%= form.submit "Add to cart",class: "add_to_cart_btn",data: { option_id: option.id } %>
         <% end %>
       </div>
     </div>
