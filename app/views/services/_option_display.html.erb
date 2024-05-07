@@ -4,10 +4,12 @@
     <h6 class="card-subtitle mb-2 text-body-secondary"><%= option.price%></h6>
     <p class="card-text"><%= option.description%></p>
     <button type="button" class="option_book_button" data-bs-toggle="modal" data-bs-target="#bookNowModal<%= option.id %>">Book Now</button>
+    <div id="datetime_validation_errors_<%= option.id%>" class="date_validation_errors">
+    </div>
   </div>
 </div>
 <!-- Modal -->
-<div class="modal fade" id="bookNowModal<%= option.id %>" tabindex="-1" aria-labelledby="bookNowModalLabel<%= option.id %>" aria-hidden="true">
+<div class="modal" id="bookNowModal<%= option.id %>" tabindex="-1" aria-labelledby="bookNowModalLabel<%= option.id %>" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -16,12 +18,10 @@
       </div>
       <div class="modal-body">
         <%= form_with(model: @cart_item, url: cart_items_path, class: "bookNowForm") do |form| %>
-          <div id="datetime_validation_errors_<%= option.id%>">
-          </div>
           <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
           <%= form.hidden_field :option_id, value: option.id %>
           <%= form.datetime_field :time_slot %>
-          <%= form.submit "Add to cart",class: "add_to_cart_btn",data: { option_id: option.id } %>
+          <%= form.submit "Add to cart",class: "add_to_cart_btn",data: { option_id: option.id, 'bs-dismiss': 'modal' } %>
         <% end %>
       </div>
     </div>

@@ -1,0 +1,26 @@
+#employee_table {
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  background-color: white;
+  border-radius: 20px;
+  border-bottom: 2px solid black;
+}
+
+th {
+  background-color: black !important;
+  color: white !important;
+}
+
+#no_assignment {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.employee_dashboard_header {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.assigned_services {
+  margin-bottom: 3vh;
+}

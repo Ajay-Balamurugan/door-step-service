@@ -4,12 +4,13 @@
   <div id="cart_items_container">
     <% if @cart.cart_items.any?%>
       <h1 id="cart_header"> My Cart </h1>
-      <table class="table">
+      <table class="table" id="cart_table">
         <thead>
           <tr>
             <th>Service</th>
             <th>Time Slot</th>
             <th>Price</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody id="cart_body">
@@ -19,7 +20,7 @@
         </tbody>
       </table>
       <h1 id="cart_total">Total : Rs.<%= current_customer.cart.total %></h1>
-      <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn' %>
+      <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn', class: 'btn btn-success' %>
     <% else %>
       <h1 id="empty_cart">Your Cart is Empty</h1>
     <% end %>

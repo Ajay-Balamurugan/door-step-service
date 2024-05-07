@@ -6,7 +6,7 @@
       <div class="booking">
         <h3> <%= index + 1 %></h3>
         <div class="booking_items">
-          <h3 id="booking_item_header">Booking Items</h3>
+          <h3 id="booking_item_header">Booked Services</h3>
           <% request.service_request_items.each do |item|%>
             <p><%= item.option.title %></p>
           <% end %>

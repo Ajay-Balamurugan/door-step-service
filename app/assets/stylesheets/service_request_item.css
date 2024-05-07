@@ -28,3 +28,34 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.request_item {
+  width: fit-content !important;
+  gap: 2vh;
+  border-radius: 20px;
+  padding: 30px;
+  margin-top: 10vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  background-color: white;
+}
+
+.option_title {
+  text-align: center;
+}
+
+.assign_form {
+  display: flex;
+  flex-direction: column;
+  width: 13vw;
+  gap: 1vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#no_booking {
+  text-align: center;
+  margin-top: 20vh;
+}

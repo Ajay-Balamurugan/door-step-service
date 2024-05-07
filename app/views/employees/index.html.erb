@@ -1,34 +1,37 @@
-<h1>Employee Dashboard</h1>
+<h1 class="employee_dashboard_header">Employee Dashboard</h1>
 <hr />
-<div class="container">
-  <h2>Assigned Services</h2>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Service Title</th>
-        <th>Time Slot</th>
-        <th>Customer Name</th>
-        <th>Customer Address</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @employee_slots.each do |employee_slot| %>
-        <%if employee_slot.service_request_item.status != 'completed'%>
-          <tr>
-            <td><%= employee_slot.service_request_item.option.title %></td>
-            <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-            <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
-            <td><%= employee_slot.service_request_item.service_request.customer.address %></td>
-            <td><%= employee_slot.service_request_item.status %></td>
-            <td>
-              <!-- Add any actions you want here, such as editing or viewing the service request -->
-              <%= render 'get_otp_modal', employee_slot: employee_slot%>
-            </td>
-          </tr>
-        <% end%>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+<% if @employee_slots.any?%>
+  <div class="container">
+    <h2 class="employee_dashboard_header assigned_services">Assigned Services</h2>
+    <table class="table" id="employee_table">
+      <thead>
+        <tr>
+          <th>Service Title</th>
+          <th>Time Slot</th>
+          <th>Customer Name</th>
+          <th>Customer Address</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @employee_slots.each do |employee_slot| %>
+          <%if employee_slot.service_request_item.status != 'completed'%>
+            <tr>
+              <td><%= employee_slot.service_request_item.option.title %></td>
+              <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
+              <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
+              <td><%= employee_slot.service_request_item.service_request.customer.address %></td>
+              <td><%= employee_slot.service_request_item.status %></td>
+              <td>
+                <%= render 'get_otp_modal', employee_slot: employee_slot%>
+              </td>
+            </tr>
+          <% end%>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else%>
+  <h2 id="no_assignment">No Services are Assigned to you as of now</h2>
+<% end%>

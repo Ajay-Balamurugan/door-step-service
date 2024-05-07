@@ -1,0 +1,38 @@
+#empty_cart {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+.cart_buttons {
+  display: flex;
+  gap: 2vw;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cart_table {
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  background-color: white;
+  border-radius: 20px;
+  border-bottom: 2px solid black;
+}
+
+th,
+td {
+  text-align: center !important;
+}
+
+#cart_header {
+  text-align: center;
+  margin-bottom: 4vh;
+}
+
+#place_order_btn,
+#cart_total {
+  margin-top: 4vh;
+}
+
+.booking_success {
+  text-align: center;
+}

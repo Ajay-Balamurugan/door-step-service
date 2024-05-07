@@ -5,8 +5,10 @@
   </td>
   <td>Rs.<%= item.option.price %></td>
   <td>
-    <button type="button" class="edit_slot_button" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= item.option.id %>">Edit Time Slot</button>
-    <%= render 'carts/edit_slot_modal', option: item.option, cart_item: item %>
-    <%= button_to 'Remove', cart_item_path(item), method: :delete,class: "remove_item_btn", data: { item_id: item.id } %>
+    <div class="cart_buttons">
+      <button type="button" class="edit_slot_button btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= item.option.id %>">Edit Time Slot</button>
+      <%= render 'carts/edit_slot_modal', option: item.option, cart_item: item %>
+      <%= button_to 'Remove', cart_item_path(item), method: :delete,class: "remove_item_btn btn btn-danger", data: { item_id: item.id } %>
+    </div>
   </td>
 </tr>
