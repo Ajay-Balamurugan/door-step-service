@@ -24,3 +24,30 @@ th {
 .assigned_services {
   margin-bottom: 3vh;
 }
+
+.complete_service_form {
+  display: flex;
+  flex-direction: column;
+  gap: 3vh;
+  width: fit-content;
+  box-shadow: 0 0 20px rgba(0.1, 0.1, 0.1, 0.2);
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15vh;
+}
+
+.complete_service_label {
+  width: fit-content;
+  background-color: black;
+  padding: 10px;
+  border-radius: 10px;
+  color: white;
+}
+
+.complete_service_header {
+  text-align: center;
+  /* margin-top: 10vh; */
+}

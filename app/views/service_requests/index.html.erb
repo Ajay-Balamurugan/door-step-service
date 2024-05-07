@@ -2,18 +2,22 @@
 <hr />
 <div class="container">
   <div class="bookings">
-    <% @service_requests.each_with_index do |request, index| %>
-      <div class="booking">
-        <h3> <%= index + 1 %></h3>
-        <div class="booking_items">
-          <h3 id="booking_item_header">Booked Services</h3>
-          <% request.service_request_items.each do |item|%>
-            <p><%= item.option.title %></p>
-          <% end %>
+    <%if @service_requests.any?%>
+      <% @service_requests.each_with_index do |request, index| %>
+        <div class="booking">
+          <h3> <%= index + 1 %></h3>
+          <div class="booking_items">
+            <h3 id="booking_item_header">Booked Services</h3>
+            <% request.service_request_items.each do |item|%>
+              <p><%= item.option.title %></p>
+            <% end %>
+          </div>
+          <h3>Rs.<%= request.total %></h3>
+          <p><%= link_to "View Details", service_request_path(request), class: "view_details_btn" %></p>
         </div>
-        <h3>Rs.<%= request.total %></h3>
-        <p><%= link_to "View Details", service_request_path(request), class: "view_details_btn" %></p>
-      </div>
-    <% end %>
+      <% end %>
+    <%else%>
+      <h3 id="no_bookings">No Bookings to show</h3>
+    <%end%>
   </div>
 </div>

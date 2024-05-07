@@ -1,9 +1,10 @@
 <div class="container">
-  <%= form_with(model: @service_request_item, url: service_request_item_path(@service_request_item), method: :patch) do |form| %>
+  <%= form_with(model: @service_request_item, url: service_request_item_path(@service_request_item), method: :patch, class: "complete_service_form") do |form| %>
+    <h2 class="complete_service_header">Upload Service Images</h2>
     <%= form.hidden_field :status, value: "completed" %>
-    <%= form.label :before_service_images, "Before Service Photos" %>
+    <%= form.label :before_service_images, "Before Service Photos", class:"complete_service_label" %>
     <%= form.file_field :before_service_images, multiple: true %>
-    <%= form.label :after_service_images, "After Service Photos" %>
+    <%= form.label :after_service_images, "After Service Photos", class:"complete_service_label" %>
     <%= form.file_field :after_service_images, multiple: true %>
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#confirmModal">
       Complete Service
@@ -13,15 +14,15 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="confirmModalLabel">Modal title</h1>
+            <h1 class="modal-title fs-5" id="confirmModalLabel">Collect Amount from Customer</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
             <h3>Amount to be collected from the customer: <%= @service_request_item.option.price%></h3>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <%= form.submit "Complete Service", class: "btn btn-primary" %>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+            <%= form.submit "Complete Service", class: "btn btn-success" %>
           </div>
         </div>
       </div>

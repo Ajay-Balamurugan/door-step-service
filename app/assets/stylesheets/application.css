@@ -22,3 +22,13 @@
   color: red;
   margin-top: 10px;
 }
+
+input[type="datetime-local"] {
+  width: 100%; /* Adjust the width as needed */
+  padding: 10px; /* Add some padding inside the input field */
+  border: 1px solid #ccc; /* Add a border around the input field */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  font-size: 16px; /* Adjust the font size */
+  background-color: white;
+  margin-bottom: 20px;
+}
