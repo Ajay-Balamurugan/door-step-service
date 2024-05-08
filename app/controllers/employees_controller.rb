@@ -1,4 +1,5 @@
 class EmployeesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :authenticate_admin, only: %i[new create]
   before_action :authenticate_employee, only: %i[index]
 
@@ -40,11 +41,16 @@ class EmployeesController < ApplicationController
       service_request_item.status = 'in_progress'
       service_request_item.save
       redirect_to edit_service_request_item_path(service_request_item)
-      # puts 'OTPPPPPPPP CORECTTTTTTTTT'
     else
       flash[:alert] = 'Incorrect OTP. Please try again.'
       redirect_to employee_dashboard_path
     end
+  end
+
+  def send_otp
+    service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
+    message = "Your OTP is #{service_request_item.otp_code}. Please share the OTP witht the service agent to avail the service"
+    sms_fu.deliver(service_request_item.service_request.customer.phone_number, 'airtel', message)
   end
 
   private

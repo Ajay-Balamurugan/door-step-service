@@ -1,5 +1,6 @@
+<%= javascript_include_tag 'otp'%>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#GetOtpModal<%= employee_slot.id%>">
+<button type="button" data-item-id="<%= employee_slot.service_request_item.id%>" class="btn btn-primary start_service_btn" data-bs-toggle="modal" data-bs-target="#GetOtpModal<%= employee_slot.id%>">
   Start Service
 </button>
 <!-- Modal -->

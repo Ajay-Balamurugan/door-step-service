@@ -38,4 +38,7 @@ Rails.application.routes.draw do
 
   # verify otp from customer
   post 'verify_otp', to: 'employees#verify_otp', as: 'verify_otp'
+
+  # send the OTP SMS to customer
+  post 'send_otp', to: 'employees#send_otp'
 end

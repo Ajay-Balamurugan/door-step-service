@@ -76,3 +76,7 @@ gem 'active_model_otp'
 
 # Soft Delete
 gem 'paranoia', '~> 2.6'
+
+# Send SMS
+gem 'pony'
+gem 'sms_fu', '~> 1.1', '>= 1.1.2'
