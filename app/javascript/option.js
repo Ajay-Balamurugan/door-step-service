@@ -39,25 +39,27 @@ $(document).ready(function () {
   });
 
   //AJAX for creating an option
-  $("#create_option_form").on("submit", function (event) {
-    event.preventDefault();
+  $("#create_option_form")
+    .off("submit")
+    .on("submit", function (event) {
+      event.preventDefault();
 
-    var formData = new FormData($(this)[0]);
-    var serviceId = $(this).data("service-id");
-    $.ajax({
-      method: "POST",
-      url: "/services/" + serviceId + "/options",
-      data: formData,
-      processData: false,
-      contentType: false,
-      success: function (response) {
-        $("#no_options").remove();
-        $("#service_options_container").append($(response));
-        $("#create_option_form")[0].reset();
-      },
-      error: function (error) {
-        console.error("Error creating option:", error);
-      },
+      var formData = new FormData($(this)[0]);
+      var serviceId = $(this).data("service-id");
+      $.ajax({
+        method: "POST",
+        url: "/services/" + serviceId + "/options",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          $("#no_options").remove();
+          $("#service_options_container").append($(response));
+          $("#create_option_form")[0].reset();
+        },
+        error: function (error) {
+          console.error("Error creating option:", error);
+        },
+      });
     });
-  });
 });

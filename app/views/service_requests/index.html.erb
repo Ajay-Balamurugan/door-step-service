@@ -8,8 +8,8 @@
           <h3> <%= index + 1 %></h3>
           <div class="booking_items">
             <h3 id="booking_item_header">Booked Services</h3>
-            <% request.service_request_items.each do |item|%>
-              <p><%= item.option.title %></p>
+            <% request.options.with_deleted.each do |option|%>
+              <p><%= option.title %></p>
             <% end %>
           </div>
           <h3>Rs.<%= request.total %></h3>

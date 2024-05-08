@@ -1,8 +1,9 @@
 <div class="card" id = "option_<%= option.id %>">
   <div class="card-body">
     <h5 class="card-title"><%= option.title%></h5>
+    <p class="card-text">Duration : <%= option.duration%> hours</p>
     <p class="card-text"><%= option.description%></p>
-    <h4 class="card-subtitle mb-2 text-body-secondary option_price">Price : <%= option.price%></h4>
+    <h4 class="card-subtitle mb-2 text-body-secondary option_price">Price : Rs.<%= option.price%></h4>
     <div class="option_btns">
       <%= render 'options/edit_option_modal', option: option, service: service%> <br />
       <button class="delete_option_btn btn btn-danger" data-option-id="<%= option.id %>" data-service-id="<%= service.id %>" method="DELETE">Delete Option</button>

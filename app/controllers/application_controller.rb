@@ -1,11 +1,16 @@
 class ApplicationController < ActionController::Base
   helper_method :current_customer
+  helper_method :find_option
 
   # find the customer who is currently logged in
   def current_customer
     return unless current_user&.customer?
 
     current_user.customer
+  end
+
+  def find_option(id)
+    Option.with_deleted.find(id)
   end
 
   private

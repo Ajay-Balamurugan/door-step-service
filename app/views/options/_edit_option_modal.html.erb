@@ -2,7 +2,6 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editOptionModal<%= option.id %>">
   Update Option
 </button>
-
 <!-- Modal -->
 <div class="modal fade editModal" id="editOptionModal<%= option.id %>" tabindex="-1" aria-labelledby="editOptionModalLabel<%= option.id %>" aria-hidden="true">
   <div class="modal-dialog">
@@ -12,21 +11,25 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: option, class: "edit_option_form", url: service_option_path(service,option), data: { 'service-id': service.id, 'option-id': option.id }) do |form| %>            
-            <div>
-                <%= form.label :title %>
-                <%= form.text_field :title %>
-            </div>
-            <div>
-                <%= form.label :description %>
-                <%= form.text_area :description %>
-            </div>
-            <div>
-                <%= form.label :price %>
-                <%= form.number_field :price %>
-            </div>
-            <%= form.submit "Update Option",class: "update_option_btn", data: { 'bs-dismiss': "modal", 'option-id': option.id, 'service-id': service.id } %>
-        <% end %>  
+        <%= form_with(model: option, class: "edit_option_form", url: service_option_path(service,option), data: { 'service-id': service.id, 'option-id': option.id }) do |form| %>
+          <div>
+            <%= form.label :title %>
+            <%= form.text_field :title %>
+          </div>
+          <div>
+            <%= form.label :description %>
+            <%= form.text_area :description %>
+          </div>
+          <div>
+            <%= form.label :duration%>
+            <%= form.number_field :duration%>
+          </div>
+          <div>
+            <%= form.label :price %>
+            <%= form.number_field :price %>
+          </div>
+          <%= form.submit "Update Option",class: "update_option_btn", data: { 'bs-dismiss': "modal", 'option-id': option.id, 'service-id': service.id } %>
+        <% end %>
       </div>
     </div>
   </div>

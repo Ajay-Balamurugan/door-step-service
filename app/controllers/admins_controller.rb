@@ -3,6 +3,7 @@ class AdminsController < ApplicationController
 
   def index
     @service_request_items = ServiceRequestItem.where(status: :order_placed)
+    @options = Option.with_deleted
   end
 
   def new

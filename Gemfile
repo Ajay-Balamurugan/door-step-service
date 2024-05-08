@@ -73,3 +73,6 @@ gem 'rubocop'
 
 # OTP generation and verification
 gem 'active_model_otp'
+
+# Soft Delete
+gem 'paranoia', '~> 2.6'

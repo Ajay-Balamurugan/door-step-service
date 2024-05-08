@@ -18,7 +18,7 @@
         <% @employee_slots.each do |employee_slot| %>
           <%if employee_slot.service_request_item.status != 'completed'%>
             <tr>
-              <td><%= employee_slot.service_request_item.option.title %></td>
+              <td><%= find_option(employee_slot.service_request_item.option_id).title %></td>
               <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
               <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
               <td><%= employee_slot.service_request_item.service_request.customer.address %></td>

@@ -28,7 +28,7 @@ class CartItemsController < ApplicationController
   def destroy
     @cart_item = CartItem.find(params[:id])
     if @cart_item.destroy
-      @cart.total -= @cart_item.option.price
+      @cart.total -= find_option(@cart_item.option_id).price
       @cart.save
       render json: { message: 'Succesfully Removed Item From Cart', total: @cart.total }, status: :ok
     else

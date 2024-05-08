@@ -42,7 +42,7 @@ class OptionsController < ApplicationController
   private
 
   def option_params
-    params.require(:option).permit(:title, :description, :price, :service_id)
+    params.require(:option).permit(:title, :description, :price, :service_id, :duration)
   end
 
   def authenticate_admin

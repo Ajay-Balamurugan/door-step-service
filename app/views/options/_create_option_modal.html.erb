@@ -2,7 +2,6 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createOptionModal">
   Create Option
 </button>
-
 <!-- Modal -->
 <div class="modal fade" id="createOptionModal" tabindex="-1" aria-labelledby="createOptionModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -12,20 +11,24 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: option, id: "create_option_form", url: service_options_path(@service), data: { 'service-id': service.id }) do |form| %>            
-            <div>
-                <%= form.label :title %>
-                <%= form.text_field :title %>
-            </div>
-            <div>
-                <%= form.label :description %>
-                <%= form.text_area :description %>
-            </div>
-            <div>
-                <%= form.label :price %>
-                <%= form.number_field :price %>
-            </div>
-            <%= form.submit "Create Option",method: :post, data: { 'bs-dismiss': "modal" } %>
+        <%= form_with(model: option, id: "create_option_form", url: service_options_path(@service), data: { 'service-id': service.id }) do |form| %>
+          <div>
+            <%= form.label :title %>
+            <%= form.text_field :title %>
+          </div>
+          <div>
+            <%= form.label :description %>
+            <%= form.text_area :description %>
+          </div>
+          <div>
+            <%= form.label :duration, "Duration (in hours)" %>
+            <%= form.number_field :duration %>
+          </div>
+          <div>
+            <%= form.label :price %>
+            <%= form.number_field :price %>
+          </div>
+          <%= form.submit "Create Option",method: :post, data: { 'bs-dismiss': "modal" } %>
         <% end %>
       </div>
     </div>

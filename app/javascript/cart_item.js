@@ -43,6 +43,7 @@ $(document).ready(function () {
       method: "DELETE",
       url: "/cart_items/" + itemId,
       success: function (response) {
+        console.log(response);
         $("#cart_item_" + itemId).remove();
         $("#cart_total").text(response.total);
       },

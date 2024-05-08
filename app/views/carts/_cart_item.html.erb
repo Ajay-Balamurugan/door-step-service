@@ -1,13 +1,13 @@
 <tr id="cart_item_<%=item.id%>">
-  <td><%= item.option.title %></td>
+  <td><%= find_option(item.option_id).title %></td>
   <td>
     <p id="item_time_slot_<%= item.id%>"><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></p>
   </td>
-  <td>Rs.<%= item.option.price %></td>
+  <td>Rs.<%= find_option(item.option_id).price %></td>
   <td>
     <div class="cart_buttons">
-      <button type="button" class="edit_slot_button btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= item.option.id %>">Edit Time Slot</button>
-      <%= render 'carts/edit_slot_modal', option: item.option, cart_item: item %>
+      <button type="button" class="edit_slot_button btn btn-primary" data-bs-toggle="modal" data-bs-target="#editSlotModal<%= find_option(item.option_id) %>">Edit Time Slot</button>
+      <%= render 'carts/edit_slot_modal', option: find_option(item.option_id), cart_item: item %>
       <%= button_to 'Remove', cart_item_path(item), method: :delete,class: "remove_item_btn btn btn-danger", data: { item_id: item.id } %>
     </div>
   </td>

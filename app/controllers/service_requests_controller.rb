@@ -17,6 +17,7 @@ class ServiceRequestsController < ApplicationController
 
   def show
     @service_request_items = ServiceRequest.find(params[:id]).service_request_items
+    @options = Option.with_deleted
   end
 
   def authenticate_customer

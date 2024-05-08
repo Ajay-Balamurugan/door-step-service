@@ -7,7 +7,7 @@
       <div class="booking_item_details">
         <div class="booking_item_name">
           <p><strong>Service</strong></p>
-          <p><%= item.option.title %></p>
+          <p><%= @options.find(item.option_id).title %></p>
         </div>
         <div class="booking_item_time">
           <p><strong>Time Slot</strong></p>
@@ -19,7 +19,7 @@
       <div class="booking_item_details">
         <div class="booking_item_name">
           <p><strong>Service</strong></p>
-          <p><%= item.option.title %></p>
+          <p><%= @options.find(item.option_id).title %></p>
         </div>
         <div class="booking_item_time">
           <p><strong>Time Slot</strong></p>
