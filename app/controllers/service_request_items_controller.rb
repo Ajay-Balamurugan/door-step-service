@@ -1,6 +1,10 @@
 class ServiceRequestItemsController < ApplicationController
   before_action :authenticate_admin_or_employee
 
+  def index
+    @service_request_items = ServiceRequestItem.all
+  end
+
   # refactor the following action
   def show
     @service_request_item = ServiceRequestItem.find(params[:id])
@@ -24,9 +28,24 @@ class ServiceRequestItemsController < ApplicationController
         redirect_to admin_dashboard_path, notice: 'Service request was successfully rejected.'
       elsif current_user&.employee?
         redirect_to employee_dashboard_path, notice: 'Service request was successfully completed'
+      else
+        redirect_to service_request_item_path(@service_request_item), notice: 'Feedback Succesfully submitted'
       end
     else
       render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
+    end
+  end
+
+  def download
+    @pdf_service_request_items = ServiceRequestItem.where(time_slot: params[:from_date]..params[:to_date])
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'service_history',
+               template: 'service_request_items/download',
+               layout: 'pdf',
+               locals: { service_request_items: @pdf_service_request_items }
+      end
     end
   end
 

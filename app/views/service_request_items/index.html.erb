@@ -1,0 +1,33 @@
+<h2 id="history_header">Service History</h2>
+<div class="download_btn_container">
+  <%= render 'download_form_modal'%>
+</div>
+<hr />
+<div class="container">
+  <table id="history_table">
+    <thead>
+      <tr>
+        <th>Service ID</th>
+        <th>Customer Name</th>
+        <th>Service Name</th>
+        <th>Service Type</th>
+        <th>Status</th>
+        <th>Time Slot</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @service_request_items.each do |item| %>
+        <tr>
+          <td><%= item.option.service.id %></td>
+          <td><%= item.service_request.customer.user.name %></td>
+          <td><%= item.option.service.title %></td>
+          <td><%= item.option.title %></td>
+          <td><%= item.status.titleize %></td>
+          <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
+          <td>Rs.<%= item.option.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -27,6 +27,7 @@
         </div>
         <%if item.status == 'completed'%>
           <p class="completed_indicator">Completed</p>
+          <%= render 'feedback_modal', locals: {item: item}%>
         <% else%>
           <p class="rejected_indicator">Rejected</p>
         <%end%>

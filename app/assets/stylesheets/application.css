@@ -14,9 +14,9 @@
  *= require_self
  */
 
-/* .modal-backdrop {
+.modal-backdrop {
   opacity: 0.5 !important;
-} */
+}
 
 .date_validation_errors p {
   color: red;

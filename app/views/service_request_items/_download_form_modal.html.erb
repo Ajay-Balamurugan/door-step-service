@@ -1,0 +1,24 @@
+<!-- Button trigger modal -->
+<button type="button" id="history_download_btn"class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#downloadModal">
+  Download PDF
+</button>
+<!-- Modal -->
+<div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(url: download_history_path(format: :pdf), method: :post) do |form| %>
+          <%= form.label :from_date, "From Date" %>
+          <%= form.datetime_field :from_date %>
+          <%= form.label :to_date, "To Date" %>
+          <%= form.datetime_field :to_date %>
+          <%= form.submit "Download", class: "btn btn-primary", data: { 'bs-dismiss': "modal"} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

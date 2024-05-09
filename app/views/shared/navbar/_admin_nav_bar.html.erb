@@ -21,19 +21,17 @@
             <%= link_to "Manage Services", services_path, class: "nav-link mx-lg-2" %>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#">Service History</a>
+            <%= link_to "Service History", service_request_items_path, class: "nav-link mx-lg-2" %>
           </li>
         </ul>
       </div>
     </div>
-    
     <% if !user_signed_in?%>
-        <%= link_to "Login", new_user_session_path, class: "login-btn" %>
-        <%= link_to "Signup", new_user_registration_path, class: "login-btn" %>
+      <%= link_to "Login", new_user_session_path, class: "login-btn" %>
+      <%= link_to "Signup", new_user_registration_path, class: "login-btn" %>
     <% else %>
-        <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "login-btn" %>
+      <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "login-btn" %>
     <% end %>
-
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
       <span class="navbar-toggler-icon"></span>
     </button>

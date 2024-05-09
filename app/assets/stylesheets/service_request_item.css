@@ -59,3 +59,36 @@
   text-align: center;
   margin-top: 20vh;
 }
+
+#history_table {
+  margin-top: 5vh;
+  width: 100%; /* Adjust the width as needed */
+  border-collapse: collapse;
+  border-bottom: 2px solid black;
+}
+
+#history_table th {
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: left;
+}
+
+#history_table tr {
+  height: 50px;
+}
+
+#history_table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+#history_header {
+  text-align: center;
+}
+
+.download_btn_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

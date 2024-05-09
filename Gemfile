@@ -66,6 +66,7 @@ group :test do
   gem 'selenium-webdriver'
 end
 
+# Authentication
 gem 'devise', '~> 4.9'
 
 # ruby formatter
@@ -79,3 +80,7 @@ gem 'paranoia', '~> 2.6'
 
 # Send SMS
 gem 'twilio-ruby'
+
+# PDF Generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'

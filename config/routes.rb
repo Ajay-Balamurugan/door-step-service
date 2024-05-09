@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :employee_slots, only: %i[create]
 
-  resources :service_request_items, only: %i[show edit update]
+  resources :service_request_items, only: %i[show edit update index]
 
   resources :services do
     resources :options
@@ -41,4 +41,7 @@ Rails.application.routes.draw do
 
   # send the OTP SMS to customer
   post 'send_otp', to: 'employees#send_otp'
+
+  # Download service history
+  post 'download_history', to: 'service_request_items#download'
 end
