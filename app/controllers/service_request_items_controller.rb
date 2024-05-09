@@ -1,6 +1,4 @@
 class ServiceRequestItemsController < ApplicationController
-  before_action :authenticate_admin_or_employee
-
   def index
     @service_request_items = ServiceRequestItem.all
   end
@@ -29,7 +27,8 @@ class ServiceRequestItemsController < ApplicationController
       elsif current_user&.employee?
         redirect_to employee_dashboard_path, notice: 'Service request was successfully completed'
       else
-        redirect_to service_request_item_path(@service_request_item), notice: 'Feedback Succesfully submitted'
+        redirect_to service_request_path(@service_request_item.service_request),
+                    notice: 'Feedback Succesfully submitted'
       end
     else
       render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
@@ -51,13 +50,8 @@ class ServiceRequestItemsController < ApplicationController
 
   private
 
-  def authenticate_admin_or_employee
-    return if current_user&.admin? || current_user&.employee?
-
-    redirect_to root_path, alert: 'You are not authorized to visit the page'
-  end
-
   def service_request_item_params
-    params.require(:service_request_item).permit(:status, before_service_images: [], after_service_images: [])
+    params.require(:service_request_item).permit(:status, :feedback, before_service_images: [],
+                                                                     after_service_images: [])
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_08_074851) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -113,6 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_08_074851) do
     t.string "otp_secret_key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "feedback"
     t.index ["option_id"], name: "index_service_request_items_on_option_id"
     t.index ["service_request_id"], name: "index_service_request_items_on_service_request_id"
   end
