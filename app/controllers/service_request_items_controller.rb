@@ -1,4 +1,7 @@
 class ServiceRequestItemsController < ApplicationController
+  before_action :authenticate_admin, only: %i[show index download]
+  before_action :authenticate_customer, only: %i[download]
+
   def index
     @service_request_items = ServiceRequestItem.all
   end
@@ -49,6 +52,14 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   private
+
+  def authenticate_admin
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
+  end
+
+  def authenticate_customer
+    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless current_user&.customer?
+  end
 
   def service_request_item_params
     params.require(:service_request_item).permit(:status, :feedback, before_service_images: [],
