@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_09_221107) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -105,6 +105,12 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
     t.index ["service_id"], name: "index_options_on_service_id"
   end
 
+  create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "service_request_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "service_request_id", null: false
     t.bigint "option_id", null: false
@@ -114,6 +120,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "feedback"
+    t.boolean "order_placed", default: false
     t.index ["option_id"], name: "index_service_request_items_on_option_id"
     t.index ["service_request_id"], name: "index_service_request_items_on_service_request_id"
   end
@@ -140,11 +147,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.integer "role", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "role_id"
+    t.string "address"
+    t.string "phone_number"
+    t.bigint "service_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["service_id"], name: "index_users_on_service_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -162,4 +174,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_120916) do
   add_foreign_key "service_request_items", "options"
   add_foreign_key "service_request_items", "service_requests"
   add_foreign_key "service_requests", "customers"
+  add_foreign_key "users", "roles"
+  add_foreign_key "users", "services"
 end
