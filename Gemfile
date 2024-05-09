@@ -78,5 +78,4 @@ gem 'active_model_otp'
 gem 'paranoia', '~> 2.6'
 
 # Send SMS
-gem 'pony'
-gem 'sms_fu', '~> 1.1', '>= 1.1.2'
+gem 'twilio-ruby'
