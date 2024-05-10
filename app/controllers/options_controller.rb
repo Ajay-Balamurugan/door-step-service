@@ -46,6 +46,6 @@ class OptionsController < ApplicationController
   end
 
   def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
   end
 end

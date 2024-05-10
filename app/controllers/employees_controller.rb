@@ -14,8 +14,7 @@ class EmployeesController < ApplicationController
 
   def create
     @user = User.new(employee_params)
-    @employee.user.role = :employee
-    if @employee.save
+    if @user.save
       redirect_to admin_dashboard_path, notice: 'Successfully Created Employee'
     else
       render :new

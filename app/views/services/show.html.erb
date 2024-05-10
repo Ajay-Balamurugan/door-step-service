@@ -1,6 +1,6 @@
 <%= javascript_include_tag 'cart_item'%>
 <%= javascript_include_tag 'option' %>
-<% if current_user&.admin%>
+<% if user_is_admin?%>
   <%= render 'admin_show'%>
 <% else %>
   <%= render 'customer_show'%>
