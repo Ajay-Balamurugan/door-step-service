@@ -2,7 +2,7 @@ class CartsController < ApplicationController
   before_action :authenticate_customer
 
   def show
-    @cart = current_customer.cart
+    @service_request_items = current_customer.service_request_items.where(order_placed: false)
   end
 
   private

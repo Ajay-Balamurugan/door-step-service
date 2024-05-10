@@ -1,27 +1,23 @@
 <h2>Create an Admin</h2>
-
-<%= form_with(model: @admin, local: true) do |form| %>
-
-<%= form.fields_for :user do |user_form| %>
-<div>
-    <%= user_form.label :name %>
-    <%= user_form.text_field :name %>
-</div>
-<div>
-    <%= user_form.label :email %>
-    <%= user_form.text_field :email %>
- </div>
-
- <div>
-    <%= user_form.label :password %>
-    <%= user_form.password_field :password %>
- </div>
-
- <div>
-    <%= user_form.label :password_confirmation %>
-    <%= user_form.password_field :password_confirmation %>
- </div>
- <% end %>
-
- <%= form.submit "Sign Up" %>
+<%= form_with(model: @user, url: admins_path, local: true) do |form| %>
+  <div>
+    <%= form.hidden_field :role_id, value: @role_id %>
+  </div>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+  <div>
+    <%= form.label :password_confirmation %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+  <%= form.submit "Sign Up" %>
 <% end %>

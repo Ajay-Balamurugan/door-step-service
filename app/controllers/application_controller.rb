@@ -1,5 +1,9 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_customer, :find_option, :user_is_customer?, :user_is_admin?, :user_is_employee?
+  helper_method :current_customer, :find_option, :user_is_customer?, :user_is_admin?, :user_is_employee?, :ADMIN_ROLE_ID
+
+  ADMIN_ROLE_ID = Role.find_by(name: 'admin').id
+  EMPLOYEE_ROLE_ID = Role.find_by(name: 'employee').id
+  CUSTOMER_ROLE_ID = Role.find_by(name: 'customer').id
 
   def user_is_customer?
     current_user.role.name == 'customer' if current_user
@@ -15,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   # find the customer who is currently logged in
   def current_customer
-    return unless current_user&.user_is_customer?
+    return unless user_signed_in?&.user_is_customer?
 
     current_user
   end

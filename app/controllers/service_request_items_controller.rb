@@ -3,7 +3,7 @@ class ServiceRequestItemsController < ApplicationController
   before_action :authenticate_customer, only: %i[download]
 
   def index
-    @service_request_items = ServiceRequestItem.all
+    @service_request_items = ServiceRequestItem.where(order_placed: true)
   end
 
   # refactor the following action
@@ -54,11 +54,11 @@ class ServiceRequestItemsController < ApplicationController
   private
 
   def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.user_is_admin?
   end
 
   def authenticate_customer
-    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless current_user&.customer?
+    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless current_user&.user_is_customer?
   end
 
   def service_request_item_params

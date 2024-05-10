@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_09_221107) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_10_102641) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -121,8 +121,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_221107) do
     t.datetime "updated_at", null: false
     t.text "feedback"
     t.boolean "order_placed", default: false
+    t.bigint "user_id"
     t.index ["option_id"], name: "index_service_request_items_on_option_id"
     t.index ["service_request_id"], name: "index_service_request_items_on_service_request_id"
+    t.index ["user_id"], name: "index_service_request_items_on_user_id"
   end
 
   create_table "service_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -173,6 +175,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_09_221107) do
   add_foreign_key "options", "services"
   add_foreign_key "service_request_items", "options"
   add_foreign_key "service_request_items", "service_requests"
+  add_foreign_key "service_request_items", "users"
   add_foreign_key "service_requests", "customers"
   add_foreign_key "users", "roles"
   add_foreign_key "users", "services"

@@ -7,14 +7,13 @@ class AdminsController < ApplicationController
   end
 
   def new
-    @admin = Admin.new
-    @admin.build_user
+    @user = User.new
+    @role_id = ADMIN_ROLE_ID
   end
 
   def create
-    @admin = Admin.new(admin_params)
-    @admin.user.role = :admin
-    if @admin.save
+    @user = User.new(admin_params)
+    if @user.save
       redirect_to admin_dashboard_path, notice: 'Successfully Created Admin'
     else
       render :new
@@ -24,7 +23,7 @@ class AdminsController < ApplicationController
   private
 
   def admin_params
-    params.require(:admin).permit(user_attributes: %i[name email password password_confirmation])
+    params.require(:user).permit(%i[name email password password_confirmation role_id])
   end
 
   def authenticate_admin
