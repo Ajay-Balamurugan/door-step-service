@@ -4,7 +4,7 @@ class EmployeesController < ApplicationController
   before_action :authenticate_employee, only: %i[index edit update]
 
   def index
-    @employee_slots = current_user.employee.employee_slots
+    @employee_slots = current_user.employee_slots.joins(:service_request_item).where.not(service_request_items: { status: 'completed' })
   end
 
   def new

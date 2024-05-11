@@ -1,7 +1,8 @@
 <div class="service_card" style="width: 18rem;">
   <div class="option_card_body">
     <h5 class="card-title"><%= option.title%></h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary"><%= option.price%></h6>
+    <h6 class="card-subtitle mb-2 text-body-secondary">Rs.<%= option.price%></h6>
+    <p class="card-subtitle mb-2 text-body-secondary">Duration: <%= option.duration%> hours</p>
     <p class="card-text"><%= option.description%></p>
     <button type="button" class="option_book_button" data-bs-toggle="modal" data-bs-target="#bookNowModal<%= option.id %>">Book Now</button>
     <div id="datetime_validation_errors_<%= option.id%>" class="date_validation_errors">

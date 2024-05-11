@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_11_100452) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_151318) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -74,13 +74,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_100452) do
   end
 
   create_table "employee_slots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "employee_id", null: false
     t.bigint "service_request_item_id", null: false
     t.datetime "time_slot"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["employee_id"], name: "index_employee_slots_on_employee_id"
+    t.bigint "user_id", null: false
     t.index ["service_request_item_id"], name: "index_employee_slots_on_service_request_item_id"
+    t.index ["user_id"], name: "fk_rails_0188a447ac"
   end
 
   create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -168,8 +168,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_100452) do
   add_foreign_key "cart_items", "options"
   add_foreign_key "carts", "customers"
   add_foreign_key "customers", "users"
-  add_foreign_key "employee_slots", "employees"
   add_foreign_key "employee_slots", "service_request_items"
+  add_foreign_key "employee_slots", "users"
   add_foreign_key "employees", "services"
   add_foreign_key "employees", "users"
   add_foreign_key "options", "services"

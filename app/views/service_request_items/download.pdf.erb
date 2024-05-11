@@ -22,7 +22,7 @@
       <% service_request_items.each do |item| %>
         <tr>
           <td><%= item.option.service.id %></td>
-          <td><%= item.service_request.customer.user.name %></td>
+          <td><%= item.service_request.user.name %></td>
           <td><%= item.option.service.title %></td>
           <td><%= item.option.title %></td>
           <td><%= item.status.titleize %></td>

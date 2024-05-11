@@ -18,8 +18,8 @@
           <tr id="booked_service_<%= item.id %>" class="admin_table_record">
             <td><%= @options.find(item.option_id).title %></td>
             <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-            <td><%= item.service_request.customer.user.name %></td>
-            <td><%= item.service_request.customer.address %></td>
+            <td><%= item.service_request.user.name %></td>
+            <td><%= item.service_request.user.address %></td>
             <td>
               <%= link_to 'Accept Service',service_request_item_path(item), class: "btn btn-primary"%>
               <%= button_to "Decline Service", service_request_item_path(item), method: :patch, params: { service_request_item: { status: 'rejected' } }, class: "btn btn-danger reject_btn" %>

@@ -26,6 +26,7 @@ $(document).ready(function () {
           data: data,
           success: function (response) {
             errorDisplay.empty();
+            $("#cart_count").text(response.cart_count);
           },
           error: function (response) {
             var errors = response.responseJSON.errors;
@@ -55,6 +56,7 @@ $(document).ready(function () {
           var removedItemPrice = response.removed_item_price;
           var updatedTotal = currentTotal - removedItemPrice;
           $("#cart_total").text(updatedTotal);
+          $("#cart_count").text(response.cart_count);
         },
         error: function (error) {
           console.error("Error removing cart item:", error);

@@ -92,3 +92,11 @@
   align-items: center;
   justify-content: center;
 }
+
+.declined_indicator {
+  color: red;
+}
+
+.completed_indicator {
+  color: green;
+}

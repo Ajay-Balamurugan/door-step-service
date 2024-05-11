@@ -13,7 +13,12 @@
           <p><strong>Time Slot</strong></p>
           <p><%=  item.time_slot.strftime("%B %d, %Y %I:%M %p")  %></p>
         </div>
+        <%# remove this render partial %>
         <%= render 'view_status_modal', item: item%>
+        <div class="booking_item_status">
+          <p><strong>Status</strong></p>
+          <p><%= item.status.titleize%></p>
+        </div>
       </div>
     <% else%>
       <div class="booking_item_details">
@@ -26,12 +31,16 @@
           <p><%=  item.time_slot.strftime("%B %d, %Y %I:%M %p")  %></p>
         </div>
         <%if item.status == 'completed'%>
-          <p class="completed_indicator">Completed</p>
-          <%= render 'feedback_modal', item: item%>
-        <% else%>
-          <p class="rejected_indicator">Rejected</p>
-        <%end%>
-      </div>
-    <% end %>
-  <%end%>
-</div>
+          <strong>
+            <p class="completed_indicator">Completed</p>
+            <strong>
+              <%= render 'feedback_modal', item: item%>
+            <% else%>
+              <strong>
+                <p class="declined_indicator">Declined</p>
+                <strong>
+                <%end%>
+              </div>
+            <% end %>
+          <%end%>
+        </div>

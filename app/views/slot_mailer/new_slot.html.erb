@@ -15,10 +15,10 @@
       Date and Time : <%= @slot.service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p") %>
     </p>
     <p>
-      Customer Name: <%= @slot.service_request_item.service_request.customer.user.name %>
+      Customer Name: <%= @slot.service_request_item.service_request.user.name %>
     </p>
     <p>
-      Customer Address: <%= @slot.service_request_item.service_request.customer.address %>
+      Customer Address: <%= @slot.service_request_item.service_request.user.address %>
     </p>
     <p>
       Please start working on this service as soon as possible.

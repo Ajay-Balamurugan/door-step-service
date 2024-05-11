@@ -33,8 +33,9 @@ class ApplicationController < ActionController::Base
   end
 
   def map_service_request_items(id, request)
-    service_request_items_to_assign = ServiceRequestItem.where(user_id: id, order_placed: false)
-    service_request_items_to_assign.update_all(service_request_id: request.id, order_placed: true)
+    service_request_items = ServiceRequestItem.where(user_id: id, order_placed: false)
+    service_request_items.update_all(service_request_id: request.id, order_placed: true,
+                                     status: 'order_placed')
   end
 
   private

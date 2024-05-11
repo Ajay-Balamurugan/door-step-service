@@ -1,13 +1,14 @@
 class ServiceRequestItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_admin, only: %i[show download index]
-  before_action :authenticate_customer, only: %i[download create destroy]
+  before_action :authenticate_customer, only: %i[create destroy]
 
   def create
     @service_request_item = ServiceRequestItem.new(service_request_item_params)
     @service_request_item.user = current_user
     if @service_request_item.save
-      render json: { message: 'Item added to cart' }, status: :created
+      updated_count = current_user.service_request_items.where(order_placed: false).count
+      render json: { message: 'Item added to cart', cart_count: updated_count }, status: :created
     else
       render json: { message: 'Unable to Add Item to Cart.', errors: @service_request_item.errors.full_messages },
              status: :unprocessable_entity
@@ -22,10 +23,10 @@ class ServiceRequestItemsController < ApplicationController
   def show
     @service_request_item = ServiceRequestItem.find(params[:id])
     option = find_option(@service_request_item.option_id)
-    employees = Employee.where(service: option.service)
+    employees = User.where(service: option.service)
     @available_employees = employees.select do |employee|
-      !EmployeeSlot.exists?(employee_id: employee.id, time_slot: @service_request_item.time_slot) &&
-        !EmployeeSlot.exists?(employee_id: employee.id,
+      !EmployeeSlot.exists?(user_id: employee.id, time_slot: @service_request_item.time_slot) &&
+        !EmployeeSlot.exists?(user_id: employee.id,
                               time_slot: (@service_request_item.time_slot - option.duration.hours..@service_request_item.time_slot + option.duration.hours))
     end
   end
@@ -54,7 +55,8 @@ class ServiceRequestItemsController < ApplicationController
     @service_request_item = ServiceRequestItem.find(params[:id])
     removed_option_price = @service_request_item.option.price
     if @service_request_item.destroy
-      render json: { message: 'Succesfully Removed Item From Cart', removed_item_price: removed_option_price },
+      updated_count = current_user.service_request_items.where(order_placed: false).count
+      render json: { message: 'Succesfully Removed Item From Cart', removed_item_price: removed_option_price, cart_count: updated_count },
              status: :ok
     else
       render json: { message: 'Error! Unable to remove Item from Cart' }, status: :unprocessable_entity

@@ -16,10 +16,10 @@ class EmployeeSlotsController < ApplicationController
   private
 
   def employee_slot_params
-    params.require(:employee_slot).permit(:employee_id, :service_request_item_id, :time_slot)
+    params.require(:employee_slot).permit(:user_id, :service_request_item_id, :time_slot)
   end
 
   def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.admin?
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
   end
 end

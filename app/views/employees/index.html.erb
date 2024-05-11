@@ -20,8 +20,8 @@
             <tr>
               <td><%= find_option(employee_slot.service_request_item.option_id).title %></td>
               <td><%= employee_slot.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-              <td><%= employee_slot.service_request_item.service_request.customer.user.name %></td>
-              <td><%= employee_slot.service_request_item.service_request.customer.address %></td>
+              <td><%= employee_slot.service_request_item.service_request.user.name %></td>
+              <td><%= employee_slot.service_request_item.service_request.user.address %></td>
               <td><%= employee_slot.service_request_item.status %></td>
               <td>
                 <%= render 'get_otp_modal', employee_slot: employee_slot%>
