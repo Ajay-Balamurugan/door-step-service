@@ -49,7 +49,7 @@ class EmployeesController < ApplicationController
   def send_otp
     service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
     twilio_client = TwilioClient.new
-    customer_phone = "+91#{service_request_item.service_request.customer.phone_number}"
+    customer_phone = "+91#{service_request_item.service_request.user.phone_number}"
     twilio_client.send_text(customer_phone,
                             "Your OTP is #{service_request_item.otp_code}. Please share this with the service agent to avail the service.")
   end

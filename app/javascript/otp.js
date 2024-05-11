@@ -3,9 +3,7 @@
 //   $(".start_service_btn")
 //     .off("click")
 //     .on("click", function (event) {
-//       console.log("HOIII");
 //       var ServiceRequestItemId = $(this).data("item-id");
-//       console.log(ServiceRequestItemId);
 //       $.ajax({
 //         method: "POST",
 //         url: "/send_otp",

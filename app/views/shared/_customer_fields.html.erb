@@ -1,11 +1,8 @@
-<%= form.fields_for :customer do |customer_form| %>
-    <div>
-    <%= customer_form.label :address %><br />
-    <%= customer_form.text_field :address %>
-    </div>
-
-    <div>
-    <%= customer_form.label :phone_number %><br />
-    <%= customer_form.text_field :phone_number %>
-    </div>
-<% end %>
+<div>
+  <%= form.label :address %><br />
+  <%= form.text_field :address %>
+</div>
+<div>
+  <%= form.label :phone_number %><br />
+  <%= form.text_field :phone_number %>
+</div>

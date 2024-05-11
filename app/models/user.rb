@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :service_requests, dependent: :destroy
   belongs_to :role
   belongs_to :service, optional: true
-  has_many :employee_slots
+  has_many :employee_slots, dependent: :destroy
 
   validates :name, presence: true
   validate :validate_customer_attributes, if: :is_customer?

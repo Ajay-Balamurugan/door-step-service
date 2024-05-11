@@ -12,7 +12,7 @@ class ServiceRequestItem < ApplicationRecord
 
   validates :option_id, presence: true
   validates :time_slot, presence: true
-  validate :time_slot_not_in_past, :time_slot_within_range
+  validate :time_slot_not_in_past, :time_slot_within_range, :check_for_existing_service_request
 
   private
 
@@ -26,5 +26,12 @@ class ServiceRequestItem < ApplicationRecord
     return unless time_slot.hour < 8 || time_slot.hour > 20
 
     errors.add(:time_slot, 'must be between 8 AM and 8 PM')
+  end
+
+  def check_for_existing_service_request
+    existing_request = ServiceRequestItem.where(option_id:, time_slot:, order_placed: false).first
+    return unless existing_request && existing_request.id != id
+
+    errors.add(:base, 'Cart contains same service for the same time slot')
   end
 end

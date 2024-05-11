@@ -1,4 +1,4 @@
-<%= form_with(model: @employee, url: employee_path(@employee), local: true) do |form| %>
+<%= form_with(model: @user, url: employee_path(@user), local: true) do |form| %>
   <div>
     <%= form.label :service_id, "Skill" %>
     <%= form.select :service_id, options_for_select(Service.pluck(:title, :id), prompt: "Select a Skill")%>
