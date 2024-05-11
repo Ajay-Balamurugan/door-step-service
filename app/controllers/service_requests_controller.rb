@@ -3,8 +3,9 @@ class ServiceRequestsController < ApplicationController
   before_action :authenticate_customer
 
   def create
-    @service_request = ServiceRequest.new(customer_id: current_customer.id, total: current_customer.cart.total)
+    @service_request = ServiceRequest.new(user: current_user, total: calculate_cart_total)
     if @service_request.save
+      map_service_request_items(current_user.id, @service_request)
       render partial: 'booking_success', status: :created
     else
       redirect_to cart_path, notice: 'Unable to place Order.'
@@ -12,7 +13,7 @@ class ServiceRequestsController < ApplicationController
   end
 
   def index
-    @service_requests = current_customer.service_requests
+    @service_requests = current_user.service_requests
   end
 
   def show
@@ -21,6 +22,6 @@ class ServiceRequestsController < ApplicationController
   end
 
   def authenticate_customer
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless current_user&.customer?
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_customer?
   end
 end

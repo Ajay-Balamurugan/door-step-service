@@ -17,7 +17,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_modal_btn_<%= option.id%>"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: @cart_item, url: cart_items_path, class: "bookNowForm") do |form| %>
+        <%= form_with(model: @service_request_item, url: service_request_items_path, class: "bookNowForm") do |form| %>
           <%= form.hidden_field :authenticity_token, value: form_authenticity_token %>
           <%= form.hidden_field :option_id, value: option.id %>
           <%= form.datetime_field :time_slot %>

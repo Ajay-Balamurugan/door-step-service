@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :employee_slots, only: %i[create]
 
-  resources :service_request_items, only: %i[show edit update index]
+  resources :service_request_items, only: %i[show edit update index create destroy]
 
   resources :services do
     resources :options

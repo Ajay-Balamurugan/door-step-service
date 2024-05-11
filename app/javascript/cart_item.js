@@ -11,14 +11,19 @@ $(document).ready(function () {
         console.log(optionId);
         let form = element.parent();
         var formData = new FormData(form[0]);
+        var data = {
+          service_request_item: {
+            option_id: optionId,
+            time_slot: formData.get("time_slot"),
+          },
+          authenticity_token: $('meta[name="csrf-token"]').attr("content"), // Include the CSRF token
+        };
         let errorDisplay = $("#datetime_validation_errors_" + optionId);
 
         $.ajax({
           method: "POST",
-          url: "/cart_items",
-          data: formData,
-          processData: false,
-          contentType: false,
+          url: "/service_request_items",
+          data: data,
           success: function (response) {
             errorDisplay.empty();
           },
@@ -35,23 +40,27 @@ $(document).ready(function () {
     });
 
   //AJAX for removing a cart item
-  $(".remove_item_btn").on("click", function (event) {
-    event.preventDefault();
-    itemId = $(this).data("itemId");
+  $(".remove_item_btn")
+    .off("click")
+    .on("click", function (event) {
+      event.preventDefault();
+      itemId = $(this).data("itemId");
 
-    $.ajax({
-      method: "DELETE",
-      url: "/cart_items/" + itemId,
-      success: function (response) {
-        console.log(response);
-        $("#cart_item_" + itemId).remove();
-        $("#cart_total").text(response.total);
-      },
-      error: function (error) {
-        console.error("Error removing cart item:", error);
-      },
+      $.ajax({
+        method: "DELETE",
+        url: "/service_request_items/" + itemId,
+        success: function (response) {
+          $("#cart_item_" + itemId).remove();
+          var currentTotal = parseInt($("#cart_total").text());
+          var removedItemPrice = response.removed_item_price;
+          var updatedTotal = currentTotal - removedItemPrice;
+          $("#cart_total").text(updatedTotal);
+        },
+        error: function (error) {
+          console.error("Error removing cart item:", error);
+        },
+      });
     });
-  });
 
   // AJAX for updating a cart item
   $("#editSlotForm").on("submit", function (event) {

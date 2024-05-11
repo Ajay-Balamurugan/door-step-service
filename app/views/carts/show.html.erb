@@ -2,7 +2,7 @@
 <%= javascript_include_tag 'service_request' %>
 <div class="container cart_container">
   <div id="cart_items_container">
-    <% if @cart.cart_items.any?%>
+    <% if @service_request_items.any?%>
       <h1 id="cart_header"> My Cart </h1>
       <table class="table" id="cart_table">
         <thead>
@@ -14,15 +14,15 @@
           </tr>
         </thead>
         <tbody id="cart_body">
-          <% @cart.cart_items.each do |item| %>
+          <% @service_request_items.each do |item| %>
             <%= render 'cart_item', item: item%>
           <% end %>
         </tbody>
       </table>
-      <h1 id="cart_total">Total : Rs.<%= current_customer.cart.total %></h1>
-      <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn', class: 'btn btn-success' %>
-    <% else %>
-      <h1 id="empty_cart">Your Cart is Empty</h1>
-    <% end %>
-  </div>
-</div>
+      <h1>Total : Rs.<span id="cart_total"><%= calculate_cart_total %><span></h1>
+          <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn', class: 'btn btn-success' %>
+        <% else %>
+          <h1 id="empty_cart">Your Cart is Empty</h1>
+        <% end %>
+      </div>
+    </div>
