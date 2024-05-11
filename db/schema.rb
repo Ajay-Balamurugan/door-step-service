@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_05_11_151318) do
+ActiveRecord::Schema[7.1].define(version: 2024_05_11_193155) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,40 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_151318) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_admins_on_user_id"
-  end
-
-  create_table "cart_items", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "cart_id", null: false
-    t.bigint "option_id", null: false
-    t.datetime "time_slot"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["cart_id"], name: "index_cart_items_on_cart_id"
-    t.index ["option_id"], name: "index_cart_items_on_option_id"
-  end
-
-  create_table "carts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "customer_id", null: false
-    t.integer "total", default: 0
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id"], name: "index_carts_on_customer_id"
-  end
-
-  create_table "customers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "address"
-    t.string "phone_number"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_customers_on_user_id"
-  end
-
   create_table "employee_slots", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "service_request_item_id", null: false
     t.datetime "time_slot"
@@ -81,15 +47,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_151318) do
     t.bigint "user_id", null: false
     t.index ["service_request_item_id"], name: "index_employee_slots_on_service_request_item_id"
     t.index ["user_id"], name: "fk_rails_0188a447ac"
-  end
-
-  create_table "employees", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "service_id"
-    t.index ["service_id"], name: "index_employees_on_service_id"
-    t.index ["user_id"], name: "index_employees_on_user_id"
   end
 
   create_table "options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -163,15 +120,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_05_11_151318) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "admins", "users"
-  add_foreign_key "cart_items", "carts"
-  add_foreign_key "cart_items", "options"
-  add_foreign_key "carts", "customers"
-  add_foreign_key "customers", "users"
   add_foreign_key "employee_slots", "service_request_items"
   add_foreign_key "employee_slots", "users"
-  add_foreign_key "employees", "services"
-  add_foreign_key "employees", "users"
   add_foreign_key "options", "services"
   add_foreign_key "service_request_items", "options"
   add_foreign_key "service_request_items", "service_requests"

@@ -11,6 +11,7 @@ $(document).ready(function () {
         success: function (response) {
           $("#cart_items_container").remove();
           $(".cart_container").append(response);
+          $("#cart_count").text("0");
         },
         error: function (error) {
           console.error("Unable to place order", error);
