@@ -19,7 +19,7 @@
           <% end %>
         </tbody>
       </table>
-      <h1>Total : Rs.<span id="cart_total"><%= calculate_cart_total %><span></h1>
+      <h1>Total : Rs.<span id="cart_total"><%= @cart_total %><span></h1>
           <%= button_to 'Place Order', service_requests_path, method: :post, id: 'place_order_btn', class: 'btn btn-success' %>
         <% else %>
           <h1 id="empty_cart">Your Cart is Empty</h1>

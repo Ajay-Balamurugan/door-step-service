@@ -7,10 +7,6 @@ class ServicesController < ApplicationController
     @services = Service.order(created_at: :desc)
   end
 
-  def new
-    @service = Service.new
-  end
-
   def show
     @service = Service.find(params[:id])
     @option = Option.new
@@ -23,10 +19,6 @@ class ServicesController < ApplicationController
     else
       render json: { message: 'Unable to Create Service.' }, status: :unprocessable_entity
     end
-  end
-
-  def edit
-    @service = Service.find(params[:id])
   end
 
   def update
@@ -51,9 +43,5 @@ class ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(:title, :description, images: [])
-  end
-
-  def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
   end
 end

@@ -44,8 +44,4 @@ class OptionsController < ApplicationController
   def option_params
     params.require(:option).permit(:title, :description, :price, :service_id, :duration)
   end
-
-  def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
-  end
 end

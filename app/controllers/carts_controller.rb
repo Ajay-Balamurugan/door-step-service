@@ -3,11 +3,6 @@ class CartsController < ApplicationController
 
   def show
     @service_request_items = current_user.service_request_items.where(order_placed: false)
-  end
-
-  private
-
-  def authenticate_customer
-    redirect_to root_path, alert: 'Error! You are not authorized to visit this page' unless params[:id].to_i == current_user&.id # rubocop:disable Style/IfUnlessModifier
+    @cart_total = calculate_cart_total
   end
 end

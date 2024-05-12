@@ -1,10 +1,8 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_customer, :find_option, :user_is_customer?, :user_is_admin?, :user_is_employee?,
-                :ADMIN_ROLE_ID, :calculate_cart_total
+  helper_method :find_option, :user_is_customer?, :user_is_admin?, :user_is_employee?
 
   ADMIN_ROLE_ID = Role.find_by(name: 'admin').id
   EMPLOYEE_ROLE_ID = Role.find_by(name: 'employee').id
-  CUSTOMER_ROLE_ID = Role.find_by(name: 'customer').id
 
   def user_is_customer?
     current_user.role.name == 'customer' if current_user
@@ -18,24 +16,27 @@ class ApplicationController < ActionController::Base
     current_user.role.name == 'employee' if current_user
   end
 
-  # find options (included soft deleted options) for Paranoia
+  def authenticate_admin
+    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
+  end
+
+  def authenticate_employee
+    redirect_to root_path alert: 'You are not allowed to visit that page' unless user_is_employee?
+  end
+
+  def authenticate_customer
+    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless user_is_customer?
+  end
+
+  # find option from all options (including soft deleted options)
   def find_option(id)
     Option.with_deleted.find(id)
   end
 
+  # calculate total cart amount for customer
   def calculate_cart_total
-    total = 0
     cart_items = ServiceRequestItem.where(user: current_user, order_placed: false)
-    cart_items.each do |cart_item|
-      total += cart_item.option.price
-    end
-    total
-  end
-
-  def map_service_request_items(id, request)
-    service_request_items = ServiceRequestItem.where(user_id: id, order_placed: false)
-    service_request_items.update_all(service_request_id: request.id, order_placed: true,
-                                     status: 'order_placed')
+    Services::CartService::CartTotalCalculator.new(cart_items).calculate_total
   end
 
   private

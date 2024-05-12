@@ -3,9 +3,9 @@ class ServiceRequestsController < ApplicationController
   before_action :authenticate_customer
 
   def create
-    @service_request = ServiceRequest.new(user: current_user, total: calculate_cart_total)
-    if @service_request.save
-      map_service_request_items(current_user.id, @service_request)
+    service_request = ServiceRequest.new(user: current_user, total: calculate_cart_total)
+    if service_request.save
+      Services::BookingService::BookingCreator.new(current_user.id, service_request).create_booking
       render partial: 'booking_success', status: :created
     else
       redirect_to cart_path, notice: 'Unable to place Order.'
@@ -19,9 +19,5 @@ class ServiceRequestsController < ApplicationController
   def show
     @service_request_items = ServiceRequest.find(params[:id]).service_request_items
     @options = Option.with_deleted
-  end
-
-  def authenticate_customer
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_customer?
   end
 end

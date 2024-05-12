@@ -25,8 +25,4 @@ class AdminsController < ApplicationController
   def admin_params
     params.require(:user).permit(%i[name email password password_confirmation role_id])
   end
-
-  def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorised to access this content' unless user_is_admin?
-  end
 end

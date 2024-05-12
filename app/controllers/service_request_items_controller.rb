@@ -78,14 +78,6 @@ class ServiceRequestItemsController < ApplicationController
 
   private
 
-  def authenticate_admin
-    redirect_to root_path, alert: 'You are not authorized to visit the page' unless user_is_admin?
-  end
-
-  def authenticate_customer
-    redirect_to root_path, alert: 'You are not authorized to Perform this action' unless user_is_customer?
-  end
-
   def service_request_item_params
     params.require(:service_request_item).permit(:option_id, :time_slot, :status, :feedback, :user_id, before_service_images: [],
                                                                                                        after_service_images: [])
