@@ -11,9 +11,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <% if item.feedback.present?%>
+        <% render_present_feedback(item) do %>
           <p>Your Feedback : <%= item.feedback%></p>
-        <%else%>
+        <% end %>
+        <% render_feedback_form(item) do%>
           <%= form_with(model: item, url: service_request_item_path(item), method: :patch) do |form| %>
             <div class="form-group">
               <%= form.label :feedback, "Feedback" %>
@@ -21,7 +22,7 @@
             </div>
             <%= form.submit "Submit Feedback", class: "btn btn-primary", data: { 'bs-dismiss': "modal"} %>
           <% end %>
-        <%end%>
+        <% end%>
       </div>
     </div>
   </div>

@@ -1,7 +1,7 @@
 class AdminsController < ApplicationController
   before_action :authenticate_admin
 
-  def index
+  def home
     @service_request_items = ServiceRequestItem.where(status: :order_placed)
     @options = Option.with_deleted
   end

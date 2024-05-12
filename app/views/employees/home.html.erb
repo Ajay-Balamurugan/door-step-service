@@ -1,6 +1,6 @@
 <h1 class="employee_dashboard_header">Employee Dashboard</h1>
 <hr />
-<% if @employee_slots.any?%>
+<% display_employee_slots(@employee_slots) do%>
   <div class="container">
     <h2 class="employee_dashboard_header assigned_services">Assigned Services</h2>
     <table class="table" id="employee_table">
@@ -32,6 +32,7 @@
       </tbody>
     </table>
   </div>
-<% else%>
+<%end%>
+<% display_no_slots(@employee_slots) do%>
   <h2 id="no_assignment">No Services are Assigned to you as of now</h2>
-<% end%>
+<%end%>

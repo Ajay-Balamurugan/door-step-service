@@ -2,7 +2,7 @@
 <hr />
 <div class="container">
   <div class="bookings">
-    <%if @service_requests.any?%>
+    <% display_service_requests(@service_requests) do%>
       <% @service_requests.each_with_index do |request, index| %>
         <div class="booking">
           <h3> <%= index + 1 %></h3>
@@ -16,8 +16,9 @@
           <p><%= link_to "View Details", service_request_path(request), class: "view_details_btn" %></p>
         </div>
       <% end %>
-    <%else%>
-      <h3 id="no_bookings">No Bookings to show</h3>
     <%end%>
+    <% display_no_bookings(@service_requests) do%>
+      <h3 id="no_bookings">No Bookings to show</h3>
+    <% end%>
   </div>
 </div>

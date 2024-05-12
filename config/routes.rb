@@ -28,13 +28,13 @@ Rails.application.routes.draw do
   end
 
   # Defines the root path route ("/")
-  root 'customers#index'
+  root 'customers#home'
 
   # Admin Dashboard
-  get 'admin_dashboard', to: 'admins#index'
+  get 'admin_dashboard', to: 'admins#home'
 
   # employee Dashboard
-  get 'employee_dashboard', to: 'employees#index'
+  get 'employee_dashboard', to: 'employees#home'
 
   # verify otp from customer
   post 'verify_otp', to: 'employees#verify_otp', as: 'verify_otp'

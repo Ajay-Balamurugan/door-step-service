@@ -1,7 +1,8 @@
 <%= javascript_include_tag 'cart_item'%>
 <%= javascript_include_tag 'option' %>
-<% if user_is_admin?%>
+<% show_for_admin do%>
   <%= render 'admin_show'%>
-<% else %>
+<% end%>
+<% show_for_customer do%>
   <%= render 'customer_show'%>
-<% end %>
+<% end%>

@@ -32,10 +32,17 @@ class ServiceRequestItemsController < ApplicationController
 
   def update
     @service_request_item = ServiceRequestItem.find(params[:id])
-    if @service_request_item.update(service_request_item_params) # rubocop:disable Style/GuardClause
-      redirect_to admin_dashboard_path, notice: 'Service request was successfully rejected.' if user_is_admin?
-      redirect_to employee_dashboard_path, notice: 'Service request was successfully completed' if user_is_employee?
-      redirect_to service_request_path(@service_request_item.service_request), notice: 'Feedback Succesfully submitted'
+    if @service_request_item.update(service_request_item_params)
+      if user_is_admin?
+        redirect_to admin_dashboard_path, notice: 'Service request was successfully rejected.'
+      elsif user_is_employee?
+        redirect_to employee_dashboard_path, notice: 'Service request was successfully completed'
+      else
+        redirect_to service_request_path(@service_request_item.service_request),
+                    notice: 'Feedback Succesfully submitted'
+      end
+    else
+      render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
     end
   end
 

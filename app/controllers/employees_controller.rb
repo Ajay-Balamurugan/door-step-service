@@ -1,9 +1,9 @@
 class EmployeesController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :authenticate_admin, only: %i[new create]
-  before_action :authenticate_employee, only: %i[index edit update]
+  before_action :authenticate_employee, only: %i[home edit update]
 
-  def index
+  def home
     @employee_slots = current_user.employee_slots.joins(:service_request_item).where.not(service_request_items: { status: 'completed' })
   end
 

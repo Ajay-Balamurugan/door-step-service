@@ -1,6 +1,6 @@
 <h1 class="admin_dashboard_header">Admin Dashboard</h1>
 <hr />
-<% if @service_request_items.any?%>
+<% display_service_request_items(@service_request_items) do%>
   <div class="container">
     <h2 class="admin_dashboard_header">Service Bookings</h2>
     <table class="table admin_table">
@@ -29,6 +29,7 @@
       </tbody>
     </table>
   </div>
-<% else%>
+<%end%>
+<% display_no_bookings(@service_request_items) do%>
   <h2 id="no_booking">No Bookings as of now</h2>
-<% end%>
+<%end%>

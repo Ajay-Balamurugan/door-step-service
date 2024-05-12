@@ -1,5 +1,5 @@
 class CustomersController < ApplicationController
-  def index
+  def home
     @services = Service.all
   end
 end

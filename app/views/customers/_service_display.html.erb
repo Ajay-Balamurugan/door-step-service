@@ -1,7 +1,8 @@
 <div class="service_display">
-  <% if service.images.any? %>
+  <% render_service_image_link(service) do %>
     <%= link_to image_tag(service.images.first.variant(resize_to_fill: [150, 150]).processed, class: "service_illustration"), service_path(service), class: "service_link" %><br />
-  <%else%>
+  <% end %>
+  <% render_service_text_link(service) do %>
     <%= link_to service.title, service_path(service)%>
   <% end %>
   <p class="service_name"><%= service.title %></p>

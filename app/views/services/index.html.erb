@@ -7,13 +7,14 @@
 </div>
 <hr />
 <div id="services_container">
-  <% if @services.any? %>
+  <% display_services(@services) do%>
     <% @services.each do |service| %>
       <div class="service_container">
         <%= render 'service', service: service %>
       </div>
     <% end %>
-  <% else %>
+  <%end%>
+  <% no_services(@services) do%>
     <h3 id="no_services">No Services Found.</h3>
-  <% end %>
+  <%end%>
 </div>

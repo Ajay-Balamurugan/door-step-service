@@ -8,13 +8,14 @@
 </div>
 <hr />
 <div id="service_options_container">
-  <% if @service.options.any?%>
+  <% display_service_options(@service) do%>
     <% @service.options.each do |option| %>
       <div class="option_container">
         <%= render 'options/option', option: option, service: @service %>
       </div>
     <% end %>
-  <% else %>
+  <%end%>
+  <% no_options(@service) do%>
     <h3 id="no_options"> No Options for this Service </h3>
-  <% end %>
+  <%end%>
 </div>
