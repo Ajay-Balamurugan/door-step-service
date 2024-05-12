@@ -20,7 +20,7 @@ class User < ApplicationRecord
     errors.add(:phone_number, 'is required and must have 10 digits')
   end
 
-  def is_customer?
-    role.name == 'customer'
-  end
+  # def is_customer?
+  #   role.name == 'customer'
+  # end
 end

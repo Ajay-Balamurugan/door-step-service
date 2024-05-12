@@ -36,6 +36,7 @@ class EmployeesController < ApplicationController
 
   def verify_otp
     service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
+
     if service_request_item.authenticate_otp(params[:otp])
       service_request_item.update(status: 'in_progress')
       redirect_to edit_service_request_item_path(service_request_item)
