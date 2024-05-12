@@ -1,9 +1,6 @@
 <h2>Create an Employee</h2>
 <%= form_with(model: @user, url: employees_path, local: true) do |form| %>
   <div>
-    <%= form.hidden_field :role_id, value: @role_id %>
-  </div>
-  <div>
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>

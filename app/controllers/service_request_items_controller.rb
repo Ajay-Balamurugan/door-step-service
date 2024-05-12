@@ -6,8 +6,8 @@ class ServiceRequestItemsController < ApplicationController
   AVAILABLE_EMPLOYEES_FINDER_CLASS = Services::BookingItemService::AvailableEmployeesFinder
 
   def create
-    @service_request_item = ServiceRequestItem.new(service_request_item_params)
-    @service_request_item.user = current_user
+    @service_request_item = current_user.service_request_items.new(service_request_item_params)
+
     if @service_request_item.save
       render json: { message: 'Item added to cart', cart_count: updated_cart_count }, status: :created
     else

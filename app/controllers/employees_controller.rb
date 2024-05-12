@@ -9,11 +9,10 @@ class EmployeesController < ApplicationController
 
   def new
     @user = User.new
-    @role_id = EMPLOYEE_ROLE_ID
   end
 
   def create
-    @user = User.new(employee_params)
+    @user = Role.find_by(id: EMPLOYEE_ROLE_ID).users.new(employee_params)
     if @user.save
       redirect_to admin_dashboard_path, notice: 'Successfully Created Employee'
     else
@@ -53,6 +52,6 @@ class EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:user).permit(%i[id name email password password_confirmation role_id service_id])
+    params.require(:user).permit(%i[id name email password password_confirmation service_id])
   end
 end
