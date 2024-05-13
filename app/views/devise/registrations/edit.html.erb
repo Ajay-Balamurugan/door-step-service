@@ -2,6 +2,10 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+  </div>
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
@@ -21,7 +25,18 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
   <% if user_is_customer?%>
-    <%= render partial: 'shared/customer_fields', locals: {form: f}%>
+    <div>
+      <%= f.label :address %><br />
+      <%= f.text_field :address %>
+    </div>
+    <div>
+      <%= f.label :phone_number %><br />
+      <%= f.text_field :phone_number %>
+    </div>
+  <% end %>
+  <% if user_is_employee?%>
+    <%= f.label :service_id, "Skill" %>
+    <%= f.select :service_id, options_for_select(Service.pluck(:title, :id), prompt: "Select a Skill")%>
   <% end %>
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
@@ -30,9 +45,6 @@
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
-<% end %>
-<% if user_is_employee?%>
-  <%= render 'shared/employee_fields'%>
 <% end %>
 <h3>Cancel my account</h3>
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>

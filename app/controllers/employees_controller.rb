@@ -1,8 +1,7 @@
 class EmployeesController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_employee, only: %i[edit update]
   before_action :authenticate_admin, only: %i[new create]
-  before_action :authenticate_employee, only: %i[home edit update]
+  before_action :authenticate_employee, only: %i[home]
 
   def home
     @employee_slots = current_user.employee_slots.joins(:service_request_item).where.not(service_request_items: { status: 'completed' })
@@ -18,17 +17,6 @@ class EmployeesController < ApplicationController
       redirect_to admin_dashboard_path, notice: 'Successfully Created Employee'
     else
       render :new
-    end
-  end
-
-  def edit
-  end
-
-  def update
-    if @user.update(employee_params)
-      redirect_to employee_dashboard_path, notice: 'Employee was successfully updated.'
-    else
-      render :edit
     end
   end
 
@@ -52,9 +40,5 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:user).permit(%i[id name email password password_confirmation service_id])
-  end
-
-  def set_employee
-    @user = User.find(params[:id])
   end
 end

@@ -1,6 +1,6 @@
 class OptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_option, only: %i[edit update destroy]
+  before_action :set_option, only: %i[update destroy]
   before_action :authenticate_admin
 
   def new
@@ -15,9 +15,6 @@ class OptionsController < ApplicationController
     else
       render json: { message: 'Unable to Create Option.' }, status: :unprocessable_entity
     end
-  end
-
-  def edit
   end
 
   def update

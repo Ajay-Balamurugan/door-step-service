@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  # Defines the root path route ("/")
+  root 'customers#home'
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -9,7 +12,7 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get 'up' => 'rails/health#show', as: :rails_health_check
 
-  resources :employees, only: %i[new create edit update]
+  resources :employees, only: %i[new create]
 
   resources :admins, only: %i[new create]
 
@@ -26,9 +29,6 @@ Rails.application.routes.draw do
   resources :services do
     resources :options
   end
-
-  # Defines the root path route ("/")
-  root 'customers#home'
 
   # Admin Dashboard
   get 'admin_dashboard', to: 'admins#home'
