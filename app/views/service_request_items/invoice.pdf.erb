@@ -8,12 +8,12 @@
 <div class="container">
   <div class="invoice_container">
     <div class="invoice_details">
-      <h2>Service Title : <%= item.option.service.title%></h2>
-      <h2>Option Title : <%= item.option.title%></h2>
+      <h2>Service Title : <%= find_service(find_option(item.option_id).service_id).title%></h2>
+      <h2>Option Title : <%= find_option(item.option_id).title%></h2>
       <h2>Order Placed at : <%= item.created_at.strftime("%B %d, %Y %I:%M %p")%></h2>
       <h2>Time Slot : <%= item.time_slot.strftime("%B %d, %Y %I:%M %p")%></h2>
       <hr />
-      <h1 id="invoice_price">Total : Rs.<%= item.option.price%></h1>
+      <h1 id="invoice_price">Total : Rs.<%= find_option(item.option_id).price %></h1>
       <hr />
       <h2>Thank You for Choosing us!</h2>
     </div>

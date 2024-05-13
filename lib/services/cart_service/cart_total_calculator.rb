@@ -8,7 +8,7 @@ module Services
       def calculate_total
         total = 0
         @cart_items.each do |cart_item|
-          total += cart_item.option.price
+          total += Option.with_deleted.find(cart_item.option_id).price
         end
         total
       end

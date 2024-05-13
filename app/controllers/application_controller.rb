@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  helper_method :find_option, :user_is_customer?, :user_is_admin?, :user_is_employee?
+  helper_method :find_option, :find_service, :user_is_customer?, :user_is_admin?, :user_is_employee?
 
   ADMIN_ROLE_ID = Role.find_by(name: 'admin').id
   EMPLOYEE_ROLE_ID = Role.find_by(name: 'employee').id
@@ -21,7 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_employee
-    puts 'HOIIIIIIIIIIIIIIIIIIII'
     redirect_to root_path alert: 'You are not allowed to visit that page' unless user_is_employee?
   end
 
@@ -32,6 +31,11 @@ class ApplicationController < ActionController::Base
   # find option from all options (including soft deleted options)
   def find_option(id)
     Option.with_deleted.find(id)
+  end
+
+  # find service from all services (including soft deleted services)
+  def find_service(id)
+    Service.with_deleted.find(id)
   end
 
   # calculate total cart amount for customer

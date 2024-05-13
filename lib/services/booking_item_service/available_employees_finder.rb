@@ -7,7 +7,7 @@ module Services
       end
 
       def find_available_employees
-        employees = User.where(service: @option.service)
+        employees = User.where(service: Service.with_deleted.find(@option.service_id))
         time_slot_start = @service_request_item.time_slot - @option.duration.hours
         time_slot_end = @service_request_item.time_slot + @option.duration.hours
 

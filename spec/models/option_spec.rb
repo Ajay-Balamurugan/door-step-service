@@ -44,11 +44,11 @@ RSpec.describe Option, type: :model do
       expect(option.service).to be_a(Service)
     end
 
-    # it 'has many service request items' do
-    #   option = create(:option)
-    #   service_request_item1 = create(:service_request_item, option: option)
-    #   service_request_item2 = create(:service_request_item, option: option)
-    #   expect(option.service_request_items).to include(service_request_item1, service_request_item2)
-    # end
+    it 'has many service request items' do
+      option = create(:option)
+      service_request_item1 = create(:service_request_item, option:)
+      service_request_item2 = create(:service_request_item, option:)
+      expect(option.service_request_items).to include(service_request_item1, service_request_item2)
+    end
   end
 end

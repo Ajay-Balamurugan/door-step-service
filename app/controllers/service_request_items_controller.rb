@@ -1,5 +1,6 @@
 class ServiceRequestItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_service_request_item, only: %i[show edit update destroy download_invoice]
   before_action :authenticate_admin, only: %i[show download_history index]
   before_action :authenticate_customer, only: %i[create destroy download_invoice]
 
@@ -19,34 +20,24 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   def show
-    @service_request_item = ServiceRequestItem.find(params[:id])
     option = find_option(@service_request_item.option_id)
     @available_employees = available_employees_finder_class.new(@service_request_item, option).find_available_employees
   end
 
   def edit
-    @service_request_item = ServiceRequestItem.find(params[:id])
   end
 
   def update
-    @service_request_item = ServiceRequestItem.find(params[:id])
     if @service_request_item.update(service_request_item_params)
-      if user_is_admin?
-        redirect_to admin_dashboard_path, notice: 'Service request was successfully rejected.'
-      elsif user_is_employee?
-        redirect_to employee_dashboard_path, notice: 'Service request was successfully completed'
-      else
-        redirect_to service_request_path(@service_request_item.service_request),
-                    notice: 'Feedback Succesfully submitted'
-      end
+      redirect_path = determine_redirect_path
+      redirect_to redirect_path, notice: 'Successfully updated Service request status'
     else
-      render json: { message: 'Error! Unable to Update Service' }, status: :unprocessable_entity
+      render json: { message: 'Error Unable to Update Service' }, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @service_request_item = ServiceRequestItem.find(params[:id])
-    removed_option_price = @service_request_item.option.price
+    removed_option_price = find_option(@service_request_item.option_id).price
     if @service_request_item.destroy
       render json: { message: 'Succesfully Removed Item From Cart', removed_item_price: removed_option_price, cart_count: updated_cart_count },
              status: :ok
@@ -68,7 +59,6 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   def download_invoice
-    @service_request_item = ServiceRequestItem.find(params[:id])
     respond_to do |format|
       format.pdf do
         render pdf: 'service_invoice',
@@ -92,5 +82,19 @@ class ServiceRequestItemsController < ApplicationController
 
   def available_employees_finder_class
     Services::BookingItemService::AvailableEmployeesFinder
+  end
+
+  def set_service_request_item
+    @service_request_item = ServiceRequestItem.find(params[:id])
+  end
+
+  def determine_redirect_path
+    if user_is_admin?
+      admin_dashboard_path
+    elsif user_is_employee?
+      employee_dashboard_path
+    else
+      service_request_path(@service_request_item.service_request)
+    end
   end
 end

@@ -1,5 +1,6 @@
 class EmployeesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_employee, only: %i[edit update]
   before_action :authenticate_admin, only: %i[new create]
   before_action :authenticate_employee, only: %i[home edit update]
 
@@ -21,11 +22,9 @@ class EmployeesController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(employee_params)
       redirect_to employee_dashboard_path, notice: 'Employee was successfully updated.'
     else
@@ -53,5 +52,9 @@ class EmployeesController < ApplicationController
 
   def employee_params
     params.require(:user).permit(%i[id name email password password_confirmation service_id])
+  end
+
+  def set_employee
+    @user = User.find(params[:id])
   end
 end

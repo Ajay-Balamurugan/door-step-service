@@ -1,5 +1,6 @@
 class OptionsController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_option, only: %i[edit update destroy]
   before_action :authenticate_admin
 
   def new
@@ -17,11 +18,9 @@ class OptionsController < ApplicationController
   end
 
   def edit
-    @option = Option.find(params[:id])
   end
 
   def update
-    @option = Option.find(params[:id])
     service = @option.service
     if @option.update(option_params)
       render partial: 'option', locals: { option: @option, service: }, status: :ok
@@ -31,7 +30,6 @@ class OptionsController < ApplicationController
   end
 
   def destroy
-    @option = Option.find(params[:id])
     if @option.destroy
       render json: { message: 'Succesfully deleted option' }, status: :ok
     else
@@ -43,5 +41,9 @@ class OptionsController < ApplicationController
 
   def option_params
     params.require(:option).permit(:title, :description, :price, :service_id, :duration)
+  end
+
+  def set_option
+    @option = Option.find(params[:id])
   end
 end

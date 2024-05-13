@@ -29,12 +29,12 @@ RSpec.describe User, type: :model do
       expect(user.role).to be_a(Role)
     end
 
-    # it 'has many service requests' do
-    #   user = create(:user)
-    #   service_request1 = create(:service_request, user:)
-    #   service_request2 = create(:service_request, user:)
-    #   expect(user.service_requests).to include(service_request1, service_request2)
-    # end
+    it 'has many service requests' do
+      user = create(:user)
+      service_request1 = create(:service_request, user:)
+      service_request2 = create(:service_request, user:)
+      expect(user.service_requests).to include(service_request1, service_request2)
+    end
 
     context 'when user is an employee' do
       it 'belongs to a service' do

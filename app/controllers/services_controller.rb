@@ -1,5 +1,6 @@
 class ServicesController < ApplicationController
   skip_before_action :verify_authenticity_token
+  before_action :set_service, only: %i[show update destroy]
   before_action :authenticate_admin, except: [:show]
 
   def index
@@ -8,7 +9,6 @@ class ServicesController < ApplicationController
   end
 
   def show
-    @service = Service.find(params[:id])
     @option = Option.new
   end
 
@@ -22,7 +22,6 @@ class ServicesController < ApplicationController
   end
 
   def update
-    @service = Service.find(params[:id])
     if @service.update(service_params)
       render partial: 'service', locals: { service: @service }, status: :ok
     else
@@ -43,5 +42,9 @@ class ServicesController < ApplicationController
 
   def service_params
     params.require(:service).permit(:title, :description, images: [])
+  end
+
+  def set_service
+    @service = Service.find(params[:id])
   end
 end

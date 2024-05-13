@@ -35,17 +35,10 @@ RSpec.describe EmployeeSlot, type: :model do
     end
   end
 
-  # describe 'callbacks' do
-  #   it 'updates the service_request_item status to employee_assigned after create' do
-  #     employee_slot = create(:employee_slot)
-  #     expect(employee_slot.service_request_item.status).to eq('employee_assigned')
-  #   end
-
-  #   it 'sends an email to the employee after create' do
-  #     employee_slot = create(:employee_slot)
-  #     expect(SlotMailer).to have_received(:with).with(employee_slot:)
-  #     expect(SlotMailer).to have_received(:new_slot)
-  #     expect(SlotMailer.deliveries.last.to).to include(employee_slot.user.email)
-  #   end
-  # end
+  describe 'callbacks' do
+    it 'updates the service_request_item status to employee_assigned after create' do
+      employee_slot = create(:employee_slot)
+      expect(employee_slot.service_request_item.status).to eq('employee_assigned')
+    end
+  end
 end

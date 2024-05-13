@@ -24,20 +24,11 @@ RSpec.describe ServiceRequest, type: :model do
       expect(service_request.user).to be_a(User)
     end
 
-    # it 'has many service_request_items' do
-    #   service_request = create(:service_request)
-    #   service_request_item1 = create(:service_request_item, service_request: service_request)
-    #   service_request_item2 = create(:service_request_item, service_request: service_request)
-    #   expect(service_request.service_request_items).to include(service_request_item1, service_request_item2)
-    # end
-
-    # it 'has many options through service_request_items' do
-    #   service_request = create(:service_request)
-    #   option1 = create(:option)
-    #   option2 = create(:option)
-    #   service_request_item1 = create(:service_request_item, service_request: service_request, option: option1)
-    #   service_request_item2 = create(:service_request_item, service_request: service_request, option: option2)
-    #   expect(service_request.options).to include(option1, option2)
-    # end
+    it 'has many service_request_items' do
+      service_request = create(:service_request)
+      service_request_item1 = create(:service_request_item, service_request:)
+      service_request_item2 = create(:service_request_item, service_request:)
+      expect(service_request.service_request_items).to include(service_request_item1, service_request_item2)
+    end
   end
 end
