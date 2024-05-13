@@ -20,6 +20,6 @@ module ServicesHelper
   end
 
   def show_for_customer
-    yield if user_is_customer?
+    yield unless user_is_admin?
   end
 end

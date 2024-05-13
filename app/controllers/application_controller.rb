@@ -21,6 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_employee
+    puts 'HOIIIIIIIIIIIIIIIIIIII'
     redirect_to root_path alert: 'You are not allowed to visit that page' unless user_is_employee?
   end
 

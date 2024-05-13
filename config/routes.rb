@@ -43,5 +43,8 @@ Rails.application.routes.draw do
   post 'send_otp', to: 'employees#send_otp'
 
   # Download service history
-  post 'download_history', to: 'service_request_items#download'
+  post 'download_history', to: 'service_request_items#download_history'
+
+  # download invoice pdf
+  post 'download_invoice', to: 'service_request_items#download_invoice'
 end

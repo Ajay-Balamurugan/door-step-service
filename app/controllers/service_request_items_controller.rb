@@ -1,9 +1,7 @@
 class ServiceRequestItemsController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_admin, only: %i[show download index]
-  before_action :authenticate_customer, only: %i[create destroy]
-
-  AVAILABLE_EMPLOYEES_FINDER_CLASS = Services::BookingItemService::AvailableEmployeesFinder
+  before_action :authenticate_admin, only: %i[show download_history index]
+  before_action :authenticate_customer, only: %i[create destroy download_invoice]
 
   def create
     @service_request_item = current_user.service_request_items.new(service_request_item_params)
@@ -23,7 +21,7 @@ class ServiceRequestItemsController < ApplicationController
   def show
     @service_request_item = ServiceRequestItem.find(params[:id])
     option = find_option(@service_request_item.option_id)
-    @available_employees = AVAILABLE_EMPLOYEES_FINDER_CLASS.new(@service_request_item, option).find_available_employees
+    @available_employees = available_employees_finder_class.new(@service_request_item, option).find_available_employees
   end
 
   def edit
@@ -57,15 +55,29 @@ class ServiceRequestItemsController < ApplicationController
     end
   end
 
-  def download
-    @pdf_service_request_items = ServiceRequestItem.where(time_slot: params[:from_date]..params[:to_date])
+  def download_history
+    @service_request_items = ServiceRequestItem.where(time_slot: params[:from_date]..params[:to_date])
     respond_to do |format|
       format.html
       format.pdf do
         render pdf: 'service_history',
-               template: 'service_request_items/download',
+               template: 'service_request_items/history',
                layout: 'pdf',
-               locals: { service_request_items: @pdf_service_request_items }
+               locals: { service_request_items: @service_request_items }
+      end
+    end
+  end
+
+  def download_invoice
+    @service_request_item = ServiceRequestItem.find_by(id: params[:id])
+    puts @service_request_item
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'service_invoice',
+               template: 'service_request_items/invoice',
+               layout: 'pdf',
+               locals: { item: @service_request_item }
       end
     end
   end
@@ -79,5 +91,9 @@ class ServiceRequestItemsController < ApplicationController
   def service_request_item_params
     params.require(:service_request_item).permit(:option_id, :time_slot, :status, :feedback, :user_id, before_service_images: [],
                                                                                                        after_service_images: [])
+  end
+
+  def available_employees_finder_class
+    Services::BookingItemService::AvailableEmployeesFinder
   end
 end

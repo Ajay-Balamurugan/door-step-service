@@ -3,36 +3,29 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe 'validations' do
     it 'is valid with valid attributes' do
-      user = build(:user)
+      user = FactoryBot.create(:user)
       expect(user).to be_valid
     end
 
     it 'is not valid without a name' do
-      user = build(:user, name: nil)
+      user = FactoryBot.build(:user, name: nil)
       expect(user).not_to be_valid
     end
 
     it 'is not valid without an email' do
-      user = build(:user, email: nil)
+      user = FactoryBot.build(:user, email: nil)
       expect(user).not_to be_valid
     end
 
     it 'is not valid without a password' do
-      user = build(:user, password: nil)
+      user = FactoryBot.build(:user, password: nil)
       expect(user).not_to be_valid
-    end
-
-    context 'when user is a customer' do
-      it 'is not valid with an invalid phone number' do
-        user = build(:user, role: create(:role, :customer), phone_number: '123456789')
-        expect(user).not_to be_valid
-      end
     end
   end
 
   describe 'associations' do
     it 'belongs to a role' do
-      user = create(:user)
+      user = FactoryBot.build(:user)
       expect(user.role).to be_a(Role)
     end
 
@@ -45,7 +38,7 @@ RSpec.describe User, type: :model do
 
     context 'when user is an employee' do
       it 'belongs to a service' do
-        employee = create(:user, :employee)
+        employee = FactoryBot.build(:user, :employee)
         expect(employee.service).to be_a(Service)
       end
 

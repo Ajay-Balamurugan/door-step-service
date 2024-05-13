@@ -26,6 +26,10 @@
             <p class="completed_indicator">Completed</p>
           </strong>
           <%= render 'feedback_modal', item: item%>
+          <%= form_with(url: download_invoice_path(format: :pdf), method: :post) do |form| %>
+            <%= form.hidden_field :id, value: item.id %>
+            <%= form.submit "Invoice", class: "btn btn-primary", data: { 'bs-dismiss': "modal"} %>
+          <% end %>
         <%end%>
         <% rejected_indicator(item) do%>
           <strong>

@@ -3,44 +3,44 @@ require 'rails_helper'
 RSpec.describe Option, type: :model do
   describe 'validations' do
     it 'is valid with valid attributes' do
-      option = build(:option)
+      option = FactoryBot.create(:option)
       expect(option).to be_valid
     end
 
     it 'is not valid without a title' do
-      option = build(:option, title: nil)
+      option = FactoryBot.build(:option, title: nil)
       expect(option).not_to be_valid
     end
 
     it 'is not valid without a description' do
-      option = build(:option, description: nil)
+      option = FactoryBot.build(:option, description: nil)
       expect(option).not_to be_valid
     end
 
     it 'is not valid without a price' do
-      option = build(:option, price: nil)
+      option = FactoryBot.build(:option, price: nil)
       expect(option).not_to be_valid
     end
 
     it 'is not valid without a duration' do
-      option = build(:option, duration: nil)
+      option = FactoryBot.build(:option, duration: nil)
       expect(option).not_to be_valid
     end
 
     it 'is not valid with a duration less than 1 hour' do
-      option = build(:option, duration: 0)
+      option = FactoryBot.build(:option, duration: 0)
       expect(option).not_to be_valid
     end
 
     it 'is not valid with a duration greater than 5 hours' do
-      option = build(:option, duration: 6)
+      option = FactoryBot.build(:option, duration: 6)
       expect(option).not_to be_valid
     end
   end
 
   describe 'associations' do
     it 'belongs to a service' do
-      option = create(:option)
+      option = FactoryBot.build(:option)
       expect(option.service).to be_a(Service)
     end
 

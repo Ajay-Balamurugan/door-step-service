@@ -1,7 +1,6 @@
-# spec/factories/roles.rb
 FactoryBot.define do
   factory :role do
-    name { 'customer' }
+    name { 'sample role' }
 
     trait :admin do
       name { 'admin' }
