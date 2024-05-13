@@ -13,8 +13,6 @@
         <p><%=  item.time_slot.strftime("%B %d, %Y %I:%M %p")  %></p>
       </div>
       <% view_status(item) do%>
-        <%# remove this render partial %>
-        <%= render 'view_status_modal', item: item%>
         <div class="booking_item_status">
           <p><strong>Status</strong></p>
           <p><%= item.status.titleize%></p>
@@ -22,14 +20,13 @@
       <%end%>
       <% feedback_and_indicator(item) do%>
         <% completed_indicator(item) do%>
-          <strong>
-            <p class="completed_indicator">Completed</p>
-          </strong>
-          <%= render 'feedback_modal', item: item%>
-          <%= form_with(url: download_invoice_path(format: :pdf), method: :post) do |form| %>
-            <%= form.hidden_field :id, value: item.id %>
-            <%= form.submit "Invoice", class: "btn btn-primary", data: { 'bs-dismiss': "modal"} %>
-          <% end %>
+          <div class="completed_container">
+            <strong>
+              <p class="completed_indicator">Completed</p>
+            </strong>
+            <%= render 'feedback_modal', item: item%>
+            <%= render 'invoice_button', item: item%>
+          </div>
         <%end%>
         <% rejected_indicator(item) do%>
           <strong>

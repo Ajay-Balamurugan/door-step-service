@@ -1,0 +1,11 @@
+#invoice_header {
+  text-align: center;
+}
+
+#invoice_price {
+  color: green;
+}
+
+#invoice_btn {
+  margin-top: 1vh;
+}

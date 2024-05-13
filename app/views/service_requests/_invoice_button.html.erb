@@ -1,0 +1,4 @@
+<%= form_with(url: download_invoice_path(format: :pdf), method: :post) do |form| %>
+  <%= form.hidden_field :id, value: item.id %>
+  <%= form.submit "Invoice", class: "btn btn-success", id: "invoice_btn", data: { 'bs-dismiss': "modal"} %>
+<% end %>

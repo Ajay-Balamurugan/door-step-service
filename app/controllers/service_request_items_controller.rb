@@ -58,7 +58,6 @@ class ServiceRequestItemsController < ApplicationController
   def download_history
     @service_request_items = ServiceRequestItem.where(time_slot: params[:from_date]..params[:to_date])
     respond_to do |format|
-      format.html
       format.pdf do
         render pdf: 'service_history',
                template: 'service_request_items/history',
@@ -69,10 +68,8 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   def download_invoice
-    @service_request_item = ServiceRequestItem.find_by(id: params[:id])
-    puts @service_request_item
+    @service_request_item = ServiceRequestItem.find(params[:id])
     respond_to do |format|
-      format.html
       format.pdf do
         render pdf: 'service_invoice',
                template: 'service_request_items/invoice',

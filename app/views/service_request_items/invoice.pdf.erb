@@ -1,13 +1,22 @@
 <html>
   <head>
-    <%= wicked_pdf_stylesheet_link_tag "service_request_item" %>
+    <%= wicked_pdf_stylesheet_link_tag "invoice" %>
   </head>
 </body>
-<h3 id="history_header">Service History</h3>
+<h1 id="invoice_header">INVOICE</h1>
 <hr />
 <div class="container">
   <div class="invoice_container">
-    <p>Title: <%= item.option.title%></p>
+    <div class="invoice_details">
+      <h2>Service Title : <%= item.option.service.title%></h2>
+      <h2>Option Title : <%= item.option.title%></h2>
+      <h2>Order Placed at : <%= item.created_at.strftime("%B %d, %Y %I:%M %p")%></h2>
+      <h2>Time Slot : <%= item.time_slot.strftime("%B %d, %Y %I:%M %p")%></h2>
+      <hr />
+      <h1 id="invoice_price">Total : Rs.<%= item.option.price%></h1>
+      <hr />
+      <h2>Thank You for Choosing us!</h2>
+    </div>
   </div>
 </div>
 </body>
