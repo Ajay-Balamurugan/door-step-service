@@ -19,7 +19,7 @@
               <div class="nav-item d-flex align-items-center position-relative">
                 <%= link_to "Cart", cart_path(current_user), class: "nav-link mx-lg-2" %>
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart_count">
-                  <%= current_user.service_request_items.where(order_placed: false).count %>
+                  <%= cart_count%>
                 </span>
               </div>
             </li>

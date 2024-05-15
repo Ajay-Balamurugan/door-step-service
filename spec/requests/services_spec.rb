@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Services', type: :request do
-  let(:admin) { create(:user, :admin) }
+  let(:admin) { FactoryBot.create(:user, :admin) }
 
   let(:valid_attributes) do
     { title: 'Haircut', description: 'Get a fresh haircut' }
@@ -19,7 +19,7 @@ RSpec.describe 'Services', type: :request do
   end
 
   describe 'GET /services/:id' do
-    let(:service) { create(:service) }
+    let(:service) { FactoryBot.create(:service) }
 
     it 'returns a successful response' do
       get service_path(service)
@@ -67,7 +67,7 @@ RSpec.describe 'Services', type: :request do
   end
 
   describe 'PATCH /services/:id' do
-    let(:service) { create(:service) }
+    let(:service) { FactoryBot.create(:service) }
 
     context 'when authenticated as admin' do
       before { sign_in admin }
@@ -104,7 +104,7 @@ RSpec.describe 'Services', type: :request do
   end
 
   describe 'DELETE /services/:id' do
-    let!(:service) { create(:service) }
+    let!(:service) { FactoryBot.create(:service) }
 
     context 'when authenticated as admin' do
       before { sign_in admin }

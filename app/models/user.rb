@@ -23,6 +23,6 @@ class User < ApplicationRecord
   private
 
   def is_customer?
-    role.name == 'customer'
+    role&.name == 'customer'
   end
 end

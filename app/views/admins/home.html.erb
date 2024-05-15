@@ -16,7 +16,8 @@
       <tbody>
         <% @service_request_items.each do |item| %>
           <tr id="booked_service_<%= item.id %>" class="admin_table_record">
-            <td><%= @options.find(item.option_id).title %></td>
+            <td><%= @options.find(item.option_id).title %><br>
+              (<%=@options.find(item.option_id).service.title%>)</td>
             <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
             <td><%= item.service_request.user.name %></td>
             <td><%= item.service_request.user.address %></td>

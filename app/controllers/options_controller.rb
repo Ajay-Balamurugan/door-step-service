@@ -3,10 +3,6 @@ class OptionsController < ApplicationController
   before_action :set_option, only: %i[update destroy]
   before_action :authenticate_admin
 
-  def new
-    @option = Option.new
-  end
-
   def create
     service = Service.find(params[:service_id])
     @option = service.options.new(option_params)
