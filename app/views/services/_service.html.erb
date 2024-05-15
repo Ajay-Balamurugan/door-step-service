@@ -11,7 +11,7 @@
       <%= image_tag image.variant(resize_to_fill: [150, 150]).processed, style: "border-radius: 10px", id: "service_image_#{service.id}" %>
     <% end %>
   </div>
-  <div class="service_btns">
+  <div class="service_btns" id="service_buttons_container">
     <%= render 'edit_modal', service: service%>
     <%= link_to "Manage Service Options", service_path(service), class: "btn btn-dark" %>
     <button class="delete_service_btn btn btn-danger" data-service-id="<%= service.id %>" method="DELETE">Delete Service</button>
