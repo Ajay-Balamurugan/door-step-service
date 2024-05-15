@@ -12,7 +12,7 @@ class EmployeesController < ApplicationController
   end
 
   def create
-    @user = Role.find_by(id: EMPLOYEE_ROLE_ID).users.new(employee_params)
+    @user = Role.find_by(name: 'employee').users.new(employee_params)
     if @user.save
       redirect_to admin_dashboard_path, notice: 'Successfully Created Employee'
     else

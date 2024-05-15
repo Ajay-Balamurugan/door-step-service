@@ -11,7 +11,7 @@ FactoryBot.define do
     end
 
     trait :customer do
-      name { 'Customer' }
+      name { 'customer' }
     end
   end
 end

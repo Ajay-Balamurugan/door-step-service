@@ -8,7 +8,7 @@ class AdminsController < ApplicationController
 
   def new
     @user = User.new
-    @role_id = ADMIN_ROLE_ID
+    @role_id = Role.find_by(name: 'admin').id
   end
 
   def create

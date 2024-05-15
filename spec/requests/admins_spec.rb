@@ -24,8 +24,8 @@ RSpec.describe 'Admins', type: :request do
   end
 
   describe 'POST #create' do
-    let(:valid_attributes) { attributes_for(:user) }
-    let(:invalid_attributes) { attributes_for(:user, phone_number: nil) }
+    let(:valid_attributes) { attributes_for(:user, role_id: create(:role, :admin).id) }
+    let(:invalid_attributes) { attributes_for(:user, name: nil) }
 
     context 'when authenticated as admin' do
       before { sign_in admin }

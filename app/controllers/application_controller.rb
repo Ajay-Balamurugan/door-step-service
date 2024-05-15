@@ -1,9 +1,6 @@
 class ApplicationController < ActionController::Base
   helper_method :find_option, :find_service, :user_is_customer?, :user_is_admin?, :user_is_employee?
 
-  ADMIN_ROLE_ID = Role.find_by(name: 'admin').id
-  EMPLOYEE_ROLE_ID = Role.find_by(name: 'employee').id
-
   def user_is_customer?
     current_user.role.name == 'customer' if current_user
   end
@@ -21,7 +18,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_employee
-    redirect_to root_path alert: 'You are not allowed to visit that page' unless user_is_employee?
+    redirect_to root_path, alert: 'You are not allowed to visit that page' unless user_is_employee?
   end
 
   def authenticate_customer

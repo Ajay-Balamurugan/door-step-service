@@ -6,19 +6,19 @@ FactoryBot.define do
     password_confirmation { 'aaaaaa' }
     address { 'Test Apartment, Test City' }
     phone_number { '1234567890' }
-    role { association(:role, :customer) }
+    role
 
     trait :admin do
-      role { association(:role, :admin) }
+      association :role, factory: %i[role admin]
     end
 
     trait :employee do
-      role { association(:role, :employee) }
-      service { association(:service) }
+      association :role, factory: %i[role employee]
+      association :service, factory: :service
     end
 
     trait :customer do
-      role { association(:role, :customer) }
+      association :role, factory: %i[role customer]
     end
   end
 end

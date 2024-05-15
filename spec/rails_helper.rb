@@ -35,8 +35,13 @@ RSpec.configure do |config|
     Rails.root.join('spec/fixtures')
   ]
 
-  config.before(:suite) do
-    Rails.application.load_seed
+  # config.before(:suite) do
+  #   Rails.application.load_seed
+  # end
+  config.before(:each) do
+    create(:role, :admin)
+    create(:role, :customer)
+    create(:role, :employee)
   end
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
