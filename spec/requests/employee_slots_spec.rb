@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe EmployeeSlotsController, type: :request do
+RSpec.describe 'EmployeeSlots', type: :request do
   let(:admin) { create(:user, role_id: create(:role, :admin).id) }
   let(:employee) { create(:user, role_id: create(:role, :employee).id) }
   let(:service_request_item) { create(:service_request_item) }

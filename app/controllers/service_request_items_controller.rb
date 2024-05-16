@@ -93,8 +93,10 @@ class ServiceRequestItemsController < ApplicationController
       admin_dashboard_path
     elsif user_is_employee?
       employee_dashboard_path
-    else
+    elsif user_is_customer?
       service_request_path(@service_request_item.service_request)
+    else
+      root_path
     end
   end
 end
