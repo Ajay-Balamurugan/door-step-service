@@ -1,0 +1,38 @@
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal<%= item.id %>">
+  View Feedback
+</button>
+<!-- Modal -->
+<div class="modal fade editModal" id="editServiceModal<%= item.id %>" tabindex="-1" aria-labelledby="createServiceModalLabel<%= item.id %>" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="editServiceModalLabel<%= item.id %>">View Service Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4>Customer Feedback :</h4>
+        <br />
+        <% if item.feedback.present? %>
+          <p><%= item.feedback %></p>
+        <% else %>
+          <p>N/A</p>
+        <% end %>
+        <h4>Before Service Images</h4>
+        <div class="before-service-images">
+          <% item.before_service_images.each do |image| %>
+            <%= link_to image_tag(image.variant(resize_to_fill: [100, 100]).processed, style: "border-radius: 10px; margin-right: 10px;", alt: "Before Service Image"),url_for(image) %>
+          <% end %>
+        </div>
+        <br />
+        <h4>After Service Images</h4>
+        <div class="after-service-images">
+          <% item.after_service_images.each do |image| %>
+            <%= link_to image_tag(image.variant(resize_to_fill: [100, 100]).processed, style: "border-radius: 10px; margin-right: 10px;", alt: "Before Service Image"),url_for(image) %>
+          <% end %>
+        </div>
+        <br />
+      </div>
+    </div>
+  </div>
+</div>

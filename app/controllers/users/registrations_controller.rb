@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   # def edit
-  #   @user = current_user if user_is_employee?
+  #   super
   # end
 
   # PUT /resource

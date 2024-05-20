@@ -4,7 +4,12 @@
     <h6 class="card-subtitle mb-2 text-body-secondary">Rs.<%= option.price%></h6>
     <p class="card-subtitle mb-2 text-body-secondary">Duration: <%= option.duration%> hours</p>
     <p class="card-text"><%= option.description%></p>
-    <button type="button" class="option_book_button" data-bs-toggle="modal" data-bs-target="#bookNowModal<%= option.id %>">Book Now</button>
+    <% display_book_now_button do%>
+      <button type="button" class="option_book_button" data-bs-toggle="modal" data-bs-target="#bookNowModal<%= option.id %>">Book Now</button>
+    <%end%>
+    <% display_log_in_button do%>
+      <%= link_to "Log in to book", new_user_session_path, class: "option_book_button"%>
+    <%end%>
     <div id="datetime_validation_errors_<%= option.id%>" class="date_validation_errors">
     </div>
   </div>

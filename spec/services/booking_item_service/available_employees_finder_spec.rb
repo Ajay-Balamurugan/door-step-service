@@ -20,8 +20,8 @@ RSpec.describe Services::BookingItemService::AvailableEmployeesFinder do
       available_employees_finder = described_class.new(service_request_item, option)
       available_employees = available_employees_finder.find_available_employees
 
-      expect(available_employees).to include(employee3)
-      expect(available_employees).not_to include(employee1, employee2)
+      expect(available_employees).to include(employee2, employee3)
+      expect(available_employees).not_to include(employee1)
     end
   end
 end

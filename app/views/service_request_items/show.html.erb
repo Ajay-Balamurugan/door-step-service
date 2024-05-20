@@ -1,10 +1,10 @@
 <div class="container request_item">
   <h1 class="option_title">Assign Employee</h1>
   <hr />
-  <h3>Service Name : <%= find_option(@service_request_item.option_id).title%></h3>
-  <h3>Customer Name : <%= @service_request_item.service_request.user.name%></h3>
-  <h3>Customer Address : <%= @service_request_item.service_request.user.address%></h3>
-  <h3>Time Slot : <%= @service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p")%></h3>
+  <h4>Service Name : <%= find_option(@service_request_item.option_id).title%></h4>
+  <h4>Customer Name : <%= @service_request_item.service_request.user.name%></h4>
+  <h4>Customer Address : <%= @service_request_item.service_request.user.address%></h4>
+  <h4>Time Slot : <%= @service_request_item.time_slot.strftime("%B %d, %Y %I:%M %p")%></h4>
   <hr />
   <%= form_with(model: EmployeeSlot.new, url: employee_slots_path, method: :post, class: "assign_form") do |form| %>
     <h3>Select Employee</h3>

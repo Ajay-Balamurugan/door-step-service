@@ -51,3 +51,11 @@ th {
   text-align: center;
   /* margin-top: 10vh; */
 }
+
+#skill_select select {
+  width: 14vw;
+}
+
+.create_employee_btn {
+  margin-left: 3vw;
+}

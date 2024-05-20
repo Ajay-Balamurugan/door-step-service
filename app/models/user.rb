@@ -17,7 +17,7 @@ class User < ApplicationRecord
     errors.add(:address, 'is required') unless address.present?
     return if phone_number.present? && phone_number.length == 10
 
-    errors.add(:phone_number, 'is required and must have 10 digits')
+    errors.add(:phone_number, 'must have 10 digits')
   end
 
   private

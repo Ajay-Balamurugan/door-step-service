@@ -13,19 +13,19 @@
       <div class="modal-body">
         <h2>Create a Service</h2>
         <%= form_with(model: @service, id: "create_service_form") do |form| %>
-          <div>
-            <%= form.label :title %>
+          <div class="modal_element">
+            <%= form.label :title %><br />
             <%= form.text_field :title %>
           </div>
-          <div>
-            <%= form.label :description %>
+          <div class="modal_element">
+            <%= form.label :description %><br />
             <%= form.text_area :description %>
           </div>
           <div>
-            <%= form.label :images %>
-            <%= form.file_field :images, multiple: true %>
+            <%= form.label :images %><br />
+            <%= form.file_field :images, multiple: true, class: "mt-2" %>
           </div>
-          <%= form.submit "Create Service", data: { 'bs-dismiss': "modal" } %>
+          <%= form.submit "Create Service", data: { 'bs-dismiss': "modal" }, class: "sign_up_button btn btn-success mt-3" %>
         <% end %>
       </div>
     </div>

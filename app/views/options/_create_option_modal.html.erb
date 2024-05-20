@@ -12,23 +12,23 @@
       </div>
       <div class="modal-body">
         <%= form_with(model: option, id: "create_option_form", url: service_options_path(@service), data: { 'service-id': service.id }) do |form| %>
-          <div>
-            <%= form.label :title %>
+          <div class="modal_element">
+            <%= form.label :title %><br />
             <%= form.text_field :title %>
           </div>
-          <div>
-            <%= form.label :description %>
+          <div class="modal_element">
+            <%= form.label :description %><br />
             <%= form.text_area :description %>
           </div>
-          <div>
-            <%= form.label :duration, "Duration (in hours)" %>
+          <div class="modal_element">
+            <%= form.label :duration, "Duration (in hours)" %><br />
             <%= form.number_field :duration %>
           </div>
-          <div>
-            <%= form.label :price %>
+          <div class="modal_element">
+            <%= form.label :price %><br />
             <%= form.number_field :price %>
-          </div>
-          <%= form.submit "Create Option",method: :post, data: { 'bs-dismiss': "modal" } %>
+          </div class="modal_element">
+          <%= form.submit "Create Option",method: :post, data: { 'bs-dismiss': "modal" }, class: "sign_up_button btn btn-success mt-3" %>
         <% end %>
       </div>
     </div>

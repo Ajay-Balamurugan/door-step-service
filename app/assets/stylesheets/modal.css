@@ -1,0 +1,17 @@
+.modal_element input,
+select,
+textarea {
+  border: 1px solid #aca7a7;
+  border-radius: 10px;
+  outline: none;
+  height: 4vh;
+  width: 20vw;
+}
+
+.modal_element textarea {
+  height: 10vh;
+}
+
+.modal_element {
+  margin-bottom: 20px;
+}

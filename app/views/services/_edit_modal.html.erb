@@ -2,7 +2,6 @@
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editServiceModal<%= service.id %>">
   Update service
 </button>
-
 <!-- Modal -->
 <div class="modal fade editModal" id="editServiceModal<%= service.id %>" tabindex="-1" aria-labelledby="createServiceModalLabel<%= service.id %>" aria-hidden="true">
   <div class="modal-dialog">
@@ -12,21 +11,21 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-          <%= form_with(model: service, class: "edit_service_form", data: { 'service-id': service.id }) do |form| %>
-              <div>
-                  <%= form.label :title %>
-                  <%= form.text_field :title %>
-              </div>
-              <div>
-                  <%= form.label :description %>
-                  <%= form.text_field :description %>
-              </div>
-              <div>
-                  <%= form.label :images %>
-                  <%= form.file_field :images, multiple: true %>
-              </div>
-          <%= form.submit "Update Service",class: "update_service_btn", data: { 'bs-dismiss': "modal", 'service-id': service.id } %>
-          <% end %>
+        <%= form_with(model: service, class: "edit_service_form", data: { 'service-id': service.id }) do |form| %>
+          <div class="modal_element">
+            <%= form.label :title %><br />
+            <%= form.text_field :title %>
+          </div>
+          <div class="modal_element">
+            <%= form.label :description %><br />
+            <%= form.text_area :description %>
+          </div>
+          <div>
+            <%= form.label :images %><br />
+            <%= form.file_field :images, multiple: true %>
+          </div>
+          <%= form.submit "Update Service",class: "update_service_btn btn btn-success mt-3", data: { 'bs-dismiss': "modal", 'service-id': service.id } %>
+        <% end %>
       </div>
     </div>
   </div>

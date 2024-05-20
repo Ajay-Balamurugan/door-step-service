@@ -22,6 +22,7 @@ class ServiceRequestItemsController < ApplicationController
   def show
     option = find_option(@service_request_item.option_id)
     @available_employees = available_employees_finder_class.new(@service_request_item, option).find_available_employees
+    console
   end
 
   def edit
