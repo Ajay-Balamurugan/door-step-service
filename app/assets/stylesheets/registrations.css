@@ -98,6 +98,6 @@ select {
   gap: 4vw;
 }
 
-#select_element {
-  width: 14vw;
+#select_element select {
+  width: 10vw;
 }

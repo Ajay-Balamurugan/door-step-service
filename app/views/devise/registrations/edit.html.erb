@@ -17,7 +17,8 @@
             <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
           <% end %>
           <div class="field form_element">
-            <%= f.label :password %> <i>(leave blank if you don't<br />
+            <%= f.label :password %><br />
+            <i>(leave blank if you don't<br />
               want to change it)</i><br />
             <%= f.password_field :password, autocomplete: "new-password" %>
           </div>
@@ -44,8 +45,9 @@
             </div>
           <% end %>
           <div class="field form_element">
-            <%= f.label :current_password %><i>(we need current <br />
-              password to confirm changes)</i>
+            <%= f.label :current_password %><br />
+            <i>(current password required<br />
+              to confirm changes)</i>
             <br />
             <%= f.password_field :current_password, autocomplete: "current-password" %>
           </div>

@@ -53,9 +53,13 @@ th {
 }
 
 #skill_select select {
-  width: 14vw;
+  width: 10vw;
 }
 
 .create_employee_btn {
   margin-left: 3vw;
 }
+
+/* .employee_select {
+  margin-right: 2vw;
+} */

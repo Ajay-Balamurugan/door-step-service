@@ -7,5 +7,4 @@ class Option < ApplicationRecord
   validates :price, presence: { message: 'Price cannot be blank' }
 
   belongs_to :service
-
 end
