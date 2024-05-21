@@ -16,13 +16,12 @@ class ServiceRequestItemsController < ApplicationController
   end
 
   def index
-    @service_request_items = ServiceRequestItem.where(order_placed: true)
+    @service_request_items = ServiceRequestItem.paginate(page: params[:page], per_page: 8).where(order_placed: true)
   end
 
   def show
     option = find_option(@service_request_item.option_id)
     @available_employees = available_employees_finder_class.new(@service_request_item, option).find_available_employees
-    console
   end
 
   def edit
@@ -47,6 +46,7 @@ class ServiceRequestItemsController < ApplicationController
     end
   end
 
+  # Download Service History PDF as Admin
   def download_history
     @service_request_items = ServiceRequestItem.where(time_slot: params[:from_date]..params[:to_date])
     respond_to do |format|
@@ -58,7 +58,7 @@ class ServiceRequestItemsController < ApplicationController
       end
     end
   end
-
+  # Download Invoice PDF as customer
   def download_invoice
     respond_to do |format|
       format.pdf do

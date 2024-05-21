@@ -1,5 +1,6 @@
 module Services
   module CartService
+    # Class to calculate cart total
     class CartTotalCalculator
       def initialize(cart_items)
         @cart_items = cart_items

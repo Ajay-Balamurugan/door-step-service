@@ -28,7 +28,7 @@
             <%= form.label :price %><br />
             <%= form.number_field :price %>
           </div>
-          <%= form.submit "Update Option",class: "update_option_btn", data: { 'bs-dismiss': "modal", 'option-id': option.id, 'service-id': service.id }, class: "sign_up_button btn btn-success mt-3" %>
+          <%= form.submit "Update Option",class: "update_option_btn sign_up_button btn btn-success mt-3", data: { 'bs-dismiss': "modal", 'option-id': option.id, 'service-id': service.id }%>
         <% end %>
       </div>
     </div>

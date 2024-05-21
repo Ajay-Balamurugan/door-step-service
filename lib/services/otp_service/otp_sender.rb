@@ -1,5 +1,6 @@
 module Services
   module OtpService
+    # Class to send OTP to customer
     class OtpSender
       def initialize(service_request_item)
         @service_request_item = service_request_item

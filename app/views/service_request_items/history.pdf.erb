@@ -21,13 +21,13 @@
     <tbody>
       <% service_request_items.each do |item| %>
         <tr>
-          <td><%= item.option.service.id %></td>
+          <td><%= find_service(find_option(item.option_id).service_id).id %></td>
           <td><%= item.service_request.user.name %></td>
-          <td><%= item.option.service.title %></td>
-          <td><%= item.option.title %></td>
+          <td><%=find_service(find_option(item.option_id).service_id).title %></td>
+          <td><%= find_option(item.option_id).title %></td>
           <td><%= item.status.titleize %></td>
           <td><%= item.time_slot.strftime("%B %d, %Y %I:%M %p") %></td>
-          <td>Rs.<%= item.option.price %></td>
+          <td>Rs.<%= find_option(item.option_id).price %></td>
         </tr>
       <% end %>
     </tbody>

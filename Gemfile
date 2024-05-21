@@ -90,3 +90,6 @@ gem 'twilio-ruby'
 # PDF Generation
 gem 'wicked_pdf'
 gem 'wkhtmltopdf-binary'
+
+# Pagination 
+gem 'will_paginate', '~> 4.0'

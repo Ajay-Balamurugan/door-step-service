@@ -8,6 +8,4 @@ class Option < ApplicationRecord
 
   belongs_to :service
 
-  # made a change here
-  has_many :service_request_items
 end

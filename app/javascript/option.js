@@ -1,6 +1,7 @@
 $(document).ready(function () {
   //AJAX for CRUD on option
   $("#service_options_container").on("click", function (event) {
+    event.preventDefault();
     let item = event.target;
     let element = $(item);
     if (element.hasClass("delete_option_btn")) {
@@ -23,7 +24,7 @@ $(document).ready(function () {
       form = element.parent();
       var formData = new FormData(form[0]);
       $.ajax({
-        method: "PUT",
+        method: "PATCH",
         url: "/services/" + serviceId + "/options/" + optionId,
         data: formData,
         processData: false,

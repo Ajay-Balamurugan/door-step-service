@@ -1,5 +1,6 @@
 module Services
   module BookingItemService
+    # Class to find available employees for a time slot
     class AvailableEmployeesFinder
       def initialize(service_request_item, option)
         @service_request_item = service_request_item

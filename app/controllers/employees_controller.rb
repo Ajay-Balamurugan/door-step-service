@@ -20,6 +20,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # Authenticate the OTP recieved from customer
   def verify_otp
     service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
 
@@ -31,6 +32,7 @@ class EmployeesController < ApplicationController
     end
   end
 
+  # Send OTP to customer
   def send_otp
     service_request_item = ServiceRequestItem.find(params[:service_request_item_id])
     Services::OtpService::OtpSender.new(service_request_item).send_otp
